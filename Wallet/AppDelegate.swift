@@ -13,9 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    struct State: Equatable {
+        static func ==(lhs: State, rhs: State) -> Bool {
+            return true
+        }
+    }
+    var store: Store<State, ()>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.store = Store(reducer: .empty, initialState: State(), view: { state, dispatch in
+            IBox(UIViewController())
+            })
         return true
     }
 

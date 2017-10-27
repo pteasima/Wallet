@@ -7,21 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83C1FA3C47400594479 /* Incremental.swift */; };
+		794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */; };
+		794DD8521FA3C4BC00594479 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83F1FA3C47400594479 /* Label.swift */; };
+		794DD8531FA3C4BC00594479 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8401FA3C47400594479 /* ViewController.swift */; };
+		794DD8541FA3C4BC00594479 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8411FA3C47400594479 /* Constraints.swift */; };
+		794DD8551FA3C4BC00594479 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8421FA3C47400594479 /* StackView.swift */; };
+		794DD8561FA3C4BC00594479 /* Incremental+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8431FA3C47400594479 /* Incremental+UIKit.swift */; };
+		794DD8571FA3C4BC00594479 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8441FA3C47400594479 /* MapView.swift */; };
+		794DD8581FA3C4BC00594479 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8451FA3C47400594479 /* ActivityIndicator.swift */; };
+		794DD8591FA3C4BC00594479 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8461FA3C47400594479 /* TableView.swift */; };
+		794DD85A1FA3C4BC00594479 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8471FA3C47400594479 /* TextField.swift */; };
+		794DD85C1FA3C4BC00594479 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8491FA3C47400594479 /* Button.swift */; };
+		794DD85D1FA3C4BC00594479 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84A1FA3C47400594479 /* NavigationController.swift */; };
+		794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84B1FA3C47400594479 /* Helpers.swift */; };
+		794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84C1FA3C47400594479 /* IncrementalStdLib.swift */; };
+		794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84D1FA3C47400594479 /* IncrementalArray.swift */; };
+		794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8361FA3C47400594479 /* Utilities.swift */; };
+		794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8381FA3C47400594479 /* SideEffects.swift */; };
 		796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */; };
-		796C70FD1FA3BBFE005CC404 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FC1FA3BBFE005CC404 /* ViewController.swift */; };
-		796C71001FA3BBFE005CC404 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C70FE1FA3BBFE005CC404 /* Main.storyboard */; };
+		796C70FD1FA3BBFE005CC404 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FC1FA3BBFE005CC404 /* FirstViewController.swift */; };
 		796C71021FA3BBFE005CC404 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796C71011FA3BBFE005CC404 /* Assets.xcassets */; };
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
+		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
+		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
+		796C71111FA3BD09005CC404 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C71101FA3BD09005CC404 /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		794DD8361FA3C47400594479 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		794DD8381FA3C47400594479 /* SideEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffects.swift; sourceTree = "<group>"; };
+		794DD83C1FA3C47400594479 /* Incremental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incremental.swift; sourceTree = "<group>"; };
+		794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Incremental+NSObject.swift"; sourceTree = "<group>"; };
+		794DD83F1FA3C47400594479 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		794DD8401FA3C47400594479 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		794DD8411FA3C47400594479 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		794DD8421FA3C47400594479 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		794DD8431FA3C47400594479 /* Incremental+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Incremental+UIKit.swift"; sourceTree = "<group>"; };
+		794DD8441FA3C47400594479 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		794DD8451FA3C47400594479 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		794DD8461FA3C47400594479 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		794DD8471FA3C47400594479 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		794DD8491FA3C47400594479 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		794DD84A1FA3C47400594479 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		794DD84B1FA3C47400594479 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		794DD84C1FA3C47400594479 /* IncrementalStdLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalStdLib.swift; sourceTree = "<group>"; };
+		794DD84D1FA3C47400594479 /* IncrementalArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalArray.swift; sourceTree = "<group>"; };
 		796C70F71FA3BBFE005CC404 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		796C70FC1FA3BBFE005CC404 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		796C70FF1FA3BBFE005CC404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		796C70FC1FA3BBFE005CC404 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		796C71011FA3BBFE005CC404 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		796C71041FA3BBFE005CC404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		796C71061FA3BBFE005CC404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		796C710C1FA3BC20005CC404 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
+		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		796C71101FA3BD09005CC404 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,10 +75,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		794DD8351FA3C47400594479 /* IncrementalElm */ = {
+			isa = PBXGroup;
+			children = (
+				794DD8361FA3C47400594479 /* Utilities.swift */,
+				794DD8381FA3C47400594479 /* SideEffects.swift */,
+			);
+			path = IncrementalElm;
+			sourceTree = "<group>";
+		};
+		794DD83B1FA3C47400594479 /* Incremental */ = {
+			isa = PBXGroup;
+			children = (
+				794DD83C1FA3C47400594479 /* Incremental.swift */,
+				794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */,
+				794DD83E1FA3C47400594479 /* Incremental+UIKit */,
+				794DD84B1FA3C47400594479 /* Helpers.swift */,
+				794DD84C1FA3C47400594479 /* IncrementalStdLib.swift */,
+				794DD84D1FA3C47400594479 /* IncrementalArray.swift */,
+			);
+			path = Incremental;
+			sourceTree = "<group>";
+		};
+		794DD83E1FA3C47400594479 /* Incremental+UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				794DD83F1FA3C47400594479 /* Label.swift */,
+				794DD8401FA3C47400594479 /* ViewController.swift */,
+				794DD8411FA3C47400594479 /* Constraints.swift */,
+				794DD8421FA3C47400594479 /* StackView.swift */,
+				794DD8431FA3C47400594479 /* Incremental+UIKit.swift */,
+				794DD8441FA3C47400594479 /* MapView.swift */,
+				794DD8451FA3C47400594479 /* ActivityIndicator.swift */,
+				794DD8461FA3C47400594479 /* TableView.swift */,
+				794DD8471FA3C47400594479 /* TextField.swift */,
+				794DD8491FA3C47400594479 /* Button.swift */,
+				794DD84A1FA3C47400594479 /* NavigationController.swift */,
+			);
+			path = "Incremental+UIKit";
+			sourceTree = "<group>";
+		};
 		796C70EE1FA3BBFE005CC404 = {
 			isa = PBXGroup;
 			children = (
 				796C70F91FA3BBFE005CC404 /* Wallet */,
+				794DD83B1FA3C47400594479 /* Incremental */,
+				794DD8351FA3C47400594479 /* IncrementalElm */,
 				796C70F81FA3BBFE005CC404 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,11 +137,13 @@
 			isa = PBXGroup;
 			children = (
 				796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */,
-				796C70FC1FA3BBFE005CC404 /* ViewController.swift */,
-				796C70FE1FA3BBFE005CC404 /* Main.storyboard */,
+				796C70FC1FA3BBFE005CC404 /* FirstViewController.swift */,
 				796C71011FA3BBFE005CC404 /* Assets.xcassets */,
 				796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */,
 				796C71061FA3BBFE005CC404 /* Info.plist */,
+				796C710C1FA3BC20005CC404 /* Monoid.swift */,
+				796C710E1FA3BC83005CC404 /* Reducer.swift */,
+				796C71101FA3BD09005CC404 /* Store.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -125,7 +209,6 @@
 			files = (
 				796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */,
 				796C71021FA3BBFE005CC404 /* Assets.xcassets in Resources */,
-				796C71001FA3BBFE005CC404 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +219,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				796C70FD1FA3BBFE005CC404 /* ViewController.swift in Sources */,
+				796C71111FA3BD09005CC404 /* Store.swift in Sources */,
+				794DD8591FA3C4BC00594479 /* TableView.swift in Sources */,
+				794DD8551FA3C4BC00594479 /* StackView.swift in Sources */,
+				794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */,
+				794DD85A1FA3C4BC00594479 /* TextField.swift in Sources */,
+				794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */,
+				794DD8541FA3C4BC00594479 /* Constraints.swift in Sources */,
+				794DD8581FA3C4BC00594479 /* ActivityIndicator.swift in Sources */,
+				794DD85C1FA3C4BC00594479 /* Button.swift in Sources */,
+				794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */,
+				794DD8571FA3C4BC00594479 /* MapView.swift in Sources */,
+				796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */,
+				794DD8531FA3C4BC00594479 /* ViewController.swift in Sources */,
+				794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */,
+				794DD85D1FA3C4BC00594479 /* NavigationController.swift in Sources */,
+				796C70FD1FA3BBFE005CC404 /* FirstViewController.swift in Sources */,
+				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,
+				794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */,
+				794DD8561FA3C4BC00594479 /* Incremental+UIKit.swift in Sources */,
+				794DD8521FA3C4BC00594479 /* Label.swift in Sources */,
+				794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */,
+				794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */,
 				796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,14 +248,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		796C70FE1FA3BBFE005CC404 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				796C70FF1FA3BBFE005CC404 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
