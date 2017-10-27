@@ -16,8 +16,9 @@ public func barButtonItem(systemItem: UIBarButtonSystemItem, onTap: @escaping ()
     return box
 }
 
-public func navigationController(_ viewControllers: ArrayWithHistory<IBox<UIViewController>>) -> IBox<UINavigationController> {
+public func navigationController(_ viewControllers: ArrayWithHistory<IBox<UIViewController>>, onBack: @escaping () -> Void) -> IBox<UINavigationController> {
     let nc = UINavigationController()
+    
     let result = IBox(nc)
     result.bindViewControllers(to: viewControllers)
     return result
@@ -70,4 +71,9 @@ extension IBox where V: UINavigationController {
             }
         })
     }
+
+    public var cast: IBox<UIViewController> {
+        return map { $0 }
+    }
 }
+

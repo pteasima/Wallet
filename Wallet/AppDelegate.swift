@@ -8,23 +8,49 @@
 
 import UIKit
 
+struct State {
+    typealias LoginStep = Int
+    var loginStep: LoginStep = 0
+    var previousLoginStep: LoginStep?
+}
+extension State: Equatable {
+    static func ==(lhs: State, rhs: State) -> Bool {
+        return lhs.loginStep == rhs.loginStep && lhs.previousLoginStep == rhs.previousLoginStep
+    }
+}
+enum Action {
+    case go
+    case back
+    case backTapped
+}
+func reduce(state: inout State, action: Action) {
+    print(state, action)
+    switch action {
+    case .go:
+        state.previousLoginStep = state.loginStep
+        state.loginStep = state.loginStep + 1
+    case .back:
+        state.previousLoginStep = nil
+        state.loginStep = state.loginStep - 1
+    case .backTapped:
+        state.previousLoginStep = state.loginStep
+        state.loginStep = state.loginStep - 1
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    struct State: Equatable {
-        static func ==(lhs: State, rhs: State) -> Bool {
-            return true
-        }
-    }
-    var store: Store<State, ()>?
+    var store: Store<State, Action>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        self.store = Store(reducer: .empty, initialState: State(), view: { state, dispatch in
-            IBox(UIViewController())
-            })
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.store = Store(reducer: Reducer(reduce: reduce), initialState: State(), view: { state, dispatch in
+            return LoginFlow.vc(state, dispatch)
+        })
+        self.store?.run(in: self.window!)
         return true
     }
 

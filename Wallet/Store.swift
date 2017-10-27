@@ -13,12 +13,10 @@ class Store<S, A> where S: Equatable {
     private var state: Input<S>
 
 
-    init(reducer: Reducer<S, A>, initialState: S, view: (S, (A) -> Void ) -> IBox<UIViewController>) {
+    init(reducer: Reducer<S, A>, initialState: S, view: (I<S>, @escaping (A) -> Void ) -> IBox<UIViewController>) {
         self.reducer = reducer
         self.state = Input(initialState)
-        self.rootViewController = view(initialState, dispatch)
-        UIApplication.shared.keyWindow?.rootViewController = rootViewController.unbox
-        UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        self.rootViewController = view(state.i, dispatch)
     }
 
     func dispatch(_ action: A) {
@@ -29,6 +27,13 @@ class Store<S, A> where S: Equatable {
 
     var rootViewController: IBox<UIViewController>!
 
+}
+
+extension Store {
+    func run(in window: UIWindow) {
+        window.rootViewController = rootViewController.unbox
+        window.makeKeyAndVisible()
+    }
 }
 
 
