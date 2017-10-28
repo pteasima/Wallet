@@ -8,42 +8,9 @@
 
 import UIKit
 
-struct State: Codable {
-    typealias LoginStep = Int
-    var loginStep: LoginStep = 0
-}
 
 
-extension State: Equatable {
-    static func ==(lhs: State, rhs: State) -> Bool {
-        return lhs.loginStep == rhs.loginStep
-    }
-}
 
-
-enum Action {
-    case go
-    case back
-    case goHome
-    case goToEnd
-}
-
-
-func reduce(state: inout State, action: Action) {
-    print(state, action)
-    switch action {
-    case .go:
-        state.loginStep = state.loginStep + 1
-    case .back:
-        state.loginStep = state.loginStep - 1
-    case .goHome:
-        state.loginStep = 0
-    case .goToEnd:
-        state.loginStep = 2
-    }
-    print(state, action)
-    print("------")
-}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -54,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.store = Store(reducer: Reducer(reduce: reduce), initialState: State(), view: { state, dispatch in
+        self.store = Store(reducer: reducer, initialState: State(), view: { state, dispatch in
             return LoginFlow.vc(state, dispatch)
         })
         self.store?.run(in: self.window!)

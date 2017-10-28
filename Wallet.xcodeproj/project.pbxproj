@@ -34,6 +34,8 @@
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
 		796C71111FA3BD09005CC404 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C71101FA3BD09005CC404 /* Store.swift */; };
 		79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */; };
+		79E715E81FA4B2320025C182 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E71FA4B2320025C182 /* State.swift */; };
+		79E715EA1FA4B2760025C182 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E91FA4B2760025C182 /* Update.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		796C71101FA3BD09005CC404 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
+		79E715E71FA4B2320025C182 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		79E715E91FA4B2760025C182 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		9680F07D61A69A03D220BA73 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		BA9814B0C04C2C00976C7431 /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		D94AE04D7CA3DF29C180EA0C /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 				796C710C1FA3BC20005CC404 /* Monoid.swift */,
 				796C710E1FA3BC83005CC404 /* Reducer.swift */,
 				796C71101FA3BD09005CC404 /* Store.swift */,
+				79E715E91FA4B2760025C182 /* Update.swift */,
+				79E715E71FA4B2320025C182 /* State.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */,
 				794DD8541FA3C4BC00594479 /* Constraints.swift in Sources */,
 				794DD8581FA3C4BC00594479 /* ActivityIndicator.swift in Sources */,
+				79E715EA1FA4B2760025C182 /* Update.swift in Sources */,
 				794DD85C1FA3C4BC00594479 /* Button.swift in Sources */,
 				794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */,
 				794DD8571FA3C4BC00594479 /* MapView.swift in Sources */,
@@ -336,6 +343,7 @@
 				794DD8521FA3C4BC00594479 /* Label.swift in Sources */,
 				794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */,
 				794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */,
+				79E715E81FA4B2320025C182 /* State.swift in Sources */,
 				796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
