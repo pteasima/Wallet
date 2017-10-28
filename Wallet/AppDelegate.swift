@@ -11,7 +11,7 @@ import UIKit
 struct State {
     typealias LoginStep = Int
     var loginStep: LoginStep = 0
-    var previousLoginStep: LoginStep?
+    var previousLoginStep: LoginStep? = nil
 }
 extension State: Equatable {
     static func ==(lhs: State, rhs: State) -> Bool {
@@ -21,7 +21,6 @@ extension State: Equatable {
 enum Action {
     case go
     case back
-    case backTapped
 }
 func reduce(state: inout State, action: Action) {
     print(state, action)
@@ -30,12 +29,10 @@ func reduce(state: inout State, action: Action) {
         state.previousLoginStep = state.loginStep
         state.loginStep = state.loginStep + 1
     case .back:
-        state.previousLoginStep = nil
-        state.loginStep = state.loginStep - 1
-    case .backTapped:
         state.previousLoginStep = state.loginStep
         state.loginStep = state.loginStep - 1
     }
+    print(state, action)
 }
 
 @UIApplicationMain

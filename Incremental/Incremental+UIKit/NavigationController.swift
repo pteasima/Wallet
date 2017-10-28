@@ -16,10 +16,25 @@ public func barButtonItem(systemItem: UIBarButtonSystemItem, onTap: @escaping ()
     return box
 }
 
+private final class Delegate: RNCD {
+    typealias Route = Any
+    func routableNavigationController(_ rnc: RoutableNavigationController<Delegate>, didPush vc: UIVC, animated: Bool, sender: Any?) {
+    }
+
+    func routableNavigationController(_ rnc: RoutableNavigationController<Delegate>, didPop vc: UIVC, animated: Bool, sender: Any?) {
+        onBack()
+    }
+
+    let onBack: () -> Void
+    init(onBack: @escaping () -> Void) {
+        self.onBack = onBack
+    }
+}
+
 public func navigationController(_ viewControllers: ArrayWithHistory<IBox<UIViewController>>, onBack: @escaping () -> Void) -> IBox<UINavigationController> {
-    let nc = UINavigationController()
-    
-    let result = IBox(nc)
+    let nc = RoutableNavigationController<Delegate>()
+    nc.routingDelegate = Delegate(onBack: onBack)
+    let result = IBox(nc as UINavigationController)
     result.bindViewControllers(to: viewControllers)
     return result
 }
@@ -46,6 +61,7 @@ extension IBox where V: UINavigationController {
                 }
                 self.disposables.append(v)
             case .remove(at: let i):
+                guard i < self.unbox.viewControllers.count else { return }//already popped, just catching up
                 let v: UIViewController = self.unbox.viewControllers[i]
                 let index = self.disposables.index { d in
                     if let vcBox = d as? IBox<UIViewController>, vcBox.unbox === v {
