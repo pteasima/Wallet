@@ -8,21 +8,27 @@
 
 import UIKit
 
-struct State {
+struct State: Codable {
     typealias LoginStep = Int
     var loginStep: LoginStep = 0
 }
+
+
 extension State: Equatable {
     static func ==(lhs: State, rhs: State) -> Bool {
         return lhs.loginStep == rhs.loginStep
     }
 }
+
+
 enum Action {
     case go
     case back
     case goHome
     case goToEnd
 }
+
+
 func reduce(state: inout State, action: Action) {
     print(state, action)
     switch action {
