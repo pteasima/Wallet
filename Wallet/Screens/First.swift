@@ -19,7 +19,8 @@ enum First {
             stackView(arrangedSubviews: [
                 label(text: I(constant: "hello")).cast,
                 textField(text: state.map { _ in "world" }, onChange: { _ in }).cast,
-                button(title: I(constant: "go"), titleColor: I(constant: .black), onTap: { dispatch(.go) } ).cast
+                button(title: I(constant: "go"), titleColor: I(constant: .black), onTap: { dispatch(.go) } ).cast,
+                button(title: I(constant: "goToEnd"), titleColor: I(constant: .black), onTap: { dispatch(.goToEnd) } ).cast
                 ]
             )
             , constraints: sizeToParent())
@@ -73,7 +74,7 @@ enum Third {
             stackView(arrangedSubviews: [
                 label(text: I(constant: "third")).cast,
                 textField(text: state.map { _ in "world" }, onChange: { _ in }).cast,
-                button(title: I(constant: "back"), titleColor: I(constant: .black), onTap: { dispatch(.back) } ).cast
+                button(title: I(constant: "back"), titleColor: I(constant: .black), onTap: { dispatch(.goHome) } ).cast
                 ]
             )
             , constraints: sizeToParent()) }
@@ -99,23 +100,25 @@ enum LoginFlow {
         let navStack = ArrayWithHistory([First.vc(state, dispatch)])
         let navC = navigationController(navStack) { dispatch(.back) }.cast
         let second: I<Lifetime> = Second.vc(state, dispatch)
-                navC.disposables.append(second.observe { presentation in
+        navC.disposables.append(second.observe { presentation in
+            switch presentation {
+            case let .add(secondVC):
+                navStack.append(secondVC)
+                let third: I<Lifetime> = Third.vc(state, dispatch)
+                secondVC.disposables.append(third.observe { presentation in
                     switch presentation {
-                    case let .add(vc):
-                        navStack.append(vc)
-                    case let .remove(vc):
-                        navStack.remove { $0 == vc }
+                    case let .add(thirdVC):
+                        navStack.append(thirdVC)
+                    case let .remove(thirdVC):
+                        navStack.remove { $0 == thirdVC }
                     }
                 })
-        let third: I<Lifetime> = Third.vc(state, dispatch)
-        navC.disposables.append(third.observe { presentation in
-        switch presentation {
-        case let .add(vc):
-        navStack.append(vc)
-        case let .remove(vc):
-        navStack.remove { $0 == vc }
-        }
+            case let .remove(secondVC):
+                navStack.remove { $0 == secondVC }
+                secondVC?.disposables = [] // todo shouldnt this happen automatically somehow?
+            }
         })
+
         //        navC.disposables.append(state.observe { s in
         //            switch (s.previousLoginStep, s.loginStep) {
         //            case (.none, _): break //initial

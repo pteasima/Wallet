@@ -11,28 +11,32 @@ import UIKit
 struct State {
     typealias LoginStep = Int
     var loginStep: LoginStep = 0
-    var previousLoginStep: LoginStep? = nil
 }
 extension State: Equatable {
     static func ==(lhs: State, rhs: State) -> Bool {
-        return lhs.loginStep == rhs.loginStep && lhs.previousLoginStep == rhs.previousLoginStep
+        return lhs.loginStep == rhs.loginStep
     }
 }
 enum Action {
     case go
     case back
+    case goHome
+    case goToEnd
 }
 func reduce(state: inout State, action: Action) {
     print(state, action)
     switch action {
     case .go:
-        state.previousLoginStep = state.loginStep
         state.loginStep = state.loginStep + 1
     case .back:
-        state.previousLoginStep = state.loginStep
         state.loginStep = state.loginStep - 1
+    case .goHome:
+        state.loginStep = 0
+    case .goToEnd:
+        state.loginStep = 2
     }
     print(state, action)
+    print("------")
 }
 
 @UIApplicationMain
