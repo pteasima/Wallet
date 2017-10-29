@@ -50,9 +50,12 @@ let timeTravelingReducer = Reducer<TimeTravelingState<State>, Action> { state, a
         return
     }
     switch a {
-    case .enter:
-        break
-//        state.currentView = .seeking(state.allStates.count - 1)
+    case .enter: //acts as toggle for now
+        switch state.viewMode {
+        case .live: state.viewMode = .cards
+        case .cards: state.viewMode = .live
+        }
+
     default: break
     }
 }

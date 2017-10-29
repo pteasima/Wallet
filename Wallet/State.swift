@@ -90,12 +90,22 @@ extension State: Equatable {
 struct TimeTravelingState<S>: Codable where S: Codable, S: Equatable {
     var liveState: S
     var pastStates: [S]
+
+    enum ViewMode: String, Codable {
+        case live
+        case cards
+    }
+
+    var viewMode: ViewMode
 }
 extension TimeTravelingState: Equatable {
     static func ==(lhs: TimeTravelingState, rhs: TimeTravelingState) -> Bool { return
-        lhs.allStates == rhs.allStates
+        lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode
     }
 }
+//extension TimeTravelingState.ViewMode: Equatable {
+//
+//}
 extension TimeTravelingState {
     var allStates: [S] {
         return [liveState] + pastStates

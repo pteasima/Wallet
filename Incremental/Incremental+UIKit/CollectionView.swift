@@ -99,30 +99,4 @@ public func collectionViewController<A>(layout: I<UICollectionViewLayout>, items
     })
     return box
 }
-//
-//public func tableViewController<A>(items: I<ArrayWithHistory<A>>, didSelect: ((A) -> ())? = nil, didDelete: ((A) -> ())? = nil, configure: @escaping (UITableViewCell, A) -> ()) -> IBox<UITableViewController> {
-//    let tableVC = TableVC([], didSelect: didSelect, didDelete: didDelete, configure: configure)
-//    let box = IBox<UITableViewController>(tableVC)
-//    var previousObserver: Any?
-//    box.disposables.append(items.observe { value in
-//        previousObserver = nil
-//        previousObserver = value.observe(current: {
-//            tableVC.items = $0
-//            tableVC.tableView.reloadData()
-//        }, handleChange: { change in
-//            tableVC.apply(change)
-//        })
-//    })
-//    return box
-//}
-//
-//public func tableViewController<A>(items value: I<[A]>, didSelect: ((A) -> ())? = nil,  configure: @escaping (UITableViewCell, A) -> ()) -> IBox<UITableViewController> {
-//    let tableVC = TableVC([], didSelect: didSelect, configure: configure)
-//    let box = IBox<UITableViewController>(tableVC)
-//    box.disposables.append(value.observe {
-//        tableVC.items = $0
-//        tableVC.tableView.reloadData()
-//    })
-//    return box
-//}
 
