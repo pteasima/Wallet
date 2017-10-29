@@ -43,8 +43,13 @@ let appReducer = Reducer<State, AppAction> { state, action in
     print("------")
 }
 
-let timeTravelingReducer = Reducer<TimeTravelingState, TimeTravelAction> { state, action in
-    switch action {
+let timeTravelingReducer = Reducer<TimeTravelingState<State>, Action> { state, action in
+    guard case let .timeTravel(a) = action else {
+        //other action, save the state to pastStates
+        state.pastStates = [state.liveState] + state.pastStates
+        return
+    }
+    switch a {
     case .enter:
         break
 //        state.currentView = .seeking(state.allStates.count - 1)
@@ -53,9 +58,21 @@ let timeTravelingReducer = Reducer<TimeTravelingState, TimeTravelAction> { state
 }
 
 let reducer: Reducer<TimeTravelingState, Action> =
-//    appReducer.lift(state: \.liveState, action: Action.prism.app)
+//    Reducer { state, action in
+//        print("justprechecking")
+//        print(state)
+//    }
 //    <>
-    timeTravelingReducer.lift(action: Action.prism.timeTravel)
+
+    timeTravelingReducer
+            <>
+    appReducer.lift(state: \.liveState, action: Action.prism.app)
+
+//    <>
+//    Reducer { state, action in
+//        print("justchecking")
+//        print(state)
+//}
 
 extension Action {
     enum prism {

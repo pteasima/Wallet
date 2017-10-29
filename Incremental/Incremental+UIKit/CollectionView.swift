@@ -42,6 +42,7 @@ class CollectionVC<A>: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView?.backgroundColor = .white
         collectionView?.register(EmbedCell.self, forCellWithReuseIdentifier: "Identifier")
     }
 

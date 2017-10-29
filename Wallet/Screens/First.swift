@@ -94,14 +94,6 @@ enum Third {
     }
 }
 
-enum TimeTravelManager {
-    static func vc(_ state: I<TimeTravelingState>, _ dispatch: @escaping (Action) -> Void) -> IBox<UIViewController> {
-        let layout = UICollectionViewFlowLayout()
-        let vc = UICollectionViewController(collectionViewLayout: layout)
-        let box = IBox(vc)
-        return box.map { $0 }
-    }
-}
 
 enum LoginFlow {
     static func vc(_ state: I<State>,_ dispatch: @escaping (Action) -> Void) -> IBox<UIViewController> {

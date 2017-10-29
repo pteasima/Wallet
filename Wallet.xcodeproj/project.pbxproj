@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5101F8D2BC7F6A58557CD335 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94AE04D7CA3DF29C180EA0C /* Pods_Wallet.framework */; };
+		791BB11E1FA66A2700231794 /* TimeTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB11D1FA66A2700231794 /* TimeTravel.swift */; };
 		794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83C1FA3C47400594479 /* Incremental.swift */; };
 		794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */; };
 		794DD8521FA3C4BC00594479 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83F1FA3C47400594479 /* Label.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		791BB11D1FA66A2700231794 /* TimeTravel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravel.swift; sourceTree = "<group>"; };
 		794DD8361FA3C47400594479 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		794DD8381FA3C47400594479 /* SideEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffects.swift; sourceTree = "<group>"; };
 		794DD83C1FA3C47400594479 /* Incremental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incremental.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				796C71101FA3BD09005CC404 /* Store.swift */,
 				79E715E91FA4B2760025C182 /* Update.swift */,
 				79E715E71FA4B2320025C182 /* State.swift */,
+				791BB11D1FA66A2700231794 /* TimeTravel.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				794DD8541FA3C4BC00594479 /* Constraints.swift in Sources */,
 				794DD8581FA3C4BC00594479 /* ActivityIndicator.swift in Sources */,
 				79E715EA1FA4B2760025C182 /* Update.swift in Sources */,
+				791BB11E1FA66A2700231794 /* TimeTravel.swift in Sources */,
 				794DD85C1FA3C4BC00594479 /* Button.swift in Sources */,
 				794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */,
 				794DD8571FA3C4BC00594479 /* MapView.swift in Sources */,

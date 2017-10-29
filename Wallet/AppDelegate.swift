@@ -24,18 +24,26 @@ func testView() -> IBox<UIViewController> {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var store: Store<TimeTravelingState, Action>?
+    var store: Store<TimeTravelingState<State>, Action>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let state = TimeTravelingState()
+        let state = TimeTravelingState<State>(liveState: State(), pastStates: [])
         self.store = Store<TimeTravelingState, Action>(reducer: reducer, initialState: state, view: { state, dispatch in
-            testView()
-            //return TimeTravelManager.vc(state, dispatch)
+//            testView()
+//            return LoginFlow.vc(state[\.liveState], dispatch)
+            return TimeTravelManager.vc(state, dispatch)
         })
         self.store?.run(in: self.window!)
+
+        let tapRec = UITapGestureRecognizer(target: self, action: #selector(tap))
+        window?.addGestureRecognizer(tapRec)
         return true
+    }
+
+    @objc func tap() {
+        store?.dispatch(.app(.go))
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
