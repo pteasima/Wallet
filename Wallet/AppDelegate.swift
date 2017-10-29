@@ -13,9 +13,9 @@ import UIKit
 func testView() -> IBox<UIViewController> {
     let layout = UICollectionViewFlowLayout()
     let items = ArrayWithHistory([UIColor.red, UIColor.green, UIColor.blue])
-    let vc = collectionViewController(layout: I(constant: layout), items: items, createContent: { (color) -> IBox<UIView> in
+    let vc = collectionViewController(layout: I(constant: layout), items: items, createContent: { (color) -> ViewOrVC in
         // todo if we want reuse, we need to implement a view cache
-        label(text: I(constant: "test"), backgroundColor: I(constant: color)).cast
+        .view(label(text: I(constant: "test"), backgroundColor: I(constant: color)).cast)
     })
     return vc.map { $0 }
 }

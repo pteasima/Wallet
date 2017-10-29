@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum ViewOrVC {
+    case view(IBox<UIView>)
+    case vc(IBox<UIViewController>)
+}
+
 class EmbedCell: UICollectionViewCell {
     let key = NSUUID().uuidString
     weak var embeddedView: UIView? {
@@ -26,10 +31,10 @@ class EmbedCell: UICollectionViewCell {
 
 class CollectionVC<A>: UICollectionViewController {
     var items: [A] = []
-    let createContent: (A) -> IBox<UIView>
+    let createContent: (A) -> ViewOrVC
     let didSelect: ((A) -> ())?
 
-    init(layout: UICollectionViewLayout, items: [A], didSelect: ((A) -> ())? = nil, createContent: @escaping (A) -> IBox<UIView>) {
+    init(layout: UICollectionViewLayout, items: [A], didSelect: ((A) -> ())? = nil, createContent: @escaping (A) -> ViewOrVC) {
         self.items = items
         self.createContent = createContent
         self.didSelect = didSelect
@@ -60,8 +65,17 @@ class CollectionVC<A>: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Identifier", for: indexPath) as! EmbedCell
         let newContent = createContent(items[indexPath.item])
-        cell.embeddedView = newContent.unbox
-        disposables[cell.key] = newContent
+        switch newContent {
+        case let .view(vBox):
+            cell.embeddedView = vBox.unbox
+            disposables[cell.key] = vBox
+        case let .vc(vcBox):
+            let vc = vcBox.unbox
+            addChildViewController(vc) // todo do I need to call removeFromParentViewController when replacing it?
+            cell.embeddedView = vc.view
+            vc.didMove(toParentViewController: self)
+            disposables[cell.key] = vcBox
+        }
         return cell
     }
 
@@ -86,7 +100,7 @@ extension CollectionVC where A: Equatable {
     }
 }
 
-public func collectionViewController<A>(layout: I<UICollectionViewLayout>, items value: ArrayWithHistory<A>, didSelect: ((A) -> ())? = nil, createContent: @escaping (A) -> IBox<UIView>) -> IBox<UICollectionViewController> {
+func collectionViewController<A>(layout: I<UICollectionViewLayout>, items value: ArrayWithHistory<A>, didSelect: ((A) -> ())? = nil, createContent: @escaping (A) -> ViewOrVC) -> IBox<UICollectionViewController> {
     let collectionVC = CollectionVC(layout: layout.value, items: [], didSelect: didSelect, createContent: createContent)
     let box = IBox<UICollectionViewController>(collectionVC)
     box.disposables.append(value.observe(current: {
