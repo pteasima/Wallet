@@ -36,6 +36,8 @@
 		79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */; };
 		79E715E81FA4B2320025C182 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E71FA4B2320025C182 /* State.swift */; };
 		79E715EA1FA4B2760025C182 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E91FA4B2760025C182 /* Update.swift */; };
+		79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715EB1FA5ECB90025C182 /* Optics.swift */; };
+		79E715EE1FA5FCDA0025C182 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715ED1FA5FCDA0025C182 /* CollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
 		79E715E71FA4B2320025C182 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		79E715E91FA4B2760025C182 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
+		79E715EB1FA5ECB90025C182 /* Optics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optics.swift; sourceTree = "<group>"; };
+		79E715ED1FA5FCDA0025C182 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		9680F07D61A69A03D220BA73 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		BA9814B0C04C2C00976C7431 /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		D94AE04D7CA3DF29C180EA0C /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +143,7 @@
 				794DD8471FA3C47400594479 /* TextField.swift */,
 				794DD8491FA3C47400594479 /* Button.swift */,
 				794DD84A1FA3C47400594479 /* NavigationController.swift */,
+				79E715ED1FA5FCDA0025C182 /* CollectionView.swift */,
 			);
 			path = "Incremental+UIKit";
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				796C71061FA3BBFE005CC404 /* Info.plist */,
 				796C710C1FA3BC20005CC404 /* Monoid.swift */,
 				796C710E1FA3BC83005CC404 /* Reducer.swift */,
+				79E715EB1FA5ECB90025C182 /* Optics.swift */,
 				796C71101FA3BD09005CC404 /* Store.swift */,
 				79E715E91FA4B2760025C182 /* Update.swift */,
 				79E715E71FA4B2320025C182 /* State.swift */,
@@ -321,6 +327,7 @@
 			files = (
 				796C71111FA3BD09005CC404 /* Store.swift in Sources */,
 				794DD8591FA3C4BC00594479 /* TableView.swift in Sources */,
+				79E715EE1FA5FCDA0025C182 /* CollectionView.swift in Sources */,
 				794DD8551FA3C4BC00594479 /* StackView.swift in Sources */,
 				794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */,
 				794DD85A1FA3C4BC00594479 /* TextField.swift in Sources */,
@@ -338,6 +345,7 @@
 				796C70FD1FA3BBFE005CC404 /* First.swift in Sources */,
 				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,
 				794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */,
+				79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */,
 				794DD8561FA3C4BC00594479 /* Incremental+UIKit.swift in Sources */,
 				79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */,
 				794DD8521FA3C4BC00594479 /* Label.swift in Sources */,

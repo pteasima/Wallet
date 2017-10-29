@@ -19,8 +19,8 @@ enum First {
             stackView(arrangedSubviews: [
                 label(text: I(constant: "hello")).cast,
                 textField(text: state.map { _ in "world" }, onChange: { _ in }).cast,
-                button(title: I(constant: "go"), titleColor: I(constant: .black), onTap: { dispatch(.go) } ).cast,
-                button(title: I(constant: "goToEnd"), titleColor: I(constant: .black), onTap: { dispatch(.goToEnd) } ).cast
+                button(title: I(constant: "go"), titleColor: I(constant: .black), onTap: { dispatch(.app(.go)) } ).cast,
+                button(title: I(constant: "goToEnd"), titleColor: I(constant: .black), onTap: { dispatch(.app(.goToEnd)) } ).cast
                 ]
             )
             , constraints: sizeToParent())
@@ -48,7 +48,7 @@ enum Second {
             stackView(arrangedSubviews: [
                 label(text: I(constant: "second")).cast,
                 textField(text: state.map { _ in "world" }, onChange: { _ in }).cast,
-                button(title: I(constant: "back"), titleColor: I(constant: .black), onTap: { dispatch(.go) } ).cast
+                button(title: I(constant: "back"), titleColor: I(constant: .black), onTap: { dispatch(.app(.go)) } ).cast
                 ]
             )
             , constraints: sizeToParent()) }
@@ -74,7 +74,7 @@ enum Third {
             stackView(arrangedSubviews: [
                 label(text: I(constant: "third")).cast,
                 textField(text: state.map { _ in "world" }, onChange: { _ in }).cast,
-                button(title: I(constant: "back"), titleColor: I(constant: .black), onTap: { dispatch(.goHome) } ).cast
+                button(title: I(constant: "back"), titleColor: I(constant: .black), onTap: { dispatch(.app(.goHome)) } ).cast
                 ]
             )
             , constraints: sizeToParent()) }
@@ -94,11 +94,19 @@ enum Third {
     }
 }
 
+enum TimeTravelManager {
+    static func vc(_ state: I<TimeTravelingState>, _ dispatch: @escaping (Action) -> Void) -> IBox<UIViewController> {
+        let layout = UICollectionViewFlowLayout()
+        let vc = UICollectionViewController(collectionViewLayout: layout)
+        let box = IBox(vc)
+        return box.map { $0 }
+    }
+}
 
 enum LoginFlow {
     static func vc(_ state: I<State>,_ dispatch: @escaping (Action) -> Void) -> IBox<UIViewController> {
         let navStack = ArrayWithHistory([First.vc(state, dispatch)])
-        let navC = navigationController(navStack) { dispatch(.back) }.cast
+        let navC = navigationController(navStack) { dispatch(.app(.back)) }.cast
         let second: I<Lifetime> = Second.vc(state, dispatch)
         navC.disposables.append(second.observe { presentation in
             switch presentation {

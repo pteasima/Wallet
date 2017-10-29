@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 struct State: Codable {
     typealias LoginStep = Int
     var loginStep: LoginStep = 0
@@ -20,38 +19,73 @@ extension State: Equatable {
     }
 }
 
-struct TimeTravelingState: Codable {
-    enum CurrentState {
-        case live(State)
-        case past(State,Int)
-    }
-    var currentState: CurrentState {
-        if let index = timeTravelIndex {
-            return .past(allStates[index], index)
-        }
-        return .live(liveState)
-    }
-    var liveState: State {
-        get {
-            return self.liveState
-        }
-        set {
-            pastStates.append(self.liveState)
-            self.liveState = newValue
-        }
-    }
-    var timeTravelIndex: Int? {
-        get { return self.timeTravelIndex }
-        set {
-            guard let newValue = newValue, !pastStates.isEmpty else {
-            self.timeTravelIndex = nil; return
-            }
-            self.timeTravelIndex = max(0,min(pastStates.count, newValue))
-        }
-    }
-    internal private(set) var pastStates: [State] = []
-    private var allStates: [State] {
-        return pastStates + [liveState]
-    }
+//struct TimeTravelingState: Codable {
+//    enum CurrentView {
+//        case live
+//        case seeking(Int)
+//        case cards(Int)
+//    }
+//
+//    var liveState: State {
+//        get {
+//            return self.liveState
+//        }
+//        set {
+//            pastStates.append(self.liveState)
+//            self.liveState = newValue
+//            self.currentView = .live //there was a change to the actual live state, return to live view
+//            // todo all this logic should be done in a reducer, this is just data.
+//        }
+//    }
+//    var displayedState: State {
+//        switch currentView {
+//        case .live:
+//            return liveState
+//        case let .seeking(index):
+//            return allStates[index]
+//        case let .cards(index):
+//            return allStates[index]
+//        }
+//    }
+//    var currentView: CurrentView {
+//        get { return self.currentView }
+//        set {
+//            guard !pastStates.isEmpty else { self.currentView = .live; return }
+//            switch newValue {
+//            case .live: self.currentView = newValue
+//            case let .seeking(targetIndex):
+//                self.currentView = .seeking(max(0,min(pastStates.count, targetIndex)))
+//            case let .cards(targetIndex):
+//                self.currentView = .cards(max(0,min(pastStates.count, targetIndex)))
+//            }
+//        }
+//    }
+//    internal private(set) var pastStates: [State] = []
+//    var allStates: [State] {
+//        return pastStates + [liveState]
+//    }
+//
+//    init() {
+//        self.liveState = State()
+//        self.currentView = .live
+//    }
+//}
+//
+//extension TimeTravelingState: Equatable {
+//    static func ==(lhs: TimeTravelingState, rhs: TimeTravelingState) -> Bool {
+//        return lhs.allStates == rhs.allStates && lhs.currentView == rhs.currentView
+//    }
+//}
+//extension TimeTravelingState.CurrentView: Equatable {
+//    static func ==(lhs: TimeTravelingState.CurrentView, rhs: TimeTravelingState.CurrentView) -> Bool {
+//        switch (lhs, rhs) {
+//        case (.live,.live): return true
+//        case let (.seeking(lhi), .seeking(rhi)): return lhi == rhi
+//        case let (.cards(lhi), .cards(rhi)): return lhi == rhi
+//        default: return false
+//        }
+//    }
+//}
+struct TimeTravelingState: Codable, Equatable {
+    static func ==(lhs: TimeTravelingState, rhs: TimeTravelingState) -> Bool { return true }
 }
-

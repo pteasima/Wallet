@@ -32,3 +32,28 @@ extension Reducer: Monoid {
     }
 }
 
+extension Reducer {
+    func lift<T>(state: WritableKeyPath<T, S>) -> Reducer<T, A> {
+        return Reducer<T, A> { t, a in
+            self.reduce(&t[keyPath: state], a)
+        }
+    }
+}
+
+extension Reducer {
+    func lift<B>(action: Prism<B, A>) -> Reducer<S, B> {
+        return Reducer<S, B> { s, b in
+            guard let a = action.preview(b) else { return }
+            self.reduce(&s, a)
+        }
+    }
+}
+
+extension Reducer {
+    func lift<T, B>(state: WritableKeyPath<T, S>, action: Prism<B, A>) -> Reducer<T, B> {
+        return Reducer<T, B> { stateT, actionB in
+            guard let actionA = action.preview(actionB) else { return }
+            self.reduce(&stateT[keyPath: state], actionA)
+        }
+    }
+}

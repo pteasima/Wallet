@@ -55,10 +55,3 @@ extension Store {
         window.makeKeyAndVisible()
     }
 }
-extension UIWindow {
-    func addTimetravelOverlay(for store: Store<State, Action>) {
-
-    }
-}
-
-
