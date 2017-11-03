@@ -30,15 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let state = TimeTravelingState<State>(liveState: State(), pastStates: [], viewMode: .live)
-        self.store = Store<TimeTravelingState, Action>(reducer: reducer, initialState: state, view: { state, dispatch in
-//            testView()
-//            return LoginFlow.vc(state[\.liveState], dispatch)
+        self.store = Store<TimeTravelingState, Action>(initialState: state, update: reducer.reduce, view: { state, dispatch in
             return TimeTravelManager.vc(state, dispatch)
         })
         self.store?.run(in: self.window!)
 
         let tapRec = UITapGestureRecognizer(target: self, action: #selector(tap))
-        let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         window?.addGestureRecognizer(tapRec)
         window?.addGestureRecognizer(longPressRec)
         return true
@@ -47,8 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func tap() {
         store?.dispatch(.app(.go))
     }
-    @objc func longPress() {
-        store?.dispatch(.timeTravel(.enter))
+    @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
+        if case .began = recognizer.state {
+            store?.dispatch(.timeTravel(.toggle))
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

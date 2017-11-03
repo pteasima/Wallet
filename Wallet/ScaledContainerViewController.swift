@@ -26,7 +26,7 @@ class ScaledContainerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         guard let childView = child?.view else { return}
-        childView.center = view.center
+        childView.center = CGPoint(x: view.bounds.origin.x + view.bounds.size.width / 2, y: view.bounds.origin.y + view.bounds.size.height / 2)
         childView.bounds = UIApplication.shared.keyWindow?.bounds ?? .zero
         childView.transform = CGAffineTransform(scaleX: view.bounds.width / childView.bounds.width, y: view.bounds.height / childView.bounds.height)
     }

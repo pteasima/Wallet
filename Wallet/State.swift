@@ -93,6 +93,7 @@ struct TimeTravelingState<S>: Codable where S: Codable, S: Equatable {
 
     enum ViewMode: String, Codable {
         case live
+        case seeking
         case cards
     }
 

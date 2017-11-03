@@ -9,9 +9,10 @@
 import Foundation
 
 enum TimeTravelAction {
-    case enter
-    case seek(to: Int)
-    case select(Int)
+    case toggle
+//    case enter
+//    case seek(to: Int)
+//    case select(Int)
 }
 
 
@@ -50,9 +51,10 @@ let timeTravelingReducer = Reducer<TimeTravelingState<State>, Action> { state, a
         return
     }
     switch a {
-    case .enter: //acts as toggle for now
+    case .toggle: //acts as toggle for now
         switch state.viewMode {
-        case .live: state.viewMode = .cards
+        case .live: state.viewMode = .seeking
+        case .seeking: state.viewMode = .cards
         case .cards: state.viewMode = .live
         }
 

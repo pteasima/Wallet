@@ -9,14 +9,14 @@
 import UIKit
 
 class Store<S, A> where S: Equatable, S: Codable {
-    private let reducer: Reducer<S, A>
+    private let update: (inout S, A) -> Void
     private var state: Input<S>
 //    private var disposables: [Any] = []
 //    private var history: I<[S]> = I(constant: [])
 //    private var history: [S]
 
-    init(reducer: Reducer<S, A>, initialState: S, view: (I<S>, @escaping (A) -> Void ) -> IBox<UIViewController>) {
-        self.reducer = reducer
+    init(initialState: S, update: @escaping (inout S, A) -> Void, view: (I<S>, @escaping (A) -> Void ) -> IBox<UIViewController>) {
+        self.update = update
         self.state = Input(initialState)
         self.rootViewController = view(state.i, dispatch)
 
@@ -37,12 +37,9 @@ class Store<S, A> where S: Equatable, S: Codable {
 
     func dispatch(_ action: A) {
         self.state.change { state in
-            self.reducer.reduce(&state, action)
+            self.update(&state, action)
         }
     }
-//    private func timetravel(to index: Int) {
-//        self.state.write(history[index])
-//    }
 
     var rootViewController: IBox<UIViewController>!
 
@@ -51,7 +48,6 @@ class Store<S, A> where S: Equatable, S: Codable {
 extension Store {
     func run(in window: UIWindow) {
         window.rootViewController = rootViewController.unbox
-//        window.addTimetravelOverlay(for: self)
         window.makeKeyAndVisible()
     }
 }

@@ -13,6 +13,7 @@ enum TimeTravelManager {
         let layout: I<UICollectionViewLayout> = state[\.viewMode].map { mode in
             switch mode {
             case .live: return LiveLayout()
+            case .seeking: return SeekingLayout()
             case .cards: return UICollectionViewFlowLayout()
             }
         }
@@ -24,15 +25,20 @@ enum TimeTravelManager {
             return .cons(change, I(constant: .empty))
         }
         let items = ArrayWithHistory<I<State>>([liveState] /*past states should begin empty*/, changes: changes)
+        let historySlider = slider(value: I(constant: 0), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { print($0) })
+        let sliderWithConstraints: IBox<(UIView, [Constraint])> = historySlider.map { ($0 as UIView, [equal(\.leadingAnchor),
+                                                             equal(\.trailingAnchor),
+                                                             equal(\.bottomAnchor)
+            ])}
         return collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
             if state === liveState {
                 return .vc(scaledContainer(child: I(constant: LoginFlow.vc(state, dispatch))))
             }else {
-                return .view(label(text: state[\.loginStep].map { String($0) }).cast)
+                return .view(label(text: state[\.loginStep].map { String($0) }).cast) // todo UI snapshot
             }
 
             //            LoginFlow.vc(state, dispatch)
-        }).map { $0 }
+        }, subviews: [sliderWithConstraints]).map { $0 }
     }
 
     class LiveLayout: UICollectionViewLayout {
@@ -50,7 +56,28 @@ enum TimeTravelManager {
         override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
             return Array(0..<(collectionView?.numberOfSections ?? 0)).flatMap { s in
                 Array(0..<(collectionView?.numberOfItems(inSection: s) ?? 0)).flatMap { i in
-                   return layoutAttributesForItem(at: IndexPath(item: i, section: s))
+                    return layoutAttributesForItem(at: IndexPath(item: i, section: s))
+                }
+            }
+        }
+    }
+
+    class SeekingLayout: UICollectionViewLayout {
+        override var collectionViewContentSize: CGSize {
+            return collectionView?.bounds.size ?? .zero
+        }
+        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+            guard indexPath.item == 0 else {
+                return UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            }
+            let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attr.frame = collectionView?.bounds.insetBy(dx: 40, dy: 60) ?? .zero // todo scale the same in both directions
+            return attr
+        }
+        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+            return Array(0..<(collectionView?.numberOfSections ?? 0)).flatMap { s in
+                Array(0..<(collectionView?.numberOfItems(inSection: s) ?? 0)).flatMap { i in
+                    return layoutAttributesForItem(at: IndexPath(item: i, section: s))
                 }
             }
         }
