@@ -64,7 +64,7 @@ class CollectionVC<A>: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Identifier", for: indexPath) as! EmbedCell
-        let newContent = createContent(items[indexPath.item])
+        let newContent = createContent(items[indexPath.item]) // todo would be nice to implement some cache. Caching can also be done in client code, so Im not yet sure which is better (cache on the object or wrap the collectionViewController func in another func that caches)
         switch newContent {
         case let .view(vBox):
             cell.embeddedView = vBox.unbox

@@ -26,7 +26,7 @@ enum TimeTravelManager {
         let items = ArrayWithHistory<I<State>>([liveState] /*past states should begin empty*/, changes: changes)
         return collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
             if state === liveState {
-                return .vc(LoginFlow.vc(state, dispatch))
+                return .vc(scaledContainer(child: I(constant: LoginFlow.vc(state, dispatch))))
             }else {
                 return .view(label(text: state[\.loginStep].map { String($0) }).cast)
             }
