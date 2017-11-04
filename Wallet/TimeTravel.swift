@@ -17,28 +17,32 @@ enum TimeTravelManager {
             case .cards: return UICollectionViewFlowLayout()
             }
         }
-        let liveState = state[\.liveState]
+        let displayedState = state[\.displayedState]
         let pastStates: I<[State]> = state.map { $0.pastStates }
         let changes: I<IList<ArrayChange<I<State>>>> = pastStates.map { states in
             guard let first = states.first else { return .empty }
             let change = ArrayChange<I<State>>.insert(I(constant: first), at: 1)
             return .cons(change, I(constant: .empty))
         }
-        let items = ArrayWithHistory<I<State>>([liveState] /*past states should begin empty*/, changes: changes)
-        let historySlider = slider(value: I(constant: 0), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { print($0) })
+        let items = ArrayWithHistory<I<State>>([displayedState] /*past states should begin empty*/, changes: changes)
+        let historySlider = slider(value: I(constant: 0), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { dispatch(.timeTravel(.seek(toPercent: Double($0)))) })
         let sliderWithConstraints: IBox<(UIView, [Constraint])> = historySlider.map { ($0 as UIView, [equal(\.leadingAnchor),
                                                              equal(\.trailingAnchor),
                                                              equal(\.bottomAnchor)
             ])}
-        return collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
-            if state === liveState {
+
+
+
+        let cv = collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
+            if state === displayedState {
                 return .vc(scaledContainer(child: I(constant: LoginFlow.vc(state, dispatch))))
             }else {
-                return .view(label(text: state[\.loginStep].map { String($0) }).cast) // todo UI snapshot
+                return .vc(scaledContainer(child: I(constant: LoginFlow.vc(state, dispatch))))
+//                return .view(label(text: state[\.loginStep].map { String($0) }).cast) // todo UI snapshot
             }
 
-            //            LoginFlow.vc(state, dispatch)
-        }, subviews: [sliderWithConstraints]).map { $0 }
+        }, subviews: [sliderWithConstraints])
+        return cv.map { $0 }
     }
 
     class LiveLayout: UICollectionViewLayout {

@@ -30,7 +30,7 @@
 		794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8361FA3C47400594479 /* Utilities.swift */; };
 		794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8381FA3C47400594479 /* SideEffects.swift */; };
 		796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */; };
-		796C70FD1FA3BBFE005CC404 /* First.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FC1FA3BBFE005CC404 /* First.swift */; };
+		796C70FD1FA3BBFE005CC404 /* LoginFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FC1FA3BBFE005CC404 /* LoginFlow.swift */; };
 		796C71021FA3BBFE005CC404 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796C71011FA3BBFE005CC404 /* Assets.xcassets */; };
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
@@ -67,7 +67,7 @@
 		794DD84D1FA3C47400594479 /* IncrementalArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalArray.swift; sourceTree = "<group>"; };
 		796C70F71FA3BBFE005CC404 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		796C70FC1FA3BBFE005CC404 /* First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = First.swift; sourceTree = "<group>"; };
+		796C70FC1FA3BBFE005CC404 /* LoginFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlow.swift; sourceTree = "<group>"; };
 		796C71011FA3BBFE005CC404 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		796C71041FA3BBFE005CC404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		796C71061FA3BBFE005CC404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		794DD8641FA3CBC300594479 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				796C70FC1FA3BBFE005CC404 /* First.swift */,
+				796C70FC1FA3BBFE005CC404 /* LoginFlow.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */,
 				794DD85D1FA3C4BC00594479 /* NavigationController.swift in Sources */,
 				791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */,
-				796C70FD1FA3BBFE005CC404 /* First.swift in Sources */,
+				796C70FD1FA3BBFE005CC404 /* LoginFlow.swift in Sources */,
 				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,
 				794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */,
 				79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */,

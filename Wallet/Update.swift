@@ -10,6 +10,7 @@ import Foundation
 
 enum TimeTravelAction {
     case toggle
+    case seek(toPercent: Double)
 //    case enter
 //    case seek(to: Int)
 //    case select(Int)
@@ -53,11 +54,24 @@ let timeTravelingReducer = Reducer<TimeTravelingState<State>, Action> { state, a
     switch a {
     case .toggle: //acts as toggle for now
         switch state.viewMode {
-        case .live: state.viewMode = .seeking
+        case .live:
+            state.viewMode = .seeking
+            state.currentIndex = nil
         case .seeking: state.viewMode = .cards
-        case .cards: state.viewMode = .live
+        case .cards:
+            state.viewMode = .live
+            state.currentIndex = nil
         }
-
+    case let .seek(toPercent: percent):
+        assert(state.viewMode == .seeking)
+        state.viewMode = .seeking
+        if percent >= 1.0 {
+            state.currentIndex = nil
+        } else {
+            let total = state.pastStates.count + 1
+            state.currentIndex = Int(floor(percent * Double(total)))
+            print(state.currentIndex)
+        }
     default: break
     }
 }

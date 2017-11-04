@@ -29,22 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let state = TimeTravelingState<State>(liveState: State(), pastStates: [], viewMode: .live)
+        let state = TimeTravelingState<State>(state: State())
         self.store = Store<TimeTravelingState, Action>(initialState: state, update: reducer.reduce, view: { state, dispatch in
             return TimeTravelManager.vc(state, dispatch)
         })
         self.store?.run(in: self.window!)
 
-        let tapRec = UITapGestureRecognizer(target: self, action: #selector(tap))
+
         let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
-        window?.addGestureRecognizer(tapRec)
         window?.addGestureRecognizer(longPressRec)
         return true
     }
 
-    @objc func tap() {
-        store?.dispatch(.app(.go))
-    }
     @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
         if case .began = recognizer.state {
             store?.dispatch(.timeTravel(.toggle))

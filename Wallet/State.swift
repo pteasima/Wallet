@@ -89,7 +89,7 @@ extension State: Equatable {
 //}
 struct TimeTravelingState<S>: Codable where S: Codable, S: Equatable {
     var liveState: S
-    var pastStates: [S]
+    var pastStates: [S] = []
 
     enum ViewMode: String, Codable {
         case live
@@ -97,19 +97,24 @@ struct TimeTravelingState<S>: Codable where S: Codable, S: Equatable {
         case cards
     }
 
-    var viewMode: ViewMode
+    var viewMode: ViewMode = .live
+    var currentIndex: Int? = nil // to prevent unreachable states, index should be an associated value on the .seeking ViewMode. However, this would make Codable conformance and other stuff more complicated, cba right now, maybe later
 }
 extension TimeTravelingState: Equatable {
     static func ==(lhs: TimeTravelingState, rhs: TimeTravelingState) -> Bool { return
-        lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode
+        lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode && lhs.currentIndex == rhs.currentIndex
     }
 }
-//extension TimeTravelingState.ViewMode: Equatable {
-//
-//}
 extension TimeTravelingState {
+    init(state: S) {
+        self.liveState = state
+    }
     var allStates: [S] {
         return [liveState] + pastStates
+    }
+    var displayedState: S {
+        guard let currentIndex = currentIndex else { return liveState }
+        return pastStates[currentIndex]
     }
 }
 

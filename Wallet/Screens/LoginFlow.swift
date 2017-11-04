@@ -119,20 +119,6 @@ enum LoginFlow {
             }
         })
 
-        //        navC.disposables.append(state.observe { s in
-        //            switch (s.previousLoginStep, s.loginStep) {
-        //            case (.none, _): break //initial
-        //            case (.some(0),1):
-        //                second = Second.vc(state, dispatch)
-        //                navStack.append(second!)
-        //            case (.some(1),0):
-        //                navStack.remove(where: { $0 == second })
-        //                second = nil
-        //            default:
-        //                fatalError("undefined transition")
-        //            }
-        //        })
-
         return navC
     }
 }
