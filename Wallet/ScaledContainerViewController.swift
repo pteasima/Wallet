@@ -8,6 +8,9 @@
 
 import UIKit
 
+// todo pass size instead of depending on keyWindow
+// todo the parent collectionView complains about zero cell size inferred from constraints (we're not using any), should we care?
+
 class ScaledContainerViewController: UIViewController {
     var child: UIViewController? {
         willSet {

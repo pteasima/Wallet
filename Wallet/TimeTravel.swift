@@ -8,81 +8,204 @@
 
 import UIKit
 
-enum TimeTravelManager {
-    static func vc(_ state: I<TimeTravelingState<State>>, _ dispatch: @escaping (Action) -> Void) -> IBox<UIViewController> {
-        let layout: I<UICollectionViewLayout> = state[\.viewMode].map { mode in
-            switch mode {
-            case .live: return LiveLayout()
-            case .seeking: return SeekingLayout()
-            case .cards: return UICollectionViewFlowLayout()
+// todo access control
+
+enum TimeTravel<S,A> where S: Codable, S: Equatable { }
+
+extension TimeTravel {
+    struct State: Codable {
+        var liveState: S
+        var pastStates: [S] = []
+
+        enum ViewMode: String, Codable {
+            case live
+            case seeking
+            case cards
+        }
+
+        var viewMode: ViewMode = .live
+        var currentIndex: Int? = nil // to prevent unreachable states, index should be an associated value on the .seeking ViewMode. However, this would make Codable conformance and other stuff more complicated, cba right now, maybe later
+    }
+}
+
+extension TimeTravel.State: Equatable {
+    static func ==(lhs: TimeTravel.State, rhs: TimeTravel.State) -> Bool { return
+        lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode && lhs.currentIndex == rhs.currentIndex
+    }
+}
+extension TimeTravel.State {
+    init(state: S) {
+        self.liveState = state
+    }
+    var allStates: [S] {
+        return [liveState] + pastStates
+    }
+    var displayedState: S {
+        guard let currentIndex = currentIndex else { return liveState }
+        return pastStates[currentIndex]
+    }
+}
+
+extension TimeTravel {
+
+    enum Action {
+        case timeTravel(TimeTravelAction)
+        case app(A)
+    }
+}
+
+enum TimeTravelAction {
+    case toggle
+    case seek(toPercent: Double)
+    //    case enter
+    //    case seek(to: Int)
+    //    case select(Int)
+}
+
+extension TimeTravel.Action {
+    enum prism {
+        static var app : Prism<TimeTravel.Action, A> {
+            return .init(
+                preview: {
+                    if case let .app(action) = $0 { return action }
+                    return nil
+            },
+                review: TimeTravel.Action.app
+            )
+        }
+
+        static var timeTravel : Prism<TimeTravel.Action, TimeTravelAction> {
+            return .init(
+                preview: {
+                    if case let .timeTravel(action) = $0 { return action }
+                    return nil
+            },
+                review: TimeTravel.Action.timeTravel
+            )
+        }
+
+    }
+}
+
+extension TimeTravel {
+    static func reducer(appUpdate: @escaping (inout S, A) -> Void) -> Reducer<State,Action> {
+        return timeTravelReducer <> Reducer(reduce: appUpdate).lift(state: \.liveState, action: TimeTravel.Action.prism.app)
+    }
+    static var timeTravelReducer : Reducer<State, Action> {
+        return .init { state, action in
+            guard case let .timeTravel(a) = action else {
+                //other action, save the state to pastStates
+                state.pastStates = [state.liveState] + state.pastStates
+                return
+            }
+            switch a {
+            case .toggle: //acts as toggle for now
+                switch state.viewMode {
+                case .live:
+                    state.viewMode = .seeking
+                    state.currentIndex = nil
+                case .seeking: state.viewMode = .cards
+                case .cards:
+                    state.viewMode = .live
+                    state.currentIndex = nil
+                }
+            case let .seek(toPercent: percent):
+                assert(state.viewMode == .seeking)
+                state.viewMode = .seeking
+                let total = state.pastStates.count + 1
+                let newIndex = Int(floor(percent * Double(total)))
+                if newIndex >= state.pastStates.count {
+                    state.currentIndex = nil
+                } else {
+                    state.currentIndex = newIndex
+                }
+            default: break
             }
         }
-        let displayedState = state[\.displayedState]
-        let pastStates: I<[State]> = state.map { $0.pastStates }
-        let changes: I<IList<ArrayChange<I<State>>>> = pastStates.map { states in
-            guard let first = states.first else { return .empty }
-            let change = ArrayChange<I<State>>.insert(I(constant: first), at: 1)
-            return .cons(change, I(constant: .empty))
-        }
-        let items = ArrayWithHistory<I<State>>([displayedState] /*past states should begin empty*/, changes: changes)
-        let historySlider = slider(value: I(constant: 0), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { dispatch(.timeTravel(.seek(toPercent: Double($0)))) })
-        let sliderWithConstraints: IBox<(UIView, [Constraint])> = historySlider.map { ($0 as UIView, [equal(\.leadingAnchor),
-                                                             equal(\.trailingAnchor),
-                                                             equal(\.bottomAnchor)
-            ])}
-
-
-
-        let cv = collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
-            if state === displayedState {
-                return .vc(scaledContainer(child: I(constant: LoginFlow.vc(state, dispatch))))
-            }else {
-                return .vc(scaledContainer(child: I(constant: LoginFlow.vc(state, dispatch))))
-//                return .view(label(text: state[\.loginStep].map { String($0) }).cast) // todo UI snapshot
-            }
-
-        }, subviews: [sliderWithConstraints])
-        return cv.map { $0 }
     }
 
-    class LiveLayout: UICollectionViewLayout {
-        override var collectionViewContentSize: CGSize {
-            return collectionView?.bounds.size ?? .zero
-        }
-        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-            guard indexPath.item == 0 else {
-                return UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            }
-            let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attr.frame = collectionView?.bounds ?? .zero
-            return attr
-        }
-        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-            return Array(0..<(collectionView?.numberOfSections ?? 0)).flatMap { s in
-                Array(0..<(collectionView?.numberOfItems(inSection: s) ?? 0)).flatMap { i in
-                    return layoutAttributesForItem(at: IndexPath(item: i, section: s))
+}
+
+extension TimeTravel {
+    static func view(appView: @escaping (I<S>, @escaping (A) -> Void) -> IBox<UIViewController>) -> ((I<State>, @escaping (Action) -> Void) -> IBox<UIViewController>) {
+        return { state, dispatch in
+            let layout: I<UICollectionViewLayout> = state[\.viewMode].map { mode in
+                switch mode {
+                case .live: return LiveLayout()
+                case .seeking: return SeekingLayout()
+                case .cards: return UICollectionViewFlowLayout()
                 }
+            }
+            let displayedState = state[\.displayedState]
+            let pastStates: I<[S]> = state.map { $0.pastStates }
+            // todo I still hate this, seems way too fragile. We're sure that timetravel is append only, but same cant be said in general for similar usecases in actual apps (e.g. navigation stack), would love a find a general solution for these changing arrays, still feel like diffing will be necessary
+            let changes: I<IList<ArrayChange<I<S>>>> = pastStates.map { states in
+                guard let first = states.first else { return .empty }
+                let change = ArrayChange<I<S>>.insert(I(constant: first), at: 1)
+                return .cons(change, I(constant: .empty))
+            }
+            let items = ArrayWithHistory<I<S>>([displayedState] /*past states should begin empty*/, changes: changes)
+            // todo update slider from state?
+            let historySlider = slider(value: I(constant: 1), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { dispatch(.timeTravel(.seek(toPercent: Double($0)))) })
+            let sliderWithConstraints: IBox<(UIView, [Constraint])> = historySlider.map { ($0 as UIView, [equal(\.leadingAnchor),
+                                                                                                          equal(\.trailingAnchor),
+                                                                                                          equal(\.bottomAnchor)
+                ])}
+
+            let appDispatch = { dispatch(.app($0)) }
+
+            let cv = collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
+                if state === displayedState {
+                    return .vc(scaledContainer(child: I(constant: appView(state, appDispatch))))
+                }else {
+                    return .vc(scaledContainer(child: I(constant: appView(state, appDispatch))))
+                    // todo make and store UI snapshots instead of rendering the whole thing?
+                }
+
+            }, subviews: [sliderWithConstraints])
+            return cv.map { $0 }
+        }
+
+    }
+}
+
+class LiveLayout: UICollectionViewLayout {
+    override var collectionViewContentSize: CGSize {
+        return collectionView?.bounds.size ?? .zero
+    }
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard indexPath.item == 0 else {
+            return UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        }
+        let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attr.frame = collectionView?.bounds ?? .zero
+        return attr
+    }
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        return Array(0..<(collectionView?.numberOfSections ?? 0)).flatMap { s in
+            Array(0..<(collectionView?.numberOfItems(inSection: s) ?? 0)).flatMap { i in
+                return layoutAttributesForItem(at: IndexPath(item: i, section: s))
             }
         }
     }
+}
 
-    class SeekingLayout: UICollectionViewLayout {
-        override var collectionViewContentSize: CGSize {
-            return collectionView?.bounds.size ?? .zero
+class SeekingLayout: UICollectionViewLayout {
+    override var collectionViewContentSize: CGSize {
+        return collectionView?.bounds.size ?? .zero
+    }
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard indexPath.item == 0 else {
+            return UICollectionViewLayoutAttributes(forCellWith: indexPath)
         }
-        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-            guard indexPath.item == 0 else {
-                return UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            }
-            let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attr.frame = collectionView?.bounds.insetBy(dx: 40, dy: 60) ?? .zero // todo scale the same in both directions
-            return attr
-        }
-        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-            return Array(0..<(collectionView?.numberOfSections ?? 0)).flatMap { s in
-                Array(0..<(collectionView?.numberOfItems(inSection: s) ?? 0)).flatMap { i in
-                    return layoutAttributesForItem(at: IndexPath(item: i, section: s))
-                }
+        let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attr.frame = collectionView?.bounds.insetBy(dx: 40, dy: 60) ?? .zero // todo scale the same in both directions
+        return attr
+    }
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        return Array(0..<(collectionView?.numberOfSections ?? 0)).flatMap { s in
+            Array(0..<(collectionView?.numberOfItems(inSection: s) ?? 0)).flatMap { i in
+                return layoutAttributesForItem(at: IndexPath(item: i, section: s))
             }
         }
     }

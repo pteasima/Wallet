@@ -8,31 +8,19 @@
 
 import UIKit
 
-// todo chris uses arrayWithHistory directly inside his state (but its a class, not data), is this safe?
-
-func testView() -> IBox<UIViewController> {
-    let layout = UICollectionViewFlowLayout()
-    let items = ArrayWithHistory([UIColor.red, UIColor.green, UIColor.blue])
-    let vc = collectionViewController(layout: I(constant: layout), items: items, createContent: { (color) -> ViewOrVC in
-        // todo if we want reuse, we need to implement a view cache
-        .view(label(text: I(constant: "test"), backgroundColor: I(constant: color)).cast)
-    })
-    return vc.map { $0 }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var store: Store<TimeTravelingState<State>, Action>?
+
+    typealias App = TimeTravel<TestApp.State, TestApp.Action>
+    var store: Store<App.State, App.Action>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let state = TimeTravelingState<State>(state: State())
-        self.store = Store<TimeTravelingState, Action>(initialState: state, update: reducer.reduce, view: { state, dispatch in
-            return TimeTravelManager.vc(state, dispatch)
-        })
+        let state = App.State(state: .init())
+        self.store = Store<App.State, App.Action>(initialState: state, update: App.reducer(appUpdate: TestApp.reducer.reduce).reduce, view: App.view(appView: TestApp.view))
         self.store?.run(in: self.window!)
 
 
