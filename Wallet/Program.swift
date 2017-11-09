@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Store<S, A> where S: Equatable, S: Codable {
+class Program<S, A> where S: Equatable, S: Codable {
     private let update: (inout S, A) -> Void
     private var state: Input<S>
 //    private var disposables: [Any] = []
@@ -45,7 +45,7 @@ class Store<S, A> where S: Equatable, S: Codable {
 
 }
 
-extension Store {
+extension Program {
     func run(in window: UIWindow) {
         window.rootViewController = rootViewController.unbox
         window.makeKeyAndVisible()

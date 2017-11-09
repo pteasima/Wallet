@@ -24,7 +24,7 @@ extension TestApp.State: Equatable {
 }
 extension TestApp.State {
     var color: UIColor {
-        return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: 1.0)
+        return .white //UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: 1.0)
     }
     init() {
         r = drand48()
@@ -50,7 +50,7 @@ extension TestApp {
 
 extension TestApp {
     static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void) -> IBox<UIViewController> {
-        let v = button(title: I(constant: "Change Color"), backgroundColor: state[\.color].map { $0 }, onTap: { dispatch(.changeColor) })
+        let v = button(title: I(constant: ""), backgroundColor: state[\.color].map { $0 }, onTap: { dispatch(.changeColor) })
         return viewController(rootView: v, constraints: sizeToParent())
     }
 }

@@ -14,14 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     typealias App = TimeTravel<TestApp.State, TestApp.Action>
-    var store: Store<App.State, App.Action>?
+    var program: Program<App.State, App.Action>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let state = App.State(state: .init())
-        self.store = Store<App.State, App.Action>(initialState: state, update: App.reducer(appUpdate: TestApp.reducer.reduce).reduce, view: App.view(appView: TestApp.view))
-        self.store?.run(in: self.window!)
+        self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer(appUpdate: TestApp.reducer.reduce).reduce, view: App.view(appView: TestApp.view))
+        self.program?.run(in: self.window!)
 
 
         let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
         if case .began = recognizer.state {
-            store?.dispatch(.timeTravel(.toggle))
+            program?.dispatch(.timeTravel(.toggle))
         }
     }
 

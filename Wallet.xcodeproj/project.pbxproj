@@ -36,7 +36,7 @@
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
-		796C71111FA3BD09005CC404 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C71101FA3BD09005CC404 /* Store.swift */; };
+		796C71111FA3BD09005CC404 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C71101FA3BD09005CC404 /* Program.swift */; };
 		79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */; };
 		79E715E81FA4B2320025C182 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E71FA4B2320025C182 /* State.swift */; };
 		79E715EA1FA4B2760025C182 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E91FA4B2760025C182 /* Update.swift */; };
@@ -75,7 +75,7 @@
 		796C71061FA3BBFE005CC404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796C710C1FA3BC20005CC404 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		796C71101FA3BD09005CC404 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		796C71101FA3BD09005CC404 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
 		79E715E71FA4B2320025C182 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		79E715E91FA4B2760025C182 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 				796C710C1FA3BC20005CC404 /* Monoid.swift */,
 				796C710E1FA3BC83005CC404 /* Reducer.swift */,
 				79E715EB1FA5ECB90025C182 /* Optics.swift */,
-				796C71101FA3BD09005CC404 /* Store.swift */,
+				796C71101FA3BD09005CC404 /* Program.swift */,
 				79E715E91FA4B2760025C182 /* Update.swift */,
 				79E715E71FA4B2320025C182 /* State.swift */,
 				791BB11D1FA66A2700231794 /* TimeTravel.swift */,
@@ -337,7 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				796C71111FA3BD09005CC404 /* Store.swift in Sources */,
+				796C71111FA3BD09005CC404 /* Program.swift in Sources */,
 				794DD8591FA3C4BC00594479 /* TableView.swift in Sources */,
 				79E715EE1FA5FCDA0025C182 /* CollectionView.swift in Sources */,
 				794DD8551FA3C4BC00594479 /* StackView.swift in Sources */,
