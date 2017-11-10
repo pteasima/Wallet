@@ -24,7 +24,7 @@ extension TestApp.State: Equatable {
 }
 extension TestApp.State {
     var color: UIColor {
-        return .white //UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: 1.0)
+        return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: 1.0)
     }
     init() {
         r = drand48()

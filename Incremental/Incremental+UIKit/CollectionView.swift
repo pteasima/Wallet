@@ -100,7 +100,7 @@ extension CollectionVC where A: Equatable {
     }
 }
 
-func collectionViewController<A>(layout: I<UICollectionViewLayout>, items value: ArrayWithHistory<A>, didSelect: ((A) -> ())? = nil, createContent: @escaping (A) -> ViewOrVC, subviews: [IBox<(UIView, [Constraint])>] = []/* todo make subviews incremental */) -> IBox<UICollectionViewController> {
+func collectionViewController<A>(layout: I<UICollectionViewLayout>, items value: ArrayWithHistory<A>, didSelect: ((A) -> ())? = nil, createContent: @escaping (A) -> ViewOrVC, subviews: [Subview] = []/* todo make subviews incremental */) -> IBox<UICollectionViewController> {
     let collectionVC = CollectionVC(layout: layout.value, items: [], didSelect: didSelect, createContent: createContent)
     let box = IBox<UICollectionViewController>(collectionVC)
     box.disposables.append(value.observe(current: {
@@ -111,10 +111,14 @@ func collectionViewController<A>(layout: I<UICollectionViewLayout>, items value:
     box.disposables.append(layout.observe { l in
         collectionVC.collectionView?.setCollectionViewLayout(l, animated: true)
     })
-    subviews.forEach { subviewBox in
-        collectionVC.view.addSubview(subviewBox.unbox.0, constraints: subviewBox.unbox.1.map { $0(collectionVC.view, subviewBox.unbox.0).unbox })
-        box.disposables.append(subviewBox)
+    
+    subviews.forEach {
+        box.addSubview($0.0, path: \UICollectionViewController.unwrappedView, constraints: $0.1)
     }
     return box
 }
-
+extension UICollectionViewController {
+    var unwrappedView : UIView {
+    return view!
+    }
+}

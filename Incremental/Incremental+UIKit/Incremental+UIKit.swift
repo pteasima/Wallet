@@ -38,6 +38,17 @@ public func tapGestureRecognizer(_ tapped: @escaping (UITapGestureRecognizer) ->
     return result
 }
 
+
+extension IBox where V: UIViewController {
+    public func addSubview<S>(_ subview: IBox<S>, path: KeyPath<V,UIView>, constraints: [Constraint] = []) where S: UIView {
+        disposables.append(subview)
+        let target: UIView = unbox[keyPath: path]
+        let evaluatedConstraints = constraints.map { $0(target, subview.unbox) }
+        target.addSubview(subview.unbox, constraints: evaluatedConstraints.map { $0.unbox })
+        disposables.append(evaluatedConstraints)   
+    }
+}
+
 extension IBox where V: UIView {
     public func addGestureRecognizer<G: UIGestureRecognizer>(_ gestureRecognizer: IBox<G>) {
         self.unbox.addGestureRecognizer(gestureRecognizer.unbox)

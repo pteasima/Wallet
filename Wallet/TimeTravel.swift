@@ -16,13 +16,13 @@ extension TimeTravel {
     struct State: Codable {
         var liveState: S
         var pastStates: [S] = []
-
+        
         enum ViewMode: String, Codable {
             case live
             case seeking
             case cards
         }
-
+        
         var viewMode: ViewMode = .live
         var currentIndex: Int? = nil // to prevent unreachable states, index should be an associated value on the .seeking ViewMode. However, this would make Codable conformance and other stuff more complicated, cba right now, maybe later
     }
@@ -47,7 +47,7 @@ extension TimeTravel.State {
 }
 
 extension TimeTravel {
-
+    
     enum Action {
         case timeTravel(TimeTravelAction)
         case app(A)
@@ -73,7 +73,7 @@ extension TimeTravel.Action {
                 review: TimeTravel.Action.app
             )
         }
-
+        
         static var timeTravel : Prism<TimeTravel.Action, TimeTravelAction> {
             return .init(
                 preview: {
@@ -83,7 +83,7 @@ extension TimeTravel.Action {
                 review: TimeTravel.Action.timeTravel
             )
         }
-
+        
     }
 }
 
@@ -123,12 +123,19 @@ extension TimeTravel {
             }
         }
     }
-
+    
 }
 
 extension TimeTravel {
+    
     static func view(appView: @escaping (I<S>, @escaping (A) -> Void) -> IBox<UIViewController>) -> ((I<State>, @escaping (Action) -> Void) -> IBox<UIViewController>) {
         return { state, dispatch in
+            let historySlider = slider(value: I(constant: 1), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { dispatch(.timeTravel(.seek(toPercent: Double($0)))) })
+            let sliderWithConstraints: (IBox<UIView>, [Constraint]) =               (historySlider.cast, [equal(\.leadingAnchor), equal(\.trailingAnchor), equal(\.bottomAnchor)
+                ])
+            
+            
+            
             let layout: I<UICollectionViewLayout> = state[\.viewMode].map { mode in
                 switch mode {
                 case .live: return LiveLayout()
@@ -146,27 +153,105 @@ extension TimeTravel {
             }
             let items = ArrayWithHistory<I<S>>([displayedState] /*past states should begin empty*/, changes: changes)
             // todo update slider from state?
-            let historySlider = slider(value: I(constant: 1), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { dispatch(.timeTravel(.seek(toPercent: Double($0)))) })
-            let sliderWithConstraints: IBox<(UIView, [Constraint])> = historySlider.map { ($0 as UIView, [equal(\.leadingAnchor),
-                                                                                                          equal(\.trailingAnchor),
-                                                                                                          equal(\.bottomAnchor)
-                ])}
-
+            
             let appDispatch = { dispatch(.app($0)) }
+            
+            
+//            let app = scaledContainer(child: I(constant: collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
+//                if state === displayedState {
+//                    return .vc(appView(state, appDispatch))
+//                }else {
+//                    return .vc(scaledContainer(child: I(constant: appView(state, appDispatch))))
+//                    // todo make and store UI snapshots instead of rendering the whole thing?
+//                }
+//                
+//            }).map { $0 }))
+            
+            
+            
+//            let appWithConstraints = (,
+//                sizeToParent()
+//                )
+//
+            
+            
+            let iphoneX = imageView(image: I(constant: #imageLiteral(resourceName: "iphonex")))
+            let iphoneXWithConstaints = (iphoneX.cast, [
+                equal(\.centerXAnchor, 0),
+                equal(\.centerYAnchor, -10),
+                equalTo(constant: state[\.viewMode].map {
+                    switch $0 {
+                    case .live: return 485.51
+                    default: return 310
+                    }
 
-            let cv = collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
+                }, \.widthAnchor),
+                equalTo(constant: state[\.viewMode].map {
+                    switch $0 {
+                    case .live: return 914.26
+                    default: return 590
+                    }
+                    }, \.heightAnchor, animation: { parent, child in
+                        UIView.animate(withDuration: 1, animations: {
+                            parent.layoutIfNeeded()
+                        })
+                })
+                ])
+            
+            let app =  collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
                 if state === displayedState {
-                    return .vc(scaledContainer(child: I(constant: appView(state, appDispatch))))
+                    return .vc(appView(state, appDispatch))
                 }else {
                     return .vc(scaledContainer(child: I(constant: appView(state, appDispatch))))
                     // todo make and store UI snapshots instead of rendering the whole thing?
                 }
+                
+            }, subviews: [iphoneXWithConstaints]).map { $0 }
+            
+            let scale : CGFloat = 0.65
+            let appConstraints =  [
+                equal(\.centerXAnchor),
+                equal(\.centerYAnchor,
+                                            constant: state[\.viewMode].map {
+                                            switch $0 {
+                                            case .live: return 0
+                                            default: return 80
+                                            }
+                                    }),
+                
+                equalTo(constant: state[\.viewMode].map {
+                                    switch $0 {
+                                    case .live: return UIScreen.main.bounds.width
+                                    default: return UIScreen.main.bounds.width * scale
+                                    }
+                
+                                }, \.widthAnchor),
 
-            }, subviews: [sliderWithConstraints])
-            return cv.map { $0 }
+                
+                equalTo(constant: state[\.viewMode].map {
+                    switch $0 {
+                    case .live: return UIScreen.main.bounds.height
+                    default: return UIScreen.main.bounds.height * scale
+                    }
+                    }, \.heightAnchor, animation: { parent, child in
+                        UIView.animate(withDuration: 1, animations: {
+                            parent.layoutIfNeeded()
+                        })
+                }),
+                ]
+            
+            let rootView = Wallet.view(subviews: [sliderWithConstraints])
+            let vc = viewController(rootView: rootView, constraints: sizeToParent())
+            
+            
+            app.unbox.willMove(toParentViewController: vc.unbox)
+            rootView.addSubview(app.map { $0.view }, constraints: appConstraints)
+            vc.unbox.addChildViewController(app.unbox)
+            
+            return vc
         }
-
     }
+    
 }
 
 class LiveLayout: UICollectionViewLayout {

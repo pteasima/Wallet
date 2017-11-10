@@ -32,11 +32,13 @@
 		794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8381FA3C47400594479 /* SideEffects.swift */; };
 		796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */; };
 		796C70FD1FA3BBFE005CC404 /* LoginFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FC1FA3BBFE005CC404 /* LoginFlow.swift */; };
-		796C71021FA3BBFE005CC404 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796C71011FA3BBFE005CC404 /* Assets.xcassets */; };
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
 		796C71111FA3BD09005CC404 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C71101FA3BD09005CC404 /* Program.swift */; };
+		79C25D3E1FB4E634009DACF4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C25D3D1FB4E634009DACF4 /* View.swift */; };
+		79C25D401FB4ED94009DACF4 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C25D3F1FB4ED94009DACF4 /* ImageView.swift */; };
+		79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C25D411FB4F006009DACF4 /* Assets.xcassets */; };
 		79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */; };
 		79E715E81FA4B2320025C182 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E71FA4B2320025C182 /* State.swift */; };
 		79E715EA1FA4B2760025C182 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E91FA4B2760025C182 /* Update.swift */; };
@@ -70,12 +72,14 @@
 		796C70F71FA3BBFE005CC404 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		796C70FC1FA3BBFE005CC404 /* LoginFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlow.swift; sourceTree = "<group>"; };
-		796C71011FA3BBFE005CC404 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		796C71041FA3BBFE005CC404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		796C71061FA3BBFE005CC404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796C710C1FA3BC20005CC404 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		796C71101FA3BD09005CC404 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		79C25D3D1FB4E634009DACF4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		79C25D3F1FB4ED94009DACF4 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		79C25D411FB4F006009DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
 		79E715E71FA4B2320025C182 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		79E715E91FA4B2760025C182 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				794DD84A1FA3C47400594479 /* NavigationController.swift */,
 				79E715ED1FA5FCDA0025C182 /* CollectionView.swift */,
 				791BB1211FACAFFC00231794 /* Slider.swift */,
+				79C25D3D1FB4E634009DACF4 /* View.swift */,
+				79C25D3F1FB4ED94009DACF4 /* ImageView.swift */,
 			);
 			path = "Incremental+UIKit";
 			sourceTree = "<group>";
@@ -168,6 +174,7 @@
 		796C70EE1FA3BBFE005CC404 = {
 			isa = PBXGroup;
 			children = (
+				79C25D411FB4F006009DACF4 /* Assets.xcassets */,
 				79E715E01FA3E5F70025C182 /* RoutableUIKit */,
 				796C70F91FA3BBFE005CC404 /* Wallet */,
 				794DD83B1FA3C47400594479 /* Incremental */,
@@ -191,7 +198,6 @@
 			children = (
 				794DD8641FA3CBC300594479 /* Screens */,
 				796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */,
-				796C71011FA3BBFE005CC404 /* Assets.xcassets */,
 				796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */,
 				796C71061FA3BBFE005CC404 /* Info.plist */,
 				796C710C1FA3BC20005CC404 /* Monoid.swift */,
@@ -277,8 +283,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */,
 				796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */,
-				796C71021FA3BBFE005CC404 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +363,8 @@
 				794DD8531FA3C4BC00594479 /* ViewController.swift in Sources */,
 				794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */,
 				794DD85D1FA3C4BC00594479 /* NavigationController.swift in Sources */,
+				79C25D401FB4ED94009DACF4 /* ImageView.swift in Sources */,
+				79C25D3E1FB4E634009DACF4 /* View.swift in Sources */,
 				791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */,
 				796C70FD1FA3BBFE005CC404 /* LoginFlow.swift in Sources */,
 				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,

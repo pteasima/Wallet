@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let state = App.State(state: .init())
         self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer(appUpdate: TestApp.reducer.reduce).reduce, view: App.view(appView: TestApp.view))
