@@ -131,11 +131,13 @@ extension TimeTravel {
     static func view(appView: @escaping (I<S>, @escaping (A) -> Void) -> IBox<UIViewController>) -> ((I<State>, @escaping (Action) -> Void) -> IBox<UIViewController>) {
         return { state, dispatch in
             let historySlider = slider(value: I(constant: 1), minValue: I(constant: 0), maxValue: I(constant: 1), hidden: state[\.viewMode].map { $0 != .seeking } , onChange: { dispatch(.timeTravel(.seek(toPercent: Double($0)))) })
-            let sliderWithConstraints: (IBox<UIView>, [Constraint]) =               (historySlider.cast, [equal(\.leadingAnchor), equal(\.trailingAnchor), equal(\.bottomAnchor)
+            let sliderWithConstraints: (IBox<UIView>, [Constraint]) =               (historySlider.cast, [equal(\.leadingAnchor, constant: I(constant: -10)), equal(\.trailingAnchor, constant: I(constant: 10)), equal(\.bottomAnchor, constant: I(constant: 100))
                 ])
             
-            
-            
+//            let toolbar = IBox(UIToolbar())
+//            let toolbarWithConstraints = (toolbar.cast, [equal(\.leadingAnchor), equal(\.trailingAnchor), equal(\.bottomAnchor)
+//                ])
+//
             let layout: I<UICollectionViewLayout> = state[\.viewMode].map { mode in
                 switch mode {
                 case .live: return LiveLayout()
@@ -191,11 +193,7 @@ extension TimeTravel {
                     case .live: return 914.26
                     default: return 590
                     }
-                    }, \.heightAnchor, animation: { parent, child in
-                        UIView.animate(withDuration: 1, animations: {
-                            parent.layoutIfNeeded()
-                        })
-                })
+                    }, \.heightAnchor)
                 ])
             
             let app =  collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
@@ -247,6 +245,8 @@ extension TimeTravel {
             app.unbox.willMove(toParentViewController: vc.unbox)
             rootView.addSubview(app.map { $0.view }, constraints: appConstraints)
             vc.unbox.addChildViewController(app.unbox)
+            
+            
             
             return vc
         }
