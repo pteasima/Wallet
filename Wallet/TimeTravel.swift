@@ -138,13 +138,13 @@ extension TimeTravel {
 //            let toolbarWithConstraints = (toolbar.cast, [equal(\.leadingAnchor), equal(\.trailingAnchor), equal(\.bottomAnchor)
 //                ])
 //
-            let layout: I<UICollectionViewLayout> = state[\.viewMode].map { mode in
-                switch mode {
-                case .live: return LiveLayout()
-                case .seeking: return SeekingLayout()
-                case .cards: return UICollectionViewFlowLayout()
-                }
-            }
+            let layout: I<UICollectionViewLayout> = I(constant: LiveLayout())//state[\.viewMode].map { mode in
+//                switch mode {
+//                case .live: return LiveLayout()
+//                case .seeking: return SeekingLayout()
+//                case .cards: return UICollectionViewFlowLayout()
+//                }
+//            }
             let displayedState = state[\.displayedState]
             let pastStates: I<[S]> = state.map { $0.pastStates }
             // todo I still hate this, seems way too fragile. We're sure that timetravel is append only, but same cant be said in general for similar usecases in actual apps (e.g. navigation stack), would love a find a general solution for these changing arrays, still feel like diffing will be necessary
@@ -193,7 +193,13 @@ extension TimeTravel {
                     case .live: return 914.26
                     default: return 590
                     }
-                    }, \.heightAnchor)
+                    }, \.heightAnchor, animation: { parent, child in
+                        UIView.animate(withDuration: 1, animations: {
+                            parent.layoutIfNeeded()
+                        }, completion: nil)
+
+
+                })
                 ])
             
             let app =  collectionViewController(layout: layout, items: items, createContent: { (state) -> ViewOrVC in
@@ -215,7 +221,7 @@ extension TimeTravel {
                                             case .live: return 0
                                             default: return 80
                                             }
-                                    }),
+                    }),
                 
                 equalTo(constant: state[\.viewMode].map {
                                     switch $0 {
@@ -223,7 +229,7 @@ extension TimeTravel {
                                     default: return UIScreen.main.bounds.width * scale
                                     }
                 
-                                }, \.widthAnchor),
+                    }, \.widthAnchor),
 
                 
                 equalTo(constant: state[\.viewMode].map {
@@ -231,14 +237,12 @@ extension TimeTravel {
                     case .live: return UIScreen.main.bounds.height
                     default: return UIScreen.main.bounds.height * scale
                     }
-                    }, \.heightAnchor, animation: { parent, child in
-                        UIView.animate(withDuration: 1, animations: {
-                            parent.layoutIfNeeded()
-                        })
-                }),
+                    }, \.heightAnchor),
                 ]
             
-            let rootView = Wallet.view(subviews: [sliderWithConstraints])
+            let rootView = Wallet.scrollView()
+            rootView.addSubview(sliderWithConstraints.0, constraints: sliderWithConstraints.1)
+
             let vc = viewController(rootView: rootView, constraints: sizeToParent())
             
             
@@ -247,7 +251,8 @@ extension TimeTravel {
             vc.unbox.addChildViewController(app.unbox)
             
             
-            
+
+
             return vc
         }
     }
