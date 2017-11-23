@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GdE-d9-TCE">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="PGP-OG-Bjw">
+            <objects>
+                <viewController storyboardIdentifier="Login" id="GdE-d9-TCE" customClass="LoginViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="afu-EI-Apc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="b8p-lE-HIh">
+                                <rect key="frame" x="0.0" y="293.5" width="375" height="80"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVi-TJ-w8B">
+                                        <rect key="frame" x="145" y="0.0" width="85" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-jy-rBn">
+                                        <rect key="frame" x="146" y="50" width="83" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="b8p-lE-HIh" firstAttribute="leading" secondItem="Go7-rl-N3L" secondAttribute="leading" id="iAJ-pu-35U"/>
+                            <constraint firstItem="Go7-rl-N3L" firstAttribute="trailing" secondItem="b8p-lE-HIh" secondAttribute="trailing" id="r30-lj-YBl"/>
+                            <constraint firstItem="b8p-lE-HIh" firstAttribute="centerY" secondItem="afu-EI-Apc" secondAttribute="centerY" id="vfi-Xh-ARi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Go7-rl-N3L"/>
+                    </view>
+                    <connections>
+                        <outlet property="_passwordTextField" destination="gYs-jy-rBn" id="aJU-54-fjc"/>
+                        <outlet property="_stackViewCenter" destination="vfi-Xh-ARi" id="Lpx-JB-ArY"/>
+                        <outlet property="_usernameTextField" destination="gVi-TJ-w8B" id="X6k-HV-gDk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wt-F7-8c3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-209" y="-139"/>
+        </scene>
+    </scenes>
+</document>

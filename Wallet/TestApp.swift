@@ -49,12 +49,72 @@ extension TestApp {
 }
 
 extension TestApp {
-    static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void) -> IBox<UIViewController> {
-        let v = button(title: I(constant: ""), backgroundColor: state[\.color].map { $0 }, onTap: { dispatch(.changeColor) })
-        return viewController(rootView: v, constraints: sizeToParent())
+    static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void, getView: () -> LoginViewController = LoginViewController.init) -> IBox<UIViewController> {
+
+//        {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = storyboard.instantiateInitialViewController() as! LoginViewController
+//            _ = vc.view
+//            return vc
+//        }
+        let loginVC = IBox(getView())
+        loginVC.unbox.performSegue(withIdentifier: "", sender: nil)
+
+        loginVC.bind(state[\.r].map { "\($0)" }, to: \.usernameTextField.text)
+
+        loginVC.disposables.append(state.observe({ (state) in
+            loginVC.unbox.stackViewCenter.constant = CGFloat(state.r * 200)
+        }))
+        return loginVC.map { $0 }
     }
 }
 
+final class TextField: UITextField {
+    var onInput: (String) -> () = { _ in }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupEvents()
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupEvents()
+    }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupEvents()
+    }
+
+    private func setupEvents() {
+        addTarget(self, action: #selector(_onInput), for: .editingChanged)
+    }
+
+    @objc func _onInput() {
+        onInput(text ?? "")
+    }
+}
+//
+//extension IBox where V: TextField {
+//    // todo is it actually good to create functions with multiple params like this, given that we dont supply default values? This is a mutation of existing state and we may want to keep the values loaded from storyboard instead of overriding them with a I(constant:) binding. This isnt very functional but its not trying to be.
+//    func bind(text: I<String>, textColor: I<UIColor>, onInput: @escaping (String) -> ()) { // todo on change could be <I> as well but do we need it? (same view to change the message its emitting during its lifetime)
+//        bind(text, to: \.text)
+//        bind(textColor, to: \.textColor)
+//        unbox.onInput = onInput
+//    }
+//}
+//
+//extension IBox where V: NSObject {
+//    public func child<Value>(_ keyPath: KeyPath<V, Value>) -> IBox<Value> where Value: AnyObject {
+//        let child = unbox[keyPath: keyPath]
+//        guard let childBox = self.disposables.first(where: { ($0 as? IBox<Value>)?.unbox === child }) as? IBox<Value> else { //swift doesnt have filterMap so fuck it just cast twice
+//            let newBox = IBox<Value>(child)
+//            disposables.append(newBox)
+//            return newBox
+//        }
+//        return childBox
+//    }
+//
+//
+//}
 
