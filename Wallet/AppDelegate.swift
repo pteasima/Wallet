@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    typealias App = TimeTravel<TestApp.State, TestApp.Action>
+    typealias App = TestApp
     var program: Program<App.State, App.Action>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = UIViewController()
-        let state = App.State(state: .init())
-        self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer(appUpdate: TestApp.reducer.reduce).reduce, view: App.view(appView: { TestApp.view(state: $0, dispatch: $1) }))
+//        let state = App.State(state: .init())
+        let state = App.State()
+        self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer.reduce, view: App.view)
         self.program?.run(in: self.window!)
 
         let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
@@ -34,12 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
         if case .began = recognizer.state {
-            program?.dispatch(.timeTravel(.toggle))
+//            program?.dispatch(.timeTravel(.toggle))
         }
     }
 
     @objc func tap(_ recognizer: UILongPressGestureRecognizer) {
-        program?.dispatch(.app(.changeColor))
+//        program?.dispatch(.app(.changeColor))
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

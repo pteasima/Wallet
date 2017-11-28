@@ -48,24 +48,19 @@ extension TestApp {
     }
 }
 
+protocol AppContext {
+    var storyboard: UIStoryboard { get }
+}
+
 extension TestApp {
-    static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void, getView: () -> LoginViewController = LoginViewController.init) -> IBox<UIViewController> {
+    static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void) -> LoginViewController {
 
-//        {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateInitialViewController() as! LoginViewController
-//            _ = vc.view
-//            return vc
-//        }
-        let loginVC = IBox(getView())
-        loginVC.unbox.performSegue(withIdentifier: "", sender: nil)
 
-        loginVC.bind(state[\.r].map { "\($0)" }, to: \.usernameTextField.text)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController() as! LoginViewController
+            _ = vc.view
+            return vc
 
-        loginVC.disposables.append(state.observe({ (state) in
-            loginVC.unbox.stackViewCenter.constant = CGFloat(state.r * 200)
-        }))
-        return loginVC.map { $0 }
     }
 }
 

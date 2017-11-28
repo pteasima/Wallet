@@ -15,7 +15,7 @@ class Program<S, A> where S: Equatable, S: Codable {
 //    private var history: I<[S]> = I(constant: [])
 //    private var history: [S]
 
-    init(initialState: S, update: @escaping (inout S, A) -> Void, view: (I<S>, @escaping (A) -> Void ) -> IBox<UIViewController>) {
+    init(initialState: S, update: @escaping (inout S, A) -> Void, view: (I<S>, @escaping (A) -> Void ) -> UIViewController) {
         self.update = update
         self.state = Input(initialState)
         self.rootViewController = view(state.i, dispatch)
@@ -41,13 +41,13 @@ class Program<S, A> where S: Equatable, S: Codable {
         }
     }
 
-    var rootViewController: IBox<UIViewController>!
+    var rootViewController: UIViewController!
 
 }
 
 extension Program {
     func run(in window: UIWindow) {
-        window.rootViewController = rootViewController.unbox
+        window.rootViewController = rootViewController
         window.makeKeyAndVisible()
     }
 }
