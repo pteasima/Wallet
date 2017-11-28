@@ -12,6 +12,7 @@
 		791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */; };
 		791BB1221FACAFFC00231794 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB1211FACAFFC00231794 /* Slider.swift */; };
 		791BB1261FAE3AFF00231794 /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB1251FAE3AFF00231794 /* TestApp.swift */; };
+		7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7928CFC51FCD7315007C3AAE /* Corridor.framework */; };
 		792F57F21FC5DD4700FE8310 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792F57F11FC5DD4700FE8310 /* Main.storyboard */; };
 		792F57F41FC5DD5600FE8310 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792F57F31FC5DD5600FE8310 /* LoginViewController.swift */; };
 		794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83C1FA3C47400594479 /* Incremental.swift */; };
@@ -54,6 +55,7 @@
 		791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledContainerViewController.swift; sourceTree = "<group>"; };
 		791BB1211FACAFFC00231794 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		791BB1251FAE3AFF00231794 /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
+		7928CFC51FCD7315007C3AAE /* Corridor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Corridor.framework; path = Carthage/Build/iOS/Corridor.framework; sourceTree = "<group>"; };
 		792F57F11FC5DD4700FE8310 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		792F57F31FC5DD5600FE8310 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		794DD8361FA3C47400594479 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5101F8D2BC7F6A58557CD335 /* Pods_Wallet.framework in Frameworks */,
+				7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +114,7 @@
 		2E578A4DC49D05EF7AB9E0DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7928CFC51FCD7315007C3AAE /* Corridor.framework */,
 				D94AE04D7CA3DF29C180EA0C /* Pods_Wallet.framework */,
 			);
 			name = Frameworks;
@@ -251,6 +255,7 @@
 				796C70F51FA3BBFE005CC404 /* Resources */,
 				5E190E78C36F4458D3345EE5 /* [CP] Embed Pods Frameworks */,
 				9B384B21DBD8D1DD2D9FC5A3 /* [CP] Copy Pods Resources */,
+				7928CFC71FCD7356007C3AAE /* carthage-copy-frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,6 +343,22 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallet/Pods-Wallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7928CFC71FCD7356007C3AAE /* carthage-copy-frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Corridor.framework",
+			);
+			name = "carthage-copy-frameworks";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Corridor.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		9B384B21DBD8D1DD2D9FC5A3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -528,6 +549,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 76EHURWG2W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Wallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.pteasima.Wallet;
@@ -544,6 +569,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 76EHURWG2W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Wallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.pteasima.Wallet;

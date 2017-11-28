@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "654271ee64d120534f37448e7181f02fcacc7acf8c345cdad785adbc4021ffc4",
+      "name" : "Corridor"
+    }
+  ],
+  "commitish" : "v.1.0",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}

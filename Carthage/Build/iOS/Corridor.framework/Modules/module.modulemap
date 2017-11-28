@@ -1,0 +1,4 @@
+framework module Corridor {
+    header "Corridor-Swift.h"
+    requires objc
+}

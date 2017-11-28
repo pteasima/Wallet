@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AppContext {
+    var appStoryboard: UIStoryboard { get }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

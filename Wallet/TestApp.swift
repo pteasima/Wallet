@@ -48,9 +48,6 @@ extension TestApp {
     }
 }
 
-protocol AppContext {
-    var storyboard: UIStoryboard { get }
-}
 
 extension TestApp {
     static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void) -> LoginViewController {
