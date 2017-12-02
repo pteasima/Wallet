@@ -13,7 +13,7 @@ final class NavigationController: UINavigationController, UINavigationController
 
     var onBack: () -> Void = { }
 
-    private enum State { case idle, pushing, popping }
+    private enum State { case idle, pushing, popping, unwinding }
 
     private var state: State = .idle
 
@@ -42,16 +42,21 @@ final class NavigationController: UINavigationController, UINavigationController
         super.pushViewController(vc, animated: animated)
     }
     open override func popViewController(animated: Bool) -> UIViewController? {
-        state = .popping
+        if state != .unwinding { state = .popping }
         return super.popViewController(animated: animated)
     }
     open override func popToRootViewController(animated: Bool) -> [UIViewController]? {
-        state = .popping
+        if state != .unwinding { state = .popping }
         return super.popToRootViewController(animated: animated)
     }
     open override func popToViewController(_ vc: UIViewController, animated: Bool) -> [UIViewController]? {
-        state = .popping
+        if state != .unwinding { state = .popping }
         return super.popToViewController(vc, animated: animated)
+    }
+
+    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        state = .unwinding
+        super.unwind(for: unwindSegue, towardsViewController: subsequentVC)
     }
 
     // MARK: UINavigationControllerDelegate

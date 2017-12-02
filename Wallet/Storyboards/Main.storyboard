@@ -62,30 +62,46 @@
             </objects>
             <point key="canvasLocation" x="128.80000000000001" y="-139.880059970015"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="eNp-Qb-lFi">
             <objects>
-                <viewController id="iIN-UD-gF0" sceneMemberID="viewController">
+                <viewController id="iIN-UD-gF0" customClass="HomeViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Xu-Fs-NlG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uX-3w-8lN">
-                                <rect key="frame" x="121" y="323" width="132.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-nR-yGA">
+                                <rect key="frame" x="101" y="323" width="132.5" height="50.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uX-3w-8lN">
+                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1U-PV-xDy">
+                                        <rect key="frame" x="42" y="20.5" width="48" height="30"/>
+                                        <state key="normal" title="Logout"/>
+                                        <connections>
+                                            <action selector="logout:" destination="iIN-UD-gF0" eventType="touchUpInside" id="Pgr-fT-9nx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9uX-3w-8lN" firstAttribute="centerY" secondItem="4Xu-Fs-NlG" secondAttribute="centerY" id="PLF-1E-atp"/>
-                            <constraint firstItem="9uX-3w-8lN" firstAttribute="centerX" secondItem="4Xu-Fs-NlG" secondAttribute="centerX" id="ldG-7j-92C"/>
+                            <constraint firstItem="vgS-nR-yGA" firstAttribute="centerX" secondItem="kvd-at-DYS" secondAttribute="centerX" id="9Oi-hW-KZn"/>
+                            <constraint firstItem="vgS-nR-yGA" firstAttribute="centerY" secondItem="kvd-at-DYS" secondAttribute="centerY" id="fbq-1U-zdp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kvd-at-DYS"/>
                     </view>
+                    <connections>
+                        <segue destination="3Ie-vr-PtO" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="epL-JF-mox"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fN-ZR-VKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3Ie-vr-PtO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="-140.77961019490255"/>
         </scene>

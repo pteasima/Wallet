@@ -42,6 +42,7 @@ extension TestApp {
         case changeColor
         case login
         case logout
+//        case back
     }
 }
 
@@ -93,14 +94,27 @@ extension TestApp {
             }
         }
         vc.i.bind(state[\.color].map { Optional($0)}, to: \.view.backgroundColor)
+
+        weak var homeVC: HomeViewController?
         vc.i.observe(state[\.isLoggedIn]) { [weak vc] isLoggedIn in
             if isLoggedIn {
                 vc?.performSegue(withIdentifier: "loginToHome", sender: nil)
             } else {
-                //do nothing, there is no way to pop programmatically so this means pop already happened
+                homeVC?.performSegue(withIdentifier: "unwindToLogin", sender: nil)
+                //if homeVC is nil, do nothing (pop already happened through back button)
             }
         }
         vc.onLogin = { dispatch(.login) }
+        vc.onSegue = { segue in
+            switch segue.identifier {
+            case "loginToHome"?:
+                homeVC = segue.destination as? HomeViewController
+                homeVC?.onLogout = {
+                    dispatch(.logout)
+                }
+            default: break
+            }
+        }
         return navC
 
     }

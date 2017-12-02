@@ -49,15 +49,17 @@ final class LoginViewController:UIViewController/*, IncrementalViewController*/{
 //
 //    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(storyboard)
-    }
-
     var onLogin: () -> () = { }
     @IBAction func login(_ sender: Any) {
         onLogin()
     }
+
+    var onSegue: (UIStoryboardSegue) -> () = { _ in }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        onSegue(segue)
+    }
+
+    @IBAction func unwindToLogin(segue:UIStoryboardSegue) { }
 }
 
 extension LoginViewController { //workaround for swift keypaths bug https://bugs.swift.org/browse/SR-5551
