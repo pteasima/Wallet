@@ -28,7 +28,6 @@
 		794DD8591FA3C4BC00594479 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8461FA3C47400594479 /* TableView.swift */; };
 		794DD85A1FA3C4BC00594479 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8471FA3C47400594479 /* TextField.swift */; };
 		794DD85C1FA3C4BC00594479 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8491FA3C47400594479 /* Button.swift */; };
-		794DD85D1FA3C4BC00594479 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84A1FA3C47400594479 /* NavigationController.swift */; };
 		794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84B1FA3C47400594479 /* Helpers.swift */; };
 		794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84C1FA3C47400594479 /* IncrementalStdLib.swift */; };
 		794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84D1FA3C47400594479 /* IncrementalArray.swift */; };
@@ -46,7 +45,7 @@
 		79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */; };
 		79C8F4861FCDBAFF00406697 /* NSObject+Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4851FCDBAFF00406697 /* NSObject+Association.swift */; };
 		79C8F4881FCDD8E000406697 /* IPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4871FCDD8E000406697 /* IPrefix.swift */; };
-		79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */; };
+		79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* NavigationController.swift */; };
 		79E715E81FA4B2320025C182 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E71FA4B2320025C182 /* State.swift */; };
 		79E715EA1FA4B2760025C182 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E91FA4B2760025C182 /* Update.swift */; };
 		79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715EB1FA5ECB90025C182 /* Optics.swift */; };
@@ -77,7 +76,6 @@
 		794DD8461FA3C47400594479 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		794DD8471FA3C47400594479 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		794DD8491FA3C47400594479 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		794DD84A1FA3C47400594479 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		794DD84B1FA3C47400594479 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		794DD84C1FA3C47400594479 /* IncrementalStdLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalStdLib.swift; sourceTree = "<group>"; };
 		794DD84D1FA3C47400594479 /* IncrementalArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalArray.swift; sourceTree = "<group>"; };
@@ -95,7 +93,7 @@
 		79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalCocoa.swift; sourceTree = "<group>"; };
 		79C8F4851FCDBAFF00406697 /* NSObject+Association.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Association.swift"; sourceTree = "<group>"; };
 		79C8F4871FCDD8E000406697 /* IPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPrefix.swift; sourceTree = "<group>"; };
-		79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
+		79E715E11FA3E6050025C182 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		79E715E71FA4B2320025C182 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		79E715E91FA4B2760025C182 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		79E715EB1FA5ECB90025C182 /* Optics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optics.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				794DD8461FA3C47400594479 /* TableView.swift */,
 				794DD8471FA3C47400594479 /* TextField.swift */,
 				794DD8491FA3C47400594479 /* Button.swift */,
-				794DD84A1FA3C47400594479 /* NavigationController.swift */,
 				79E715ED1FA5FCDA0025C182 /* CollectionView.swift */,
 				79FB3BD91FBDCB1A0037BC88 /* ScrollView.swift */,
 				791BB1211FACAFFC00231794 /* Slider.swift */,
@@ -265,7 +262,7 @@
 		79E715E01FA3E5F70025C182 /* RoutableUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */,
+				79E715E11FA3E6050025C182 /* NavigationController.swift */,
 			);
 			path = RoutableUIKit;
 			sourceTree = "<group>";
@@ -434,7 +431,6 @@
 				796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */,
 				794DD8531FA3C4BC00594479 /* ViewController.swift in Sources */,
 				794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */,
-				794DD85D1FA3C4BC00594479 /* NavigationController.swift in Sources */,
 				79C25D401FB4ED94009DACF4 /* ImageView.swift in Sources */,
 				79C25D3E1FB4E634009DACF4 /* View.swift in Sources */,
 				791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */,
@@ -444,7 +440,7 @@
 				794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */,
 				79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */,
 				794DD8561FA3C4BC00594479 /* Incremental+UIKit.swift in Sources */,
-				79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */,
+				79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */,
 				794DD8521FA3C4BC00594479 /* Label.swift in Sources */,
 				794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */,
 				794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */,

@@ -16,11 +16,12 @@ extension TestApp {
         var g: Double
         var b: Double
         var someBool: Bool
+        var isLoggedIn: Bool
     }
 }
 extension TestApp.State: Equatable {
     static func ==(lhs: TestApp.State, rhs: TestApp.State) -> Bool {
-        return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b
+        return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b && lhs.someBool == rhs.someBool && lhs.isLoggedIn == rhs.isLoggedIn
     }
 }
 extension TestApp.State {
@@ -32,22 +33,35 @@ extension TestApp.State {
         g = drand48()
         b = drand48()
         someBool = true
+        isLoggedIn = false
     }
 }
 
 extension TestApp {
     enum Action {
         case changeColor
+        case login
+        case logout
     }
 }
 
 extension TestApp {
     static let reducer: Reducer<TestApp.State, TestApp.Action> = Reducer { state, action in
-        print(state, action)
-        state.r = drand48() // this is a coeffect, but who cares
-        state.g = drand48()
-        state.b = drand48()
-        state.someBool = !state.someBool
+        print(action)
+        switch action {
+        case .changeColor:
+            state.r = drand48() // this is a coeffect, but who cares
+            state.g = drand48()
+            state.b = drand48()
+            state.someBool = !state.someBool
+        case .login:
+            assert(state.isLoggedIn == false) 
+            state.isLoggedIn = true
+        case .logout:
+            assert(state.isLoggedIn == true)
+            state.isLoggedIn = false
+        }
+
     }
 }
 
@@ -57,8 +71,9 @@ extension TestApp {
 
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController() as! LoginViewController
-        _ = vc.view
+        let navC = storyboard.instantiateInitialViewController() as! NavigationController
+        navC.onBack = { dispatch(.logout) }
+        let vc = navC.topViewController as! LoginViewController
 
         weak var currentSubview: UIView?
         vc.i.observe(state[\.someBool]) { someBool in
@@ -66,20 +81,27 @@ extension TestApp {
             if someBool {
                 let subview = UIView()
                 subview.backgroundColor = .red
-                subview.frame = CGRect(origin: .zero, size: CGSize(width: 20, height: 20))
+                subview.frame = CGRect(origin: .zero, size: CGSize(width: 200, height: 200))
                 vc.view.addSubview(subview)
                 currentSubview = subview
             }else {
                 let subview = UIView()
                 subview.backgroundColor = .green
-                subview.frame = CGRect(origin: .zero, size: CGSize(width: 20, height: 20))
+                subview.frame = CGRect(origin: .zero, size: CGSize(width: 200, height: 200))
                 vc.view.addSubview(subview)
                 currentSubview = subview
             }
         }
         vc.i.bind(state[\.color].map { Optional($0)}, to: \.view.backgroundColor)
-
-            return vc
+        vc.i.observe(state[\.isLoggedIn]) { [weak vc] isLoggedIn in
+            if isLoggedIn {
+                vc?.performSegue(withIdentifier: "loginToHome", sender: nil)
+            } else {
+                //do nothing, there is no way to pop programmatically so this means pop already happened
+            }
+        }
+        vc.onLogin = { dispatch(.login) }
+        return navC
 
     }
 }

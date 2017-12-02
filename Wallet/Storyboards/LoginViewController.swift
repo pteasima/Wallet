@@ -54,6 +54,10 @@ final class LoginViewController:UIViewController/*, IncrementalViewController*/{
         print(storyboard)
     }
 
+    var onLogin: () -> () = { }
+    @IBAction func login(_ sender: Any) {
+        onLogin()
+    }
 }
 
 extension LoginViewController { //workaround for swift keypaths bug https://bugs.swift.org/browse/SR-5551
