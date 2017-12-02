@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     @objc func tap(_ recognizer: UILongPressGestureRecognizer) {
-//        program?.dispatch(.app(.changeColor))
+        program?.dispatch(.changeColor)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

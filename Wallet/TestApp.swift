@@ -15,6 +15,7 @@ extension TestApp {
         var r: Double
         var g: Double
         var b: Double
+        var someBool: Bool
     }
 }
 extension TestApp.State: Equatable {
@@ -30,6 +31,7 @@ extension TestApp.State {
         r = drand48()
         g = drand48()
         b = drand48()
+        someBool = true
     }
 }
 
@@ -45,17 +47,37 @@ extension TestApp {
         state.r = drand48() // this is a coeffect, but who cares
         state.g = drand48()
         state.b = drand48()
+        state.someBool = !state.someBool
     }
 }
 
 
 extension TestApp {
-    static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void) -> LoginViewController {
+    static func view(state: I<State>, dispatch: @escaping (TestApp.Action) -> Void) -> UIViewController {
 
 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateInitialViewController() as! LoginViewController
-            _ = vc.view
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController() as! LoginViewController
+        _ = vc.view
+
+        weak var currentSubview: UIView?
+        vc.i.disposables.append(state[\.someBool].observe { someBool in
+            currentSubview?.removeFromSuperview()
+            if someBool {
+                let subview = UIView()
+                subview.backgroundColor = .red
+                subview.frame = CGRect(origin: .zero, size: CGSize(width: 20, height: 20))
+                vc.view.addSubview(subview)
+                currentSubview = subview
+            }else {
+                let subview = UIView()
+                subview.backgroundColor = .green
+                subview.frame = CGRect(origin: .zero, size: CGSize(width: 20, height: 20))
+                vc.view.addSubview(subview)
+                currentSubview = subview
+            }
+        })
+
             return vc
 
     }

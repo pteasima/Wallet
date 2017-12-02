@@ -9,33 +9,37 @@
 import UIKit
 import Corridor
 
-struct DefaultContext: AppContext {
-    var appStoryboard: UIStoryboard {
-        return UIStoryboard(name: "Main", bundle: nil)
-    }
-}
+//struct DefaultContext: AppContext {
+//    var appStoryboard: UIStoryboard {
+//        return UIStoryboard(name: "Main", bundle: nil)
+//    }
+//
+//    struct Segue<VC: UIViewController> {
+//        var destination: VC
+//    }
+//}
+//
+//extension HasContext {
+//    typealias Context = AppContext
+//
+//    static var `default`: Resolver<Self, AppContext> {
+//        return Resolver(context: DefaultContext())
+//    }
+//}
+//
+//extension HasStaticContext where Self.Context == AppContext {
+//    static var appStoryboard: UIStoryboard {
+//        return resolve[\.appStoryboard]
+//    }
+//}
 
-extension HasContext {
+final class LoginViewController:UIViewController/*, IncrementalViewController*/{
     typealias Context = AppContext
 
-    static var `default`: Resolver<Self, AppContext> {
-        return Resolver(context: DefaultContext())
-    }
-}
-
-extension HasInstanceContext where Self.Context == AppContext {
-    var appStoryboard: UIStoryboard {
-        return resolve[\.appStoryboard]
-    }
-}
-
-final class LoginViewController:UIViewController/*, IncrementalViewController*/, HasInstanceContext {
-    typealias Context = AppContext
-
-    var resolve = `default`
+//    static var resolve = `default`
 
     //    var bind: ((LoginViewController) -> ())!
-    var disposables: [Any] = []
+//    var disposables: [Any] = []
 
     @IBOutlet weak var _usernameTextField: UITextField!
     @IBOutlet weak var _passwordTextField: UITextField!
@@ -47,7 +51,7 @@ final class LoginViewController:UIViewController/*, IncrementalViewController*/,
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(appStoryboard)
+        print(storyboard)
     }
 
 }

@@ -15,6 +15,7 @@
 		7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7928CFC51FCD7315007C3AAE /* Corridor.framework */; };
 		792F57F21FC5DD4700FE8310 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792F57F11FC5DD4700FE8310 /* Main.storyboard */; };
 		792F57F41FC5DD5600FE8310 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792F57F31FC5DD5600FE8310 /* LoginViewController.swift */; };
+		793C8C111FD2B3F900505C5B /* Objc+Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C8C101FD2B3F900505C5B /* Objc+Selector.swift */; };
 		794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83C1FA3C47400594479 /* Incremental.swift */; };
 		794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */; };
 		794DD8521FA3C4BC00594479 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83F1FA3C47400594479 /* Label.swift */; };
@@ -42,6 +43,9 @@
 		79C25D3E1FB4E634009DACF4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C25D3D1FB4E634009DACF4 /* View.swift */; };
 		79C25D401FB4ED94009DACF4 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C25D3F1FB4ED94009DACF4 /* ImageView.swift */; };
 		79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C25D411FB4F006009DACF4 /* Assets.xcassets */; };
+		79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */; };
+		79C8F4861FCDBAFF00406697 /* NSObject+Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4851FCDBAFF00406697 /* NSObject+Association.swift */; };
+		79C8F4881FCDD8E000406697 /* IPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4871FCDD8E000406697 /* IPrefix.swift */; };
 		79E715E21FA3E6050025C182 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */; };
 		79E715E81FA4B2320025C182 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E71FA4B2320025C182 /* State.swift */; };
 		79E715EA1FA4B2760025C182 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E91FA4B2760025C182 /* Update.swift */; };
@@ -58,6 +62,7 @@
 		7928CFC51FCD7315007C3AAE /* Corridor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Corridor.framework; path = Carthage/Build/iOS/Corridor.framework; sourceTree = "<group>"; };
 		792F57F11FC5DD4700FE8310 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		792F57F31FC5DD5600FE8310 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		793C8C101FD2B3F900505C5B /* Objc+Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Objc+Selector.swift"; sourceTree = "<group>"; };
 		794DD8361FA3C47400594479 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		794DD8381FA3C47400594479 /* SideEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffects.swift; sourceTree = "<group>"; };
 		794DD83C1FA3C47400594479 /* Incremental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incremental.swift; sourceTree = "<group>"; };
@@ -87,6 +92,9 @@
 		79C25D3D1FB4E634009DACF4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		79C25D3F1FB4ED94009DACF4 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		79C25D411FB4F006009DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalCocoa.swift; sourceTree = "<group>"; };
+		79C8F4851FCDBAFF00406697 /* NSObject+Association.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Association.swift"; sourceTree = "<group>"; };
+		79C8F4871FCDD8E000406697 /* IPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPrefix.swift; sourceTree = "<group>"; };
 		79E715E11FA3E6050025C182 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
 		79E715E71FA4B2320025C182 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		79E715E91FA4B2760025C182 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
@@ -136,6 +144,15 @@
 				792F57F31FC5DD5600FE8310 /* LoginViewController.swift */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		793C8C0F1FD2B3DC00505C5B /* AssociatedObject */ = {
+			isa = PBXGroup;
+			children = (
+				79C8F4851FCDBAFF00406697 /* NSObject+Association.swift */,
+				793C8C101FD2B3F900505C5B /* Objc+Selector.swift */,
+			);
+			path = AssociatedObject;
 			sourceTree = "<group>";
 		};
 		794DD8351FA3C47400594479 /* IncrementalElm */ = {
@@ -216,6 +233,8 @@
 		796C70F91FA3BBFE005CC404 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				793C8C0F1FD2B3DC00505C5B /* AssociatedObject */,
+				79C8F47F1FCDB15400406697 /* IncrementalCocoa */,
 				792F57EE1FC5DD2200FE8310 /* Storyboards */,
 				794DD8641FA3CBC300594479 /* Screens */,
 				796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */,
@@ -232,6 +251,15 @@
 				791BB1251FAE3AFF00231794 /* TestApp.swift */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		79C8F47F1FCDB15400406697 /* IncrementalCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */,
+				79C8F4871FCDD8E000406697 /* IPrefix.swift */,
+			);
+			path = IncrementalCocoa;
 			sourceTree = "<group>";
 		};
 		79E715E01FA3E5F70025C182 /* RoutableUIKit */ = {
@@ -389,6 +417,8 @@
 				794DD8551FA3C4BC00594479 /* StackView.swift in Sources */,
 				791BB1221FACAFFC00231794 /* Slider.swift in Sources */,
 				794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */,
+				79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */,
+				793C8C111FD2B3F900505C5B /* Objc+Selector.swift in Sources */,
 				794DD85A1FA3C4BC00594479 /* TextField.swift in Sources */,
 				794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */,
 				79FB3BDA1FBDCB1A0037BC88 /* ScrollView.swift in Sources */,
@@ -396,6 +426,7 @@
 				791BB1261FAE3AFF00231794 /* TestApp.swift in Sources */,
 				794DD8581FA3C4BC00594479 /* ActivityIndicator.swift in Sources */,
 				79E715EA1FA4B2760025C182 /* Update.swift in Sources */,
+				79C8F4861FCDBAFF00406697 /* NSObject+Association.swift in Sources */,
 				791BB11E1FA66A2700231794 /* TimeTravel.swift in Sources */,
 				794DD85C1FA3C4BC00594479 /* Button.swift in Sources */,
 				794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */,
@@ -407,6 +438,7 @@
 				79C25D401FB4ED94009DACF4 /* ImageView.swift in Sources */,
 				79C25D3E1FB4E634009DACF4 /* View.swift in Sources */,
 				791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */,
+				79C8F4881FCDD8E000406697 /* IPrefix.swift in Sources */,
 				796C70FD1FA3BBFE005CC404 /* LoginFlow.swift in Sources */,
 				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,
 				794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */,
