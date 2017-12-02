@@ -61,7 +61,7 @@ extension TestApp {
         _ = vc.view
 
         weak var currentSubview: UIView?
-        vc.i.disposables.append(state[\.someBool].observe { someBool in
+        vc.i.observe(state[\.someBool]) { someBool in
             currentSubview?.removeFromSuperview()
             if someBool {
                 let subview = UIView()
@@ -76,7 +76,8 @@ extension TestApp {
                 vc.view.addSubview(subview)
                 currentSubview = subview
             }
-        })
+        }
+        vc.i.bind(state[\.color].map { Optional($0)}, to: \.view.backgroundColor)
 
             return vc
 
