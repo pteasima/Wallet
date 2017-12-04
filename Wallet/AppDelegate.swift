@@ -7,9 +7,22 @@
 //
 
 import UIKit
+import Corridor
 
-protocol AppContext {
-    var appStoryboard: UIStoryboard { get }
+class TestContext: SignUpContext {
+    let stateInput: Input<SignUp.State> = Input(SignUp.State.init(username: "differentuser"))
+    lazy var state: I<SignUp.State> = self.stateInput.i
+
+    lazy var dispatch: (SignUp.Action) -> () = { action in
+        print(action)
+        switch action {
+        case let .usernameChanged(newUsername):
+            self.stateInput.write(.init(username: newUsername))
+        default: break
+        }
+    }
+
+
 }
 
 @UIApplicationMain
@@ -24,11 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = UIViewController()
+        window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+
+        _ = withContext(((window!.rootViewController as! NavigationController).topViewController as! SignUpViewController), TestContext())
+
+        window?.makeKeyAndVisible()
 //        let state = App.State(state: .init())
-        let state = App.State()
-        self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer.reduce, view: App.view)
-        self.program?.run(in: self.window!)
+//        let state = App.State()
+//        self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer.reduce, view: App.view)
+//        self.program?.run(in: self.window!)
 
         let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         window?.addGestureRecognizer(longPressRec)

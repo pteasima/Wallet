@@ -75,7 +75,7 @@ extension TestApp {
             state.isLoggedIn = false
         default: break
         }
-    } <> SignUp.reducer.lift(action: TestApp.Action.prism.signUp)
+    } //<> SignUp.reducer.lift(action: TestApp.Action.prism.signUp)
 
 }
 
@@ -86,7 +86,7 @@ extension TestApp {
         let navC = storyboard.instantiateInitialViewController() as! NavigationController
         navC.onBack = { dispatch(.logout) }
         let vc = navC.topViewController as! SignUpViewController
-        SignUp.bind(state: state, dispatch: { dispatch(.signUp($0)) }, to: vc)
+//        SignUp.bind(state: state, dispatch: { dispatch(.signUp($0)) }, to: vc)
         return navC
 
     }
