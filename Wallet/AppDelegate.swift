@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.addGestureRecognizer(longPressRec)
         let tapRec = UITapGestureRecognizer(target: self, action: #selector(tap(_:)))
         window?.addGestureRecognizer(tapRec)
+
+
         return true
     }
 

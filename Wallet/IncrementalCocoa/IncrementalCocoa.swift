@@ -7,21 +7,25 @@
 
 import UIKit
 
-private let disposablesKey = AssociationKey<[AnyObject]>(default: [])
-extension NSObject: IncrementalExtensionsProvider {}
-extension Incremental where Base: NSObject {
-    mutating func bind<Value>(_ value: I<Value>, to keyPath: WritableKeyPath<Base, Value>) {
-        weak var mutableBase = base
-        observe(value) { mutableBase?[keyPath: keyPath] = $0 }
-    }
-
-    mutating func observe<Value>(_ value: I<Value>, observer: @escaping (Value) -> ()) {
+protocol IncrementalObject: class {
+    var disposables: [AnyObject] { get set }
+}
+extension IncrementalObject {
+    func observe<Value>(_ value: I<Value>, observer: @escaping (Value) -> ()) {
         disposables.append(value.observe(observer))
     }
-
-    private var disposables: [AnyObject] {
-        get { return base.associations.value(forKey: disposablesKey) }
-        set { base.associations.setValue(newValue, forKey: disposablesKey) }
+    func bind<Value>(_ value: I<Value>, to keyPath: WritableKeyPath<Self, Value>) {
+        observe(value) { [weak self] in self?[keyPath: keyPath] = $0 }
     }
+}
 
+class IncrementalViewController: UIViewController, IncrementalObject {
+    var disposables: [AnyObject] = []
+
+    var onViewDidLoad: () -> () = { }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        onViewDidLoad()
+    }
 }

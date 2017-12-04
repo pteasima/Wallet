@@ -1,0 +1,11 @@
+framework module Closures {
+  umbrella header "Closures.h"
+
+  export *
+  module * { export * }
+}
+
+module Closures.Swift {
+    header "Closures-Swift.h"
+    requires objc
+}

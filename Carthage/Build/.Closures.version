@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "f9a90ddf2b5d84e8cebe0dbc7fe7fdef8fe12aefb64de34c9ee5333eb1bf8426",
+      "name" : "Closures"
+    }
+  ],
+  "commitish" : "v0.3",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}
