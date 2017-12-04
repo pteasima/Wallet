@@ -47,9 +47,14 @@ extension SignUp {
             vc.passwordTextField.onChange { dispatch(.passwordChanged($0)) }
             vc.signUpButton.onTap { dispatch(.signUpButtonTapped) }
             vc.bind(state[\.username].map { Optional($0) }, to: \.usernameTextField.text)
-            vc.observe(state[\.isLoggedIn]) { [unowned vc] in
-                if $0 { vc.performSegue(withIdentifier: "signUpToHome", sender: nil) }
-            }
+//            vc.observe(state[\.isLoggedIn]) { [unowned vc] in
+//                if $0 {
+//                    vc.performSegue(withIdentifier: "signUpToHome") { segue in
+//                        guard let homeVC = segue.destination as? UIViewController else { fatalError() }
+//                        print(homeVC)
+//                    }
+//                }
+//            }
         }
     }
 }

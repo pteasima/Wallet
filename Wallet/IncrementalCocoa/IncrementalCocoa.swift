@@ -28,4 +28,13 @@ class IncrementalViewController: UIViewController, IncrementalObject {
         super.viewDidLoad()
         onViewDidLoad()
     }
+
+    private var segueHandler: (UIStoryboardSegue) -> () = { _ in }
+    func performSegue(withIdentifier identifier: String, handler: @escaping (UIStoryboardSegue) -> ()) {
+        segueHandler = handler
+        performSegue(withIdentifier: identifier, sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        segueHandler(segue)
+    }
 }
