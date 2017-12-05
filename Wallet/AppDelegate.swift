@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
 
-        _ = withContext(((window!.rootViewController as! NavigationController).topViewController as! SignUpViewController), TestContext())
+//        _ = withContext(((window!.rootViewController as! NavigationController).topViewController as! SignUpViewController), TestContext())
 
         window?.makeKeyAndVisible()
 //        let state = App.State(state: .init())

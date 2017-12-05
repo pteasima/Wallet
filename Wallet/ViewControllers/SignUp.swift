@@ -10,14 +10,37 @@ import UIKit
 import Closures
 import Corridor
 
+class Driver<S,A> where S: Equatable, S: Codable {
+    private let stateInput: Input<S>
+    private let reduce: (inout S, A) -> ()
+    init(state: S, reduce: @escaping (inout S, A) -> () ) {
+        self.stateInput = Input(state)
+        self.reduce = reduce
+    }
+    var state: I<S> { return stateInput.i }
+    //todo is weak needed here or can dispatch be a method (methods capture self strongly)
+    var dispatch: (A) -> () {
+        return { [weak self] action in
+            print(action)
+            self?.stateInput.change { state in
+                self?.reduce(&state, action)
+            }
+        }
+    }
+}
+//todo adopt conditional conformances when Swift start supporting them
+//still, the context might have other dependencies than just state and dispatch, so wrapping the driver is still desirable in some cases
+//extension Driver: SignUpContext where S == SignUp.State, A == SignUp.Action {}
+
 enum SignUp {}
 extension SignUp {
-    struct State: Equatable {
+    struct State: Equatable, Codable {
         var username: String
         static func ==(lhs: State, rhs: State) -> Bool {
             return lhs.username == rhs.username
         }
     }
+
     enum Action {
         case usernameChanged(String)
         case passwordChanged(String)
@@ -28,8 +51,8 @@ extension SignUp {
         switch action {
         case let .usernameChanged(newUsername):
             state.username = newUsername
-//        case .signUpButtonTapped:
-//            state.isLoggedIn = true
+            //        case .signUpButtonTapped:
+        //            state.isLoggedIn = true
         default: break
         }
     }
@@ -39,8 +62,11 @@ protocol SignUpContext {
     var dispatch: (SignUp.Action) -> () { get }
 }
 struct DefaultSignUpContext: SignUpContext {
-    let state: I<SignUp.State> = I(constant: .init(username: "user"))
-    let dispatch: (SignUp.Action) -> () = { print($0) }
+    var state: I<SignUp.State> { return driver.state }
+    var dispatch: (SignUp.Action) -> () { return driver.dispatch}
+
+    private let driver: Driver<SignUp.State, SignUp.Action> = Driver(state: .init(username: ""), reduce: SignUp.reducer.reduce)
+
 }
 extension HasContext {
     typealias Context = SignUpContext
