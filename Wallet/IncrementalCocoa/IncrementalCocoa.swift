@@ -18,23 +18,3 @@ extension IncrementalObject {
         observe(value) { [weak self] in self?[keyPath: keyPath] = $0 }
     }
 }
-
-class IncrementalViewController: UIViewController, IncrementalObject {
-    var disposables: [AnyObject] = []
-
-    var onViewDidLoad: () -> () = { }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        onViewDidLoad()
-    }
-
-    private var segueHandler: (UIStoryboardSegue) -> () = { _ in }
-    func performSegue(withIdentifier identifier: String, handler: @escaping (UIStoryboardSegue) -> ()) {
-        segueHandler = handler
-        performSegue(withIdentifier: identifier, sender: nil)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        segueHandler(segue)
-    }
-}

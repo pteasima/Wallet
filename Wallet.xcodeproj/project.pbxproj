@@ -12,7 +12,6 @@
 		7906D2DA1FD58EFD008BBDB2 /* Closures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7906D2D91FD58EFD008BBDB2 /* Closures.framework */; };
 		791BB11E1FA66A2700231794 /* TimeTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB11D1FA66A2700231794 /* TimeTravel.swift */; };
 		791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */; };
-		791BB1261FAE3AFF00231794 /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB1251FAE3AFF00231794 /* TestApp.swift */; };
 		7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7928CFC51FCD7315007C3AAE /* Corridor.framework */; };
 		792F57F21FC5DD4700FE8310 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792F57F11FC5DD4700FE8310 /* Main.storyboard */; };
 		794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83C1FA3C47400594479 /* Incremental.swift */; };
@@ -22,11 +21,12 @@
 		794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD84D1FA3C47400594479 /* IncrementalArray.swift */; };
 		794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8361FA3C47400594479 /* Utilities.swift */; };
 		794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8381FA3C47400594479 /* SideEffects.swift */; };
+		795BAB451FD6B7E800D6C51A /* TodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BAB441FD6B7E800D6C51A /* TodosViewController.swift */; };
+		795BAB481FD6B84400D6C51A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BAB471FD6B84400D6C51A /* AppState.swift */; };
 		796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */; };
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
-		796C71111FA3BD09005CC404 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C71101FA3BD09005CC404 /* Program.swift */; };
 		79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C25D411FB4F006009DACF4 /* Assets.xcassets */; };
 		79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */; };
 		79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* NavigationController.swift */; };
@@ -39,7 +39,6 @@
 		7906D2D91FD58EFD008BBDB2 /* Closures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Closures.framework; path = Carthage/Build/iOS/Closures.framework; sourceTree = "<group>"; };
 		791BB11D1FA66A2700231794 /* TimeTravel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravel.swift; sourceTree = "<group>"; };
 		791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledContainerViewController.swift; sourceTree = "<group>"; };
-		791BB1251FAE3AFF00231794 /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
 		7928CFC51FCD7315007C3AAE /* Corridor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Corridor.framework; path = Carthage/Build/iOS/Corridor.framework; sourceTree = "<group>"; };
 		792F57F11FC5DD4700FE8310 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		794DD8361FA3C47400594479 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -49,13 +48,14 @@
 		794DD84B1FA3C47400594479 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		794DD84C1FA3C47400594479 /* IncrementalStdLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalStdLib.swift; sourceTree = "<group>"; };
 		794DD84D1FA3C47400594479 /* IncrementalArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalArray.swift; sourceTree = "<group>"; };
+		795BAB441FD6B7E800D6C51A /* TodosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewController.swift; sourceTree = "<group>"; };
+		795BAB471FD6B84400D6C51A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		796C70F71FA3BBFE005CC404 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		796C71041FA3BBFE005CC404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		796C71061FA3BBFE005CC404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796C710C1FA3BC20005CC404 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		796C71101FA3BD09005CC404 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		79C25D411FB4F006009DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalCocoa.swift; sourceTree = "<group>"; };
 		79E715E11FA3E6050025C182 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -132,8 +132,17 @@
 			isa = PBXGroup;
 			children = (
 				7906D2D51FD5508A008BBDB2 /* SignUp.swift */,
+				795BAB441FD6B7E800D6C51A /* TodosViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		795BAB461FD6B81B00D6C51A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				795BAB471FD6B84400D6C51A /* AppState.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		796C70EE1FA3BBFE005CC404 = {
@@ -162,18 +171,17 @@
 			isa = PBXGroup;
 			children = (
 				79C8F47F1FCDB15400406697 /* IncrementalCocoa */,
-				792F57EE1FC5DD2200FE8310 /* Storyboards */,
+				795BAB461FD6B81B00D6C51A /* Model */,
 				794DD8641FA3CBC300594479 /* ViewControllers */,
+				792F57EE1FC5DD2200FE8310 /* Storyboards */,
 				796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */,
 				796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */,
 				796C71061FA3BBFE005CC404 /* Info.plist */,
 				796C710C1FA3BC20005CC404 /* Monoid.swift */,
 				796C710E1FA3BC83005CC404 /* Reducer.swift */,
 				79E715EB1FA5ECB90025C182 /* Optics.swift */,
-				796C71101FA3BD09005CC404 /* Program.swift */,
 				791BB11D1FA66A2700231794 /* TimeTravel.swift */,
 				791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */,
-				791BB1251FAE3AFF00231794 /* TestApp.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -336,12 +344,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				796C71111FA3BD09005CC404 /* Program.swift in Sources */,
+				795BAB451FD6B7E800D6C51A /* TodosViewController.swift in Sources */,
 				794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */,
 				79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */,
+				795BAB481FD6B84400D6C51A /* AppState.swift in Sources */,
 				7906D2D61FD5508A008BBDB2 /* SignUp.swift in Sources */,
 				794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */,
-				791BB1261FAE3AFF00231794 /* TestApp.swift in Sources */,
 				791BB11E1FA66A2700231794 /* TimeTravel.swift in Sources */,
 				794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */,
 				796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */,

@@ -9,49 +9,15 @@
 import UIKit
 import Corridor
 
-class TestContext: SignUpContext {
-    let stateInput: Input<SignUp.State> = Input(SignUp.State.init(username: "differentuser"))
-    lazy var state: I<SignUp.State> = self.stateInput.i
-
-    lazy var dispatch: (SignUp.Action) -> () = { action in
-        print(action)
-        switch action {
-        case let .usernameChanged(newUsername):
-            self.stateInput.write(.init(username: newUsername))
-        default: break
-        }
-    }
-
-
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    typealias App = TestApp
-    var program: Program<App.State, App.Action>?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-
-//        _ = withContext(((window!.rootViewController as! NavigationController).topViewController as! SignUpViewController), TestContext())
-
-        window?.makeKeyAndVisible()
-//        let state = App.State(state: .init())
-//        let state = App.State()
-//        self.program = Program<App.State, App.Action>(initialState: state, update: App.reducer.reduce, view: App.view)
-//        self.program?.run(in: self.window!)
-
         let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         window?.addGestureRecognizer(longPressRec)
-        let tapRec = UITapGestureRecognizer(target: self, action: #selector(tap(_:)))
-        window?.addGestureRecognizer(tapRec)
-
 
         return true
     }
@@ -60,10 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if case .began = recognizer.state {
 //            program?.dispatch(.timeTravel(.toggle))
         }
-    }
-
-    @objc func tap(_ recognizer: UILongPressGestureRecognizer) {
-        program?.dispatch(.changeColor)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
