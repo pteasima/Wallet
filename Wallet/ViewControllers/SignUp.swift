@@ -28,7 +28,7 @@ class Driver<S,A> where S: Equatable, S: Codable {
         }
     }
 }
-//todo adopt conditional conformances when Swift start supporting them
+//todo adopt conditional conformances when Swift starts supporting them
 //still, the context might have other dependencies than just state and dispatch, so wrapping the driver is still desirable in some cases
 //extension Driver: SignUpContext where S == SignUp.State, A == SignUp.Action {}
 
@@ -68,13 +68,13 @@ struct DefaultSignUpContext: SignUpContext {
     private let driver: Driver<SignUp.State, SignUp.Action> = Driver(state: .init(username: ""), reduce: SignUp.reducer.reduce)
 
 }
-extension HasContext {
+private extension HasContext {
     typealias Context = SignUpContext
     static var `default`: Resolver<Self, SignUpContext> {
         return Resolver(context: DefaultSignUpContext())
     }
 }
-extension HasInstanceContext where Self.Context == SignUpContext {
+private extension HasInstanceContext where Self.Context == SignUpContext {
     var state: I<SignUp.State> { return resolve[\.state] }
     var dispatch: (SignUp.Action) -> () { return resolve[\.dispatch] }
 }

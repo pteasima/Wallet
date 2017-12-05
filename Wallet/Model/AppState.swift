@@ -8,11 +8,20 @@
 
 import Foundation
 
-struct AppState {
+struct AppState: Equatable, Codable {
     var todos: [Todo] = []
+    var selectedTodoIndex: Int? = nil
+
+    static func ==(lhs: AppState, rhs: AppState) -> Bool {
+        return lhs.todos == rhs.todos
+    }
 }
 
-struct Todo {
+struct Todo: Equatable, Codable {
     var name: String
     var createdAt: Date
+
+    static func ==(lhs: Todo, rhs: Todo) -> Bool {
+        return lhs.name == rhs.name && lhs.createdAt == rhs.createdAt
+    }
 }

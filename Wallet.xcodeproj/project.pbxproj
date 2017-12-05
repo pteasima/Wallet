@@ -23,6 +23,8 @@
 		794DD8621FA3C4CF00594479 /* SideEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD8381FA3C47400594479 /* SideEffects.swift */; };
 		795BAB451FD6B7E800D6C51A /* TodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BAB441FD6B7E800D6C51A /* TodosViewController.swift */; };
 		795BAB481FD6B84400D6C51A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BAB471FD6B84400D6C51A /* AppState.swift */; };
+		795BAB4B1FD6B91100D6C51A /* TodosNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BAB4A1FD6B91100D6C51A /* TodosNavigationController.swift */; };
+		795BAB4E1FD6B99600D6C51A /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BAB4D1FD6B99600D6C51A /* Update.swift */; };
 		796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */; };
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
@@ -50,6 +52,8 @@
 		794DD84D1FA3C47400594479 /* IncrementalArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalArray.swift; sourceTree = "<group>"; };
 		795BAB441FD6B7E800D6C51A /* TodosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewController.swift; sourceTree = "<group>"; };
 		795BAB471FD6B84400D6C51A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		795BAB4A1FD6B91100D6C51A /* TodosNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosNavigationController.swift; sourceTree = "<group>"; };
+		795BAB4D1FD6B99600D6C51A /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		796C70F71FA3BBFE005CC404 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		796C71041FA3BBFE005CC404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		792F57EE1FC5DD2200FE8310 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */,
 				792F57F11FC5DD4700FE8310 /* Main.storyboard */,
 			);
 			path = Storyboards;
@@ -133,6 +138,7 @@
 			children = (
 				7906D2D51FD5508A008BBDB2 /* SignUp.swift */,
 				795BAB441FD6B7E800D6C51A /* TodosViewController.swift */,
+				795BAB4A1FD6B91100D6C51A /* TodosNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -143,6 +149,14 @@
 				795BAB471FD6B84400D6C51A /* AppState.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		795BAB4C1FD6B97C00D6C51A /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				795BAB4D1FD6B99600D6C51A /* Update.swift */,
+			);
+			path = Update;
 			sourceTree = "<group>";
 		};
 		796C70EE1FA3BBFE005CC404 = {
@@ -172,10 +186,10 @@
 			children = (
 				79C8F47F1FCDB15400406697 /* IncrementalCocoa */,
 				795BAB461FD6B81B00D6C51A /* Model */,
+				795BAB4C1FD6B97C00D6C51A /* Update */,
 				794DD8641FA3CBC300594479 /* ViewControllers */,
 				792F57EE1FC5DD2200FE8310 /* Storyboards */,
 				796C70FA1FA3BBFE005CC404 /* AppDelegate.swift */,
-				796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */,
 				796C71061FA3BBFE005CC404 /* Info.plist */,
 				796C710C1FA3BC20005CC404 /* Monoid.swift */,
 				796C710E1FA3BC83005CC404 /* Reducer.swift */,
@@ -346,6 +360,7 @@
 			files = (
 				795BAB451FD6B7E800D6C51A /* TodosViewController.swift in Sources */,
 				794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */,
+				795BAB4E1FD6B99600D6C51A /* Update.swift in Sources */,
 				79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */,
 				795BAB481FD6B84400D6C51A /* AppState.swift in Sources */,
 				7906D2D61FD5508A008BBDB2 /* SignUp.swift in Sources */,
@@ -356,6 +371,7 @@
 				794DD8611FA3C4CF00594479 /* Utilities.swift in Sources */,
 				791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */,
 				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,
+				795BAB4B1FD6B91100D6C51A /* TodosNavigationController.swift in Sources */,
 				794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */,
 				79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */,
 				79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */,
