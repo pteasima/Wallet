@@ -10,11 +10,14 @@ import Foundation
 
 enum AppAction {
     case selectTodo(atIndex: Int)
+    case unselectTodo
 }
 
 let appReducer: Reducer<AppState, AppAction> = Reducer { state, action in
     switch action {
     case let .selectTodo(atIndex: index):
         state.selectedTodoIndex = index
+    case let .unselectTodo:
+        state.selectedTodoIndex = nil
     }
 }

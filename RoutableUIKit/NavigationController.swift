@@ -9,7 +9,7 @@
 import UIKit
 
 
-final class NavigationController: UINavigationController, UINavigationControllerDelegate {
+class NavigationController: UINavigationController, UINavigationControllerDelegate {
 
     var onBack: () -> Void = { }
 

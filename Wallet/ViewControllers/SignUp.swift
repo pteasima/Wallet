@@ -10,7 +10,7 @@ import UIKit
 import Closures
 import Corridor
 
-class Driver<S,A> where S: Equatable, S: Codable {
+class Driver<S,A> where S: Equatable {
     private let stateInput: Input<S>
     private let reduce: (inout S, A) -> ()
     init(state: S, reduce: @escaping (inout S, A) -> () ) {

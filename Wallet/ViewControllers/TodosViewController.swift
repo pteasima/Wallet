@@ -20,7 +20,7 @@ struct DefaultTodosContext: TodosContext {
     var state: I<TodosContext.State> { return driver.state }
     var dispatch: (TodosContext.Action) -> () { return driver.dispatch }
 
-    private let driver: Driver<TodosContext.State, TodosContext.Action> = Driver(state: {var s = AppState(); s.todos.append(Todo(name: "test", createdAt: Date())); return s}(), reduce: { print("another reducer");print($0, $1) })
+    private let driver: Driver<TodosContext.State, TodosContext.Action> = Driver(state: .sample, reduce: { print("another reducer");print($0, $1) })
 }
 
 private extension HasContext {
@@ -61,5 +61,10 @@ final class TodosViewController: UITableViewController, IncrementalObject, HasIn
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dispatch(.selectTodo(atIndex: indexPath.row))
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard !(sender is UITableViewCell) else { return false } //disable the storyboard segue for now
+        return true
     }
 }
