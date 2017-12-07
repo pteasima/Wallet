@@ -42,8 +42,16 @@ final class TodosNavigationController: NavigationController, IncrementalObject, 
 
     var disposables: [AnyObject] = []
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
+
+    weak var listVC: TodosViewController?
+    weak var detailVC: TodoViewController?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         let myContext = resolve.context
 
         struct Adapter: TodosContext {
@@ -53,15 +61,7 @@ final class TodosNavigationController: NavigationController, IncrementalObject, 
         }
         //  Im not yet sure how much value we can get from each controller having its own context type, so maybe we will use one context for the whole app (or just a few) which will get rid of the need for adapters.
 
-        // doing this in init(coder:) seems a bit fragile (maybe topViewController hasnt been loaded), but whatever, its fucking storyboards just find a way that works. If we find a case that breaks, there are always workarounds (ditch some or all of storyboard features)
         listVC = (topViewController as? TodosViewController).map { withContext($0, Adapter(context: myContext)) }
-    }
-
-    weak var listVC: TodosViewController?
-    weak var detailVC: TodoViewController?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
         // we maintain some local state to deal with navigation. If we have more than 2 controllers, we should still be able to figure out where we are and what we should do based on which of the above weak properties are nil/some. The idea is that while this may be error prone and not very nice, most apps are simple enough that this is doable. I havent seen navigation solved "properly" in any architecture, so at least with this approach we can start writting unidirectional apps today.
 

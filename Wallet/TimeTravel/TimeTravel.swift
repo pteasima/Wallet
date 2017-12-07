@@ -11,7 +11,7 @@ import Corridor
 
 protocol TimeTravelContext {
     typealias State = TimeTravel<AnyAppState, Any>.State
-    typealias Action = TimeTravel<AnyAppState, Any>.Action
+    typealias Action = TimeTravelAction
     var state: I<State> { get }
     var dispatch: (Action) -> () { get }
     var instantiateApp: () -> UIViewController { get }
@@ -19,7 +19,7 @@ protocol TimeTravelContext {
 
 struct DefaultTimeTravelContext: TimeTravelContext {
     var state: I<TimeTravelContext.State> { return I(constant: TimeTravel<AnyAppState,Any>.State(state: AnyAppState(DummyAppState()))) }
-    var dispatch: (TimeTravelContext.Action) -> () { return { print($0) } }
+    var dispatch: (TimeTravelAction) -> () { return { print($0) } }
     var instantiateApp: () -> UIViewController { return { UIViewController() } }
 //    private let driver: Driver<TimeTravelContext.State, TimeTravelContext.Action> = Driver(state: .sample, reduce: { print("yet another reducer");print($0, $1) })
 }
@@ -46,16 +46,27 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let appVC = instantiateApp()
         addChildViewController(appVC)
         appVC.view.frame = view.bounds
-        view.addSubview(appVC.view)
+        appContainer.addSubview(appVC.view)
+        appVC.view.translatesAutoresizingMaskIntoConstraints = false
+        appVC.view.topAnchor.constraint(equalTo: appContainer.topAnchor).isActive = true
+        appVC.view.leftAnchor.constraint(equalTo: appContainer.leftAnchor).isActive = true
+        appVC.view.bottomAnchor.constraint(equalTo: appContainer.bottomAnchor).isActive = true
+        appVC.view.rightAnchor.constraint(equalTo: appContainer.rightAnchor).isActive = true
         appVC.didMove(toParentViewController: self)
 
-        observe(state) {
-            print($0)
-        }
+        bind(state[\.percent], to: \.slider.value)
+        slider.onChange { [weak self] in self?.dispatch(.seek(toPercent: $0)) }
     }
+    @IBOutlet weak var appContainer_: UIView!
+    @IBOutlet weak var slider_: UISlider!
+}
+extension TimeTravelViewController {
+    var appContainer: UIView { return appContainer_ }
+    var slider: UISlider { return slider_ }
 }
 
 //protocol TimeTravelState: Equatable, Codable {
@@ -113,7 +124,7 @@ extension TimeTravel {
     struct State: Equatable, Codable {
         var liveState: S
         var pastStates: [S]  = []
-        var viewMode: TimeTravelViewMode = .live
+        var viewMode: TimeTravelViewMode = .seeking
         var currentIndex: Int? = nil
 
         init(state: S) {
@@ -127,7 +138,7 @@ extension TimeTravel {
             guard let currentIndex = currentIndex else { return liveState }
             return pastStates[currentIndex]
         }
-
+        var percent: Float { return 1.0 }
 
         static func ==(lhs: TimeTravel.State, rhs: TimeTravel.State) -> Bool { return
             lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode && lhs.currentIndex == rhs.currentIndex
@@ -145,7 +156,7 @@ extension TimeTravel {
 
 enum TimeTravelAction {
     case toggle
-    case seek(toPercent: Double)
+    case seek(toPercent: Float)
 }
 
 extension TimeTravel.Action {
@@ -201,7 +212,7 @@ extension TimeTravel {
                 assert(state.viewMode == .seeking)
                 state.viewMode = .seeking
                 let total = state.pastStates.count + 1
-                let newIndex = Int(floor(percent * Double(total)))
+                let newIndex = Int(floor(percent * Float(total)))
                 if newIndex >= state.pastStates.count {
                     state.currentIndex = nil
                 } else {

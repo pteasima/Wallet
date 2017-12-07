@@ -14,10 +14,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    typealias AppWithTimeTravel = TimeTravel<AppState, AppAction>
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         window?.addGestureRecognizer(longPressRec)
+
+        struct Context: TimeTravelContext {
+            var state: I<TimeTravelContext.State> { return driver.state.map { .init(state:AnyAppState($0))} }
+            var dispatch: (TimeTravelContext.Action) -> () { return { self.driver.dispatch(.timeTravel($0)) } }
+
+            struct AppContext: TodosNavigationContext {
+                let state: I<TodosNavigationContext.State>
+                let dispatch: (TodosNavigationContext.Action) -> ()
+            }
+
+            var instantiateApp: () -> UIViewController {
+            return { let appVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! TodosNavigationController
+                return withContext(appVC, AppContext(state: self.driver.state[\.displayedState], dispatch: { self.driver.dispatch(.app($0)) }))
+                }
+            }
+            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(state: .sample), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
+
+
+        }
+
+        window?.rootViewController = withContext(UIStoryboard(name: "TimeTravel", bundle: nil).instantiateInitialViewController() as! TimeTravelViewController, Context())
 
         return true
     }
