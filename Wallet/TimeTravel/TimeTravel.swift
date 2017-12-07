@@ -18,7 +18,7 @@ protocol TimeTravelContext {
 }
 
 struct DefaultTimeTravelContext: TimeTravelContext {
-    var state: I<TimeTravelContext.State> { return I(constant: TimeTravel<AnyAppState,Any>.State(state: AnyAppState(DummyAppState()))) }
+    var state: I<TimeTravelContext.State> { return I(constant: TimeTravel<AnyAppState,Any>.State(liveState: AnyAppState(DummyAppState()), pastStates: [], viewMode: .live, currentIndex: nil)) }
     var dispatch: (TimeTravelAction) -> () { return { print($0) } }
     var instantiateApp: () -> UIViewController { return { UIViewController() } }
 //    private let driver: Driver<TimeTravelContext.State, TimeTravelContext.Action> = Driver(state: .sample, reduce: { print("yet another reducer");print($0, $1) })
@@ -58,15 +58,36 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
         appVC.view.rightAnchor.constraint(equalTo: appContainer.rightAnchor).isActive = true
         appVC.didMove(toParentViewController: self)
 
+        bind(state[\.viewMode].map { viewMode -> CGAffineTransform in
+            switch viewMode {
+            case .live: return .identity
+            case .seeking:
+                let scale: CGFloat = 0.25
+                return CGAffineTransform(scaleX: scale, y: scale)
+            }
+        }, to: \.appContainer.transform)
+
         bind(state[\.percent], to: \.slider.value)
         slider.onChange { [weak self] in self?.dispatch(.seek(toPercent: $0)) }
+
+        bind(state[\.displayedState].map { "\($0.state)" }, to: \.stateLabel.text)
+        observe(state[\.displayedState]) {
+            print($0)
+            print($0 is AnyAppState)
+            print($0.state is AppState)
+        }
+
     }
     @IBOutlet weak var appContainer_: UIView!
     @IBOutlet weak var slider_: UISlider!
+    @IBOutlet weak var stateLabel_: UILabel!
+    @IBOutlet weak var actionLabel_: UILabel!
 }
 extension TimeTravelViewController {
     var appContainer: UIView { return appContainer_ }
     var slider: UISlider { return slider_ }
+    var stateLabel: UILabel { return stateLabel_ }
+    var actionLabel: UILabel { return actionLabel_ }
 }
 
 //protocol TimeTravelState: Equatable, Codable {
@@ -123,13 +144,13 @@ enum TimeTravel<S,A> where S: Codable, S: Equatable { }
 extension TimeTravel {
     struct State: Equatable, Codable {
         var liveState: S
-        var pastStates: [S]  = []
-        var viewMode: TimeTravelViewMode = .seeking
-        var currentIndex: Int? = nil
+        var pastStates: [S]
+        var viewMode: TimeTravelViewMode
+        var currentIndex: Int?
 
-        init(state: S) {
-            self.liveState = state
-        }
+//        init(state: S) {
+//            self.liveState = state
+//        }
 
         var allStates: [S] {
             return [liveState] + pastStates
@@ -195,6 +216,7 @@ extension TimeTravel {
         return .init { state, action in
             guard case let .timeTravel(a) = action else {
                 //other action, save the state to pastStates
+                print("will record")
                 state.pastStates = [state.liveState] + state.pastStates
                 return
             }
@@ -222,9 +244,15 @@ extension TimeTravel {
             }
         }
     }
-
 }
-//
+
+extension TimeTravel.State {
+    //this is where I find out that the generic TimeTravel enum was a really bad idea. Todo refactor to have every part have its own generics instead of creating a generic namespace
+    func map<NewState, DontCare>(transform: (S) -> NewState) -> TimeTravel<NewState, DontCare>.State {
+        return .init(liveState: transform(liveState), pastStates: pastStates.map(transform), viewMode: viewMode, currentIndex: currentIndex)
+    }
+}
+
 //extension TimeTravel {
 //
 //    static func view(appView: @escaping (I<S>, @escaping (A) -> Void) -> IBox<UIViewController>) -> ((I<State>, @escaping (Action) -> Void) -> UIViewController) {

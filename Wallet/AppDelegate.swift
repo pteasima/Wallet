@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.addGestureRecognizer(longPressRec)
 
         struct Context: TimeTravelContext {
-            var state: I<TimeTravelContext.State> { return driver.state.map { .init(state:AnyAppState($0))} }
+            var state: I<TimeTravelContext.State> { return driver.state.map { $0.map { AnyAppState($0)} } }
             var dispatch: (TimeTravelContext.Action) -> () { return { self.driver.dispatch(.timeTravel($0)) } }
 
             struct AppContext: TodosNavigationContext {
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return withContext(appVC, AppContext(state: self.driver.state[\.displayedState], dispatch: { self.driver.dispatch(.app($0)) }))
                 }
             }
-            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(state: .sample), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
+            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, pastStates: [], viewMode: .seeking, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
 
 
         }
