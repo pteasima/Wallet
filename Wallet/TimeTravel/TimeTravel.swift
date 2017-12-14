@@ -9,86 +9,6 @@
 import UIKit
 import Corridor
 
-protocol TimeTravelContext {
-    typealias State = TimeTravel<AnyAppState, Any>.State
-    typealias Action = TimeTravelAction
-    var state: I<State> { get }
-    var dispatch: (Action) -> () { get }
-    var instantiateApp: () -> UIViewController { get }
-}
-
-struct DefaultTimeTravelContext: TimeTravelContext {
-    var state: I<TimeTravelContext.State> { return I(constant: TimeTravel<AnyAppState,Any>.State(liveState: AnyAppState(DummyAppState()), pastStates: [], viewMode: .live, currentIndex: nil)) }
-    var dispatch: (TimeTravelAction) -> () { return { print($0) } }
-    var instantiateApp: () -> UIViewController { return { UIViewController() } }
-//    private let driver: Driver<TimeTravelContext.State, TimeTravelContext.Action> = Driver(state: .sample, reduce: { print("yet another reducer");print($0, $1) })
-}
-
-private extension HasContext {
-    typealias Context = TimeTravelContext
-    static var `default`: Resolver<Self, TimeTravelContext> {
-        return Resolver(context: DefaultTimeTravelContext())
-    }
-}
-private extension HasInstanceContext where Self.Context == TimeTravelContext {
-    var state: I<TimeTravelContext.State> { return resolve[\.state] }
-    var dispatch: (TimeTravelContext.Action) -> () { return resolve[\.dispatch] }
-    var instantiateApp: () -> UIViewController {
-        return resolve[\.instantiateApp]
-    }
-}
-
-final class TimeTravelViewController: UIViewController, IncrementalObject, HasInstanceContext {
-    typealias Context = TimeTravelContext
-    var resolve = `default`
-
-    var disposables: [AnyObject] = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let appVC = instantiateApp()
-        addChildViewController(appVC)
-        appVC.view.frame = view.bounds
-        appContainer.addSubview(appVC.view)
-        appVC.view.translatesAutoresizingMaskIntoConstraints = false
-        appVC.view.topAnchor.constraint(equalTo: appContainer.topAnchor).isActive = true
-        appVC.view.leftAnchor.constraint(equalTo: appContainer.leftAnchor).isActive = true
-        appVC.view.bottomAnchor.constraint(equalTo: appContainer.bottomAnchor).isActive = true
-        appVC.view.rightAnchor.constraint(equalTo: appContainer.rightAnchor).isActive = true
-        appVC.didMove(toParentViewController: self)
-
-        bind(state[\.viewMode].map { viewMode -> CGAffineTransform in
-            switch viewMode {
-            case .live: return .identity
-            case .seeking:
-                let scale: CGFloat = 0.25
-                return CGAffineTransform(scaleX: scale, y: scale)
-            }
-        }, to: \.appContainer.transform)
-
-        bind(state[\.percent], to: \.slider.value)
-        slider.onChange { [weak self] in self?.dispatch(.seek(toPercent: $0)) }
-
-        bind(state[\.displayedState].map { "\($0.state)" }, to: \.stateLabel.text)
-        observe(state[\.displayedState]) {
-            print($0)
-            print($0 is AnyAppState)
-            print($0.state is AppState)
-        }
-
-    }
-    @IBOutlet weak var appContainer_: UIView!
-    @IBOutlet weak var slider_: UISlider!
-    @IBOutlet weak var stateLabel_: UILabel!
-    @IBOutlet weak var actionLabel_: UILabel!
-}
-extension TimeTravelViewController {
-    var appContainer: UIView { return appContainer_ }
-    var slider: UISlider { return slider_ }
-    var stateLabel: UILabel { return stateLabel_ }
-    var actionLabel: UILabel { return actionLabel_ }
-}
 
 //protocol TimeTravelState: Equatable, Codable {
 //    associatedtype AppStateType: Equatable, Codable
@@ -215,9 +135,10 @@ extension TimeTravel {
     static var timeTravelReducer : Reducer<State, Action> {
         return .init { state, action in
             guard case let .timeTravel(a) = action else {
-                //other action, save the state to pastStates
-                print("will record")
-                state.pastStates = [state.liveState] + state.pastStates
+                //other action, save the state to pastStates if not timetraveling, ignore otherwise
+                if case .live = state.viewMode {
+                    state.pastStates = [state.liveState] + state.pastStates
+                }
                 return
             }
             switch a {
@@ -428,4 +349,9 @@ extension TimeTravel.State {
 //    }
 //}
 //
+//extension TimeTravelViewController: UIGestureRecognizerDelegate {
+//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+//    }
+//}
 

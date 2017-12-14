@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
-        window?.addGestureRecognizer(longPressRec)
 
         struct Context: TimeTravelContext {
             var state: I<TimeTravelContext.State> { return driver.state.map { $0.map { AnyAppState($0)} } }
@@ -40,15 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
-        window?.rootViewController = withContext(UIStoryboard(name: "TimeTravel", bundle: nil).instantiateInitialViewController() as! TimeTravelViewController, Context())
+        let rootVC = UIStoryboard(name: "TimeTravel", bundle: nil).instantiateInitialViewController() as! TimeTravelViewController
+        _ = withContext(rootVC, Context())
+        window?.rootViewController = rootVC
 
         return true
-    }
-
-    @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
-        if case .began = recognizer.state {
-//            program?.dispatch(.timeTravel(.toggle))
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

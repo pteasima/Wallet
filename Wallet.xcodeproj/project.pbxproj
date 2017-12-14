@@ -32,6 +32,9 @@
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
 		79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C25D411FB4F006009DACF4 /* Assets.xcassets */; };
 		79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */; };
+		79CB6BBE1FDBEA52003BB4A9 /* TimeTravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB6BBD1FDBEA52003BB4A9 /* TimeTravelViewController.swift */; };
+		79CB6BC21FDBEBB7003BB4A9 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB6BC11FDBEBB7003BB4A9 /* AppContainerViewController.swift */; };
+		79CB6BC41FDBF67B003BB4A9 /* UtilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB6BC31FDBF67B003BB4A9 /* UtilsViewController.swift */; };
 		79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715E11FA3E6050025C182 /* NavigationController.swift */; };
 		79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E715EB1FA5ECB90025C182 /* Optics.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,9 @@
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		79C25D411FB4F006009DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79C8F4821FCDB18F00406697 /* IncrementalCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalCocoa.swift; sourceTree = "<group>"; };
+		79CB6BBD1FDBEA52003BB4A9 /* TimeTravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravelViewController.swift; sourceTree = "<group>"; };
+		79CB6BC11FDBEBB7003BB4A9 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
+		79CB6BC31FDBF67B003BB4A9 /* UtilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsViewController.swift; sourceTree = "<group>"; };
 		79E715E11FA3E6050025C182 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		79E715EB1FA5ECB90025C182 /* Optics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optics.swift; sourceTree = "<group>"; };
 		9680F07D61A69A03D220BA73 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				790CB8B91FD80A13007F2BEB /* TimeTravel.swift */,
+				79CB6BBD1FDBEA52003BB4A9 /* TimeTravelViewController.swift */,
+				79CB6BC11FDBEBB7003BB4A9 /* AppContainerViewController.swift */,
+				79CB6BC31FDBF67B003BB4A9 /* UtilsViewController.swift */,
 			);
 			path = TimeTravel;
 			sourceTree = "<group>";
@@ -375,6 +384,7 @@
 				795BAB4E1FD6B99600D6C51A /* Update.swift in Sources */,
 				79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */,
 				795BAB481FD6B84400D6C51A /* AppState.swift in Sources */,
+				79CB6BC21FDBEBB7003BB4A9 /* AppContainerViewController.swift in Sources */,
 				7906D2D61FD5508A008BBDB2 /* SignUp.swift in Sources */,
 				794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */,
 				796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */,
@@ -385,11 +395,13 @@
 				79E715EC1FA5ECB90025C182 /* Optics.swift in Sources */,
 				795BAB531FD6D58200D6C51A /* Collection+Safe.swift in Sources */,
 				795BAB501FD6D27000D6C51A /* TodoViewController.swift in Sources */,
+				79CB6BC41FDBF67B003BB4A9 /* UtilsViewController.swift in Sources */,
 				79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */,
 				790CB8BA1FD80A13007F2BEB /* TimeTravel.swift in Sources */,
 				794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */,
 				794DD8601FA3C4BC00594479 /* IncrementalArray.swift in Sources */,
 				796C70FB1FA3BBFE005CC404 /* AppDelegate.swift in Sources */,
+				79CB6BBE1FDBEA52003BB4A9 /* TimeTravelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
