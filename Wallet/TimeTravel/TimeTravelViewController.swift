@@ -51,13 +51,14 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
 
         let appVC = instantiateApp()
         appContainerViewController.addChildViewController(appVC)
-        appContainerViewController?.appContainer.addSubview(appVC.view); appContainerViewController?.appContainer.sendSubview(toBack: appVC.view)
+        appContainerViewController?.appContainer.addSubview(appVC.view)
+        appContainerViewController?.appContainer.sendSubview(toBack: appVC.view)
         appVC.view.translatesAutoresizingMaskIntoConstraints = false
         appVC.view.topAnchor.constraint(equalTo: appContainerViewController.appContainer.topAnchor).isActive = true
         appVC.view.leftAnchor.constraint(equalTo: appContainerViewController.appContainer.leftAnchor).isActive = true
         appVC.view.bottomAnchor.constraint(equalTo: appContainerViewController.appContainer.bottomAnchor).isActive = true
         appVC.view.rightAnchor.constraint(equalTo: appContainerViewController.appContainer.rightAnchor).isActive = true
-        appVC.didMove(toParentViewController: self)
+        appVC.didMove(toParentViewController: appContainerViewController)
 
         utilsViewController.scrollView.delegate = self
 
@@ -69,9 +70,10 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
         }
         view.addGestureRecognizer(longPressRec)
 
-        let viewMode = state[\.viewMode]
+        let isTimeTravelClosed = state[\.viewMode].map { $0 == .live  }
 
-        observe(viewMode.map { $0 == .live  }) { [weak self] in
+
+        observe(isTimeTravelClosed) { [weak self] in
             //disable innteraction on the whole containerview, else it steals touches
             self?.appContainerViewController.view.superview?.isUserInteractionEnabled = $0
             if $0 {
@@ -80,16 +82,15 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
                 self?.utilsViewController.scrollView.setContentOffset(CGPoint(x: 0, y: self!.utilsViewController.scrollView.contentSize.height - self!.utilsViewController.scrollView.bounds.height - 500), animated: true)
             }
         }
+        bind(isTimeTravelClosed.map { !$0 }, to: \.utilsViewController.scrollView.isScrollEnabled)
 
-
-//            /*I(constant: false)*/, to: \.appContainerViewController.view.isUserInteractionEnabled)
 
         bind(state[\.displayedState].map { "\($0.state)" }, to: \.utilsViewController.stateLabel.text)
 
 
         let actionSegmentedControl = UISegmentedControl(items: ["Action"])
         let leftItem = UIBarButtonItem(customView:  actionSegmentedControl)
-        navigationItem.leftBarButtonItem = leftItem
+        utilsViewController.navigationItem.leftBarButtonItem = leftItem
         actionSegmentedControl.addTarget(self, action: #selector(onActionSegmentSelected), for: .valueChanged)
 
         let titleLabel = UILabel()
@@ -98,7 +99,7 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
         titleLabel.text = "ontrol.superview?.layer.borderWidth = 1. Solve the problem by expanding view so the"
         navigationItem.titleView = titleLabel
         //scrollViewDelegate is setup through storyboard, im trying to embace the life of a storyboarder.
-
+        
         utilsViewController.stateLabelBottom.constant = UIScreen.main.bounds.height + 200
 
 
@@ -121,15 +122,14 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let scrollView = utilsViewController.scrollView
-//        utilsViewController.scrollView.scrollRectToVisible(CGRect(x:0, y: scrollView.contentSize.height - scrollView.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
-
+        self.appContainerViewController.view.transform = CGAffineTransform(translationX: 0, y: 270).scaledBy(x: 0.25, y: 0.25)
+        self.appContainerViewController.view.layoutIfNeeded()
         appTransformAnimator = UIViewPropertyAnimator(duration: 1.0, curve: .easeIn, animations: {
-            self.appContainerViewController.view.transform = CGAffineTransform(translationX: 0, y: 270).scaledBy(x: 0.25, y: 0.25)
-            //                        self.utilsViewController.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 420, right: 0)
+            self.appContainerViewController.view.transform = .identity
         })
-        //        appTransformAnimator?.isReversed = true
         appTransformAnimator?.startAnimation()
+        appTransformAnimator?.isReversed = false
+        //todo animation breaks when app goes to background
         appTransformAnimator?.pauseAnimation()
         utilsViewController.scrollView.scrollTo(direction: .bottom)
 
@@ -141,7 +141,7 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print( (scrollView.contentSize.height - scrollView.contentOffset.y) / UIScreen.main.bounds.height)
-        appTransformAnimator?.fractionComplete = (scrollView.contentSize.height - scrollView.contentOffset.y - UIScreen.main.bounds.height)  / UIScreen.main.bounds.height
+        appTransformAnimator?.fractionComplete = 1 - ((scrollView.contentSize.height - scrollView.contentOffset.y - UIScreen.main.bounds.height)  / UIScreen.main.bounds.height)
 
     }
 

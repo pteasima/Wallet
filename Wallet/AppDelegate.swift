@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return withContext(appVC, AppContext(state: self.driver.state[\.displayedState], dispatch: { self.driver.dispatch(.app($0)) }))
                 }
             }
-            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, pastStates: [], viewMode: .seeking, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
+            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, pastStates: [], viewMode: .live, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
 
 
         }
