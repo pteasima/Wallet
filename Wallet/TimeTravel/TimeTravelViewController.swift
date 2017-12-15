@@ -37,7 +37,7 @@ private extension HasInstanceContext where Self.Context == TimeTravelContext {
         return resolve[\.instantiateApp]
     }
 }
-
+// we need a root container that wraps two child controllers to make both navbars behave. I chose to keep the children 100% dumb and just orchestrate everything from this controller. In practical iOS apps this sort of architecture shouldnt be needed, its just UIKit being UIKit in a rare scenario
 final class TimeTravelViewController: UIViewController, IncrementalObject, HasInstanceContext, UIScrollViewDelegate {
     typealias Context = TimeTravelContext
     var resolve = `default`
@@ -136,13 +136,31 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate { onStop(scrollView) }
     }
     var appTransformAnimator: UIViewPropertyAnimator?
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print( (scrollView.contentSize.height - scrollView.contentOffset.y) / UIScreen.main.bounds.height)
-        appTransformAnimator?.fractionComplete = 1 - ((scrollView.contentSize.height - scrollView.contentOffset.y - UIScreen.main.bounds.height)  / UIScreen.main.bounds.height)
 
+        appTransformAnimator?.fractionComplete = 1 - ((scrollView.bottomOffset )  / UIScreen.main.bounds.height)
+
+
+        print(scrollView.bottomOffset)
+        let threshold: CGFloat = 360
+        if scrollView.bottomOffset > threshold {
+            scrollView.contentInset.bottom = -500
+        } else {
+            scrollView.contentInset.bottom = 0
+        }
+    }
+
+    private func onStop(_ scrollView: UIScrollView) {
+        if scrollView.bottomOffset < 0 {
+            dispatch(.toggle)
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        onStop(scrollView)
     }
 
     @objc func onActionSegmentSelected(){
@@ -175,6 +193,11 @@ enum ScrollDirection {
 extension UIScrollView {
     func scrollTo(direction: ScrollDirection, animated: Bool = true) {
         self.setContentOffset(direction.contentOffsetWith(scrollView: self), animated: animated)
+    }
+}
+extension UIScrollView {
+    var bottomOffset: CGFloat {
+        return contentSize.height - contentOffset.y - bounds.height
     }
 }
 
