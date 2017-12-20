@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    typealias AppWithTimeTravel = TimeTravel<TodosAppState, TodosAppAction>
+    typealias AppWithTimeTravel = TimeTravel<HomeAppState, HomeAppAction>
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,17 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var state: I<TimeTravelContext.State> { return driver.state.map { $0.map { AnyAppState($0)} } }
             var dispatch: (TimeTravelContext.Action) -> () { return { self.driver.dispatch(.timeTravel($0)) } }
 
-            struct AppContext: TodosNavigationContext {
-                let state: I<TodosNavigationContext.State>
-                let dispatch: (TodosNavigationContext.Action) -> ()
+            struct AppContext: HomeContext {
+                let state: I<HomeContext.State>
+                let dispatch: (HomeContext.Action) -> ()
             }
 
             var instantiateApp: () -> UIViewController {
-            return { let appVC = UIStoryboard(name: "Todos", bundle: nil).instantiateInitialViewController() as! TodosNavigationController
+            return { let appVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeCheckInNavigationController
                 return withContext(appVC, AppContext(state: self.driver.state[\.displayedFrame.state], dispatch: { self.driver.dispatch(.app($0)) }))
                 }
             }
-            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, history: [], viewMode: .live, selectedSegment: .swift, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
+            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, history: [], viewMode: .live, selectedSegment: .swift, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: homeAppReducer.reduce).reduce)
 
 
         }

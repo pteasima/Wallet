@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fQL-fA-vMx">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="FXv-TG-JTB">
+            <objects>
+                <viewController id="k5x-Ux-DrO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Do3-o6-gzv">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphonex" translatesAutoresizingMaskIntoConstraints="NO" id="fze-FM-Kty">
+                                <rect key="frame" x="20" y="84" width="728" height="920"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place your phone here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpg-Wt-05e">
+                                <rect key="frame" x="295" y="533.5" width="178" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cpT-sC-hk7" firstAttribute="trailing" secondItem="fze-FM-Kty" secondAttribute="trailing" constant="20" id="2LP-n4-q69"/>
+                            <constraint firstItem="fpg-Wt-05e" firstAttribute="centerY" secondItem="fze-FM-Kty" secondAttribute="centerY" id="PyR-pf-edE"/>
+                            <constraint firstItem="fze-FM-Kty" firstAttribute="top" secondItem="cpT-sC-hk7" secondAttribute="top" constant="20" id="R5G-Rs-ugX"/>
+                            <constraint firstItem="fpg-Wt-05e" firstAttribute="centerX" secondItem="fze-FM-Kty" secondAttribute="centerX" id="VjM-2V-yH9"/>
+                            <constraint firstItem="cpT-sC-hk7" firstAttribute="bottom" secondItem="fze-FM-Kty" secondAttribute="bottom" constant="20" id="Z7Y-ue-5bf"/>
+                            <constraint firstItem="fze-FM-Kty" firstAttribute="leading" secondItem="cpT-sC-hk7" secondAttribute="leading" constant="20" id="xp2-O3-vHq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cpT-sC-hk7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5zZ-pI-X5q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rUh-Q5-LYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565.625" y="-71.484375"/>
+        </scene>
+        <!--Home Check In Navigation Controller-->
+        <scene sceneID="Usk-Vr-cbZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fQL-fA-vMx" customClass="HomeCheckInNavigationController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wsi-6d-zgT">
+                        <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k5x-Ux-DrO" kind="relationship" relationship="rootViewController" id="93E-El-RsK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DpU-FL-fJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-223" y="-72"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iphonex" width="506" height="962"/>
+    </resources>
+</document>

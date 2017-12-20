@@ -13,7 +13,7 @@ enum TodosAppAction {
     case unselectTodo
 }
 
-let appReducer: Reducer<TodosAppState, TodosAppAction> = Reducer { state, action in
+let todosAppReducer: Reducer<TodosAppState, TodosAppAction> = Reducer { state, action in
     switch action {
     case let .selectTodo(atIndex: index):
         state.selectedTodoIndex = index

@@ -21,7 +21,7 @@ struct DefaultTodosNavigationContext: TodosNavigationContext {
     var state: I<TodosNavigationContext.State> { return driver.state }
     var dispatch: (TodosNavigationContext.Action) -> () { return driver.dispatch }
 
-    private let driver: Driver<TodosNavigationContext.State, TodosNavigationContext.Action> = Driver(state: .sample, reduce: appReducer.reduce)
+    private let driver: Driver<TodosNavigationContext.State, TodosNavigationContext.Action> = Driver(state: .sample, reduce: todosAppReducer.reduce)
 }
 
 private extension HasContext {
