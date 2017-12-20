@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    typealias AppWithTimeTravel = TimeTravel<AppState, AppAction>
+    typealias AppWithTimeTravel = TimeTravel<TodosAppState, TodosAppAction>
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             var instantiateApp: () -> UIViewController {
-            return { let appVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! TodosNavigationController
+            return { let appVC = UIStoryboard(name: "Todos", bundle: nil).instantiateInitialViewController() as! TodosNavigationController
                 return withContext(appVC, AppContext(state: self.driver.state[\.displayedFrame.state], dispatch: { self.driver.dispatch(.app($0)) }))
                 }
             }
@@ -37,10 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
         }
-
+        window = UIWindow(frame: UIScreen.main.bounds)
         let rootVC = UIStoryboard(name: "TimeTravel", bundle: nil).instantiateInitialViewController() as! TimeTravelViewController
         _ = withContext(rootVC, Context())
         window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
 
         return true
     }

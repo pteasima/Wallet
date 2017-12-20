@@ -11,8 +11,8 @@ import Corridor
 
 //if we need to create a reusable component with its own state and action, just create new types for them. Parent will be responsible to provide e.g. a mapping from its State to this State. But for simplicity, lets use AppState and AppAction while possible.
 protocol TodosNavigationContext {
-    typealias State = AppState
-    typealias Action = AppAction
+    typealias State = TodosAppState
+    typealias Action = TodosAppAction
     var state: I<State> { get }
     var dispatch: (Action) -> () { get }
 }

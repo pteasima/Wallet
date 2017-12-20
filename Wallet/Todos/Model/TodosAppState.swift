@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct AppState: Equatable, Codable {
+struct TodosAppState: Equatable, Codable {
     var todos: [Todo]
     var selectedTodoIndex: Int?
 
-    static func ==(lhs: AppState, rhs: AppState) -> Bool {
+    static func ==(lhs: TodosAppState, rhs: TodosAppState) -> Bool {
         return lhs.todos == rhs.todos && lhs.selectedTodoIndex == rhs.selectedTodoIndex
     }
 }
@@ -26,9 +26,9 @@ struct Todo: Equatable, Codable {
     }
 }
 
-extension AppState {
-    static var sample: AppState {
-        return AppState(todos: [
+extension TodosAppState {
+    static var sample: TodosAppState {
+        return TodosAppState(todos: [
             Todo(name: "first todo", createdAt: Date()),
             Todo(name: "second todo", createdAt: Date()),
             Todo(name: "first todo", createdAt: Date()),
@@ -149,7 +149,7 @@ extension AppState {
     }
 }
 
-extension AppState {
+extension TodosAppState {
     var selectedTodo: Todo? {
         return selectedTodoIndex.flatMap { todos[safe: $0] }
     }

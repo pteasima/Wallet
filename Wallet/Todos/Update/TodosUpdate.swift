@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum AppAction {
+enum TodosAppAction {
     case selectTodo(atIndex: Int)
     case unselectTodo
 }
 
-let appReducer: Reducer<AppState, AppAction> = Reducer { state, action in
+let appReducer: Reducer<TodosAppState, TodosAppAction> = Reducer { state, action in
     switch action {
     case let .selectTodo(atIndex: index):
         state.selectedTodoIndex = index

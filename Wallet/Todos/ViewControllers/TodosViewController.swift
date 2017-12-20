@@ -10,8 +10,8 @@ import UIKit
 import Corridor
 
 protocol TodosContext {
-    typealias State = AppState
-    typealias Action = AppAction
+    typealias State = TodosAppState
+    typealias Action = TodosAppAction
     var state: I<State> { get }
     var dispatch: (Action) -> () { get }
 }
