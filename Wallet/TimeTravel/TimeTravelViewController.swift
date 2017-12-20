@@ -167,7 +167,8 @@ utilsViewController.stateLabelBottom.constant = UIScreen.main.bounds.height + 20
         appTransformAnimator?.isReversed = false
         //todo animation breaks when app goes to background
         appTransformAnimator?.pauseAnimation()
-        utilsViewController.scrollView.scrollTo(direction: .bottom)
+        utilsViewController.scrollView.setContentOffset(CGPoint(x: 0, y: utilsViewController.scrollView.contentSize.height - utilsViewController.scrollView.bounds.height), animated: false)
+//        utilsViewController.scrollView.scrollTo(direction: .bottom, animated: false)
 
     }
 
