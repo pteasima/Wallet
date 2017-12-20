@@ -10,6 +10,7 @@
 		5101F8D2BC7F6A58557CD335 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94AE04D7CA3DF29C180EA0C /* Pods_Wallet.framework */; };
 		7906D2D61FD5508A008BBDB2 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7906D2D51FD5508A008BBDB2 /* SignUp.swift */; };
 		7906D2DA1FD58EFD008BBDB2 /* Closures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7906D2D91FD58EFD008BBDB2 /* Closures.framework */; };
+		79095E2D1FE3FDCE0047125A /* SingleSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79095E2C1FE3FDCE0047125A /* SingleSegmentControl.swift */; };
 		790CB8B71FD809C7007F2BEB /* TimeTravel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790CB8B61FD809C7007F2BEB /* TimeTravel.storyboard */; };
 		790CB8BA1FD80A13007F2BEB /* TimeTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790CB8B91FD80A13007F2BEB /* TimeTravel.swift */; };
 		791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */; };
@@ -43,6 +44,7 @@
 		7906D2D51FD5508A008BBDB2 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		7906D2D71FD58EEF008BBDB2 /* Closures.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Closures.framework.dSYM; path = Carthage/Build/iOS/Closures.framework.dSYM; sourceTree = "<group>"; };
 		7906D2D91FD58EFD008BBDB2 /* Closures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Closures.framework; path = Carthage/Build/iOS/Closures.framework; sourceTree = "<group>"; };
+		79095E2C1FE3FDCE0047125A /* SingleSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSegmentControl.swift; sourceTree = "<group>"; };
 		790CB8B61FD809C7007F2BEB /* TimeTravel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeTravel.storyboard; sourceTree = "<group>"; };
 		790CB8B91FD80A13007F2BEB /* TimeTravel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravel.swift; sourceTree = "<group>"; };
 		791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledContainerViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		790CB8B81FD80A00007F2BEB /* TimeTravel */ = {
 			isa = PBXGroup;
 			children = (
+				79C25D411FB4F006009DACF4 /* Assets.xcassets */,
 				790CB8B91FD80A13007F2BEB /* TimeTravel.swift */,
 				79CB6BBD1FDBEA52003BB4A9 /* TimeTravelViewController.swift */,
 				79CB6BC11FDBEBB7003BB4A9 /* AppContainerViewController.swift */,
@@ -175,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				795BAB521FD6D58200D6C51A /* Collection+Safe.swift */,
+				79095E2C1FE3FDCE0047125A /* SingleSegmentControl.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,7 +186,6 @@
 		796C70EE1FA3BBFE005CC404 = {
 			isa = PBXGroup;
 			children = (
-				79C25D411FB4F006009DACF4 /* Assets.xcassets */,
 				79E715E01FA3E5F70025C182 /* RoutableUIKit */,
 				796C70F91FA3BBFE005CC404 /* Wallet */,
 				794DD83B1FA3C47400594479 /* Incremental */,
@@ -382,6 +385,7 @@
 				795BAB451FD6B7E800D6C51A /* TodosViewController.swift in Sources */,
 				794DD85E1FA3C4BC00594479 /* Helpers.swift in Sources */,
 				795BAB4E1FD6B99600D6C51A /* Update.swift in Sources */,
+				79095E2D1FE3FDCE0047125A /* SingleSegmentControl.swift in Sources */,
 				79C8F4831FCDB18F00406697 /* IncrementalCocoa.swift in Sources */,
 				795BAB481FD6B84400D6C51A /* AppState.swift in Sources */,
 				79CB6BC21FDBEBB7003BB4A9 /* AppContainerViewController.swift in Sources */,

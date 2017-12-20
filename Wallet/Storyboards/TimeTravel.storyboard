@@ -76,6 +76,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="iQX-kD-zau" secondAttribute="bottom" id="4N6-zl-YOG"/>
                                     <constraint firstItem="iQX-kD-zau" firstAttribute="leading" secondItem="CaM-Fa-lie" secondAttribute="leading" id="Gs0-Jo-5zK"/>
@@ -85,22 +86,55 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="yow-q9-KCK" id="mIR-Vh-HBg"/>
+                                    <outletCollection property="gestureRecognizers" destination="tn2-Td-9Gs" appends="YES" id="Al9-Q0-Ord"/>
                                 </connections>
                             </scrollView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3T-vd-Zi7">
+                                <rect key="frame" x="0.0" y="512" width="375" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLr-7a-9lW" userLabel="Back">
+                                        <rect key="frame" x="0.0" y="0.0" width="143.66666666666666" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqo-YV-75a" userLabel="Iphone">
+                                        <rect key="frame" x="143.66666666666666" y="0.0" width="88" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="Prf-yF-jnv"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz6-wj-zyD" userLabel="Next">
+                                        <rect key="frame" x="231.66666666666663" y="0.0" width="143.33333333333337" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rLr-7a-9lW" firstAttribute="width" secondItem="bz6-wj-zyD" secondAttribute="width" id="2s5-em-1B7"/>
+                                    <constraint firstAttribute="height" constant="300" id="fnK-rZ-j2g"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="e3T-vd-Zi7" secondAttribute="bottom" id="KLP-7o-paZ"/>
                             <constraint firstItem="CaM-Fa-lie" firstAttribute="top" secondItem="laS-vf-3sm" secondAttribute="top" id="Urf-DC-6Jv"/>
+                            <constraint firstAttribute="trailing" secondItem="e3T-vd-Zi7" secondAttribute="trailing" id="Ygt-HI-y7v"/>
                             <constraint firstAttribute="trailing" secondItem="CaM-Fa-lie" secondAttribute="trailing" id="gPh-sz-fQy"/>
                             <constraint firstItem="CaM-Fa-lie" firstAttribute="leading" secondItem="laS-vf-3sm" secondAttribute="leading" id="xSS-KP-nx4"/>
+                            <constraint firstItem="e3T-vd-Zi7" firstAttribute="leading" secondItem="laS-vf-3sm" secondAttribute="leading" id="yG9-iw-5j2"/>
                             <constraint firstAttribute="bottom" secondItem="CaM-Fa-lie" secondAttribute="bottom" id="yfI-EM-g44"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JGm-B0-lRG"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="e3T-vd-Zi7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="brD-W7-8u3">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="NWc-oK-qYU">
+                        <barButtonItem key="rightBarButtonItem" id="NWc-oK-qYU">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="1L5-s6-3Vj">
                                 <rect key="frame" x="238" y="7" width="121" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -112,12 +146,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="rightSegmentedControl_" destination="1L5-s6-3Vj" id="t9X-XD-9Z7"/>
                         <outlet property="scrollView_" destination="CaM-Fa-lie" id="tmd-b7-wjj"/>
                         <outlet property="stateLabelBottom_" destination="ViC-NK-VMm" id="cwi-k5-HsK"/>
                         <outlet property="stateLabel_" destination="iru-d8-W1Q" id="ZmC-Xh-848"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Euv-MS-p5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tn2-Td-9Gs">
+                    <connections>
+                        <action selector="tap:" destination="yow-q9-KCK" id="h18-RH-ivw"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1229.5999999999999" y="-224.6305418719212"/>
         </scene>

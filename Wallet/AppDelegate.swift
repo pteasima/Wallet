@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             var instantiateApp: () -> UIViewController {
             return { let appVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! TodosNavigationController
-                return withContext(appVC, AppContext(state: self.driver.state[\.displayedState], dispatch: { self.driver.dispatch(.app($0)) }))
+                return withContext(appVC, AppContext(state: self.driver.state[\.displayedFrame.state], dispatch: { self.driver.dispatch(.app($0)) }))
                 }
             }
-            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, pastStates: [], viewMode: .live, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
+            let driver = Driver<AppWithTimeTravel.State, AppWithTimeTravel.Action>(state: .init(liveState: .sample, history: [], viewMode: .live, selectedSegment: .swift, currentIndex: nil), reduce: AppWithTimeTravel.reducer(appReducer: appReducer.reduce).reduce)
 
 
         }

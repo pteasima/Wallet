@@ -59,30 +59,50 @@ class AnyAppState: Equatable, Codable {
 
 }
 
-enum TimeTravel<S,A> where S: Codable, S: Equatable { }
+enum TimeTravelNavSegment: String, Codable, Equatable {
+    case action
+    case swift
+    case json
+}
 
+enum TimeTravel<S,A> where S: Codable, S: Equatable { }
 extension TimeTravel {
+
+    struct DispatchInfo: Codable, Equatable {
+        let state: S
+        let action: String
+        let date: Date
+
+        static func ==(lhs: DispatchInfo, rhs: DispatchInfo) -> Bool { return
+            lhs.state == rhs.state && lhs.action == rhs.action && lhs.date == rhs.date
+        }
+    }
+
+
     struct State: Equatable, Codable {
         var liveState: S
-        var pastStates: [S]
+        var history: [DispatchInfo]
         var viewMode: TimeTravelViewMode
+        var selectedSegment: TimeTravelNavSegment
         var currentIndex: Int?
 
 //        init(state: S) {
 //            self.liveState = state
 //        }
 
+        var pastStates: [S] { return history.map { $0.state } }
         var allStates: [S] {
             return [liveState] + pastStates
         }
-        var displayedState: S {
-            guard let currentIndex = currentIndex else { return liveState }
-            return pastStates[currentIndex]
+        var displayedFrame: DispatchInfo {
+            guard let currentIndex = currentIndex else { return DispatchInfo(state: liveState, action: "noAction", date: Date())
+            }
+            return history[currentIndex]
         }
         var percent: Float { return 1.0 }
 
         static func ==(lhs: TimeTravel.State, rhs: TimeTravel.State) -> Bool { return
-            lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode && lhs.currentIndex == rhs.currentIndex
+            lhs.allStates == rhs.allStates && lhs.viewMode == rhs.viewMode && lhs.currentIndex == rhs.currentIndex && lhs.selectedSegment == rhs.selectedSegment
         }
     }
 }
@@ -97,7 +117,10 @@ extension TimeTravel {
 
 enum TimeTravelAction {
     case toggle
-    case seek(toPercent: Float)
+    case selectSegment(TimeTravelNavSegment)
+    case seekBack
+    case seekForward
+//    case scrollToBottom //this action only changes UI state which I dont want to persist, I will try keeping this bit of logic in the vc itself. For science...
 }
 
 extension TimeTravel.Action {
@@ -137,7 +160,7 @@ extension TimeTravel {
             guard case let .timeTravel(a) = action else {
                 //other action, save the state to pastStates if not timetraveling, ignore otherwise
                 if case .live = state.viewMode {
-                    state.pastStates = [state.liveState] + state.pastStates
+                    state.history = [DispatchInfo(state: state.liveState, action: String(describing: action), date: Date() /*coeffect, todo: start giving a fuck*/)] + state.history
                 }
                 return
             }
@@ -151,17 +174,33 @@ extension TimeTravel {
                     state.viewMode = .live
                     state.currentIndex = nil
                 }
-            case let .seek(toPercent: percent):
-                assert(state.viewMode == .seeking)
-                state.viewMode = .seeking
-                let total = state.pastStates.count + 1
-                let newIndex = Int(floor(percent * Float(total)))
-                if newIndex >= state.pastStates.count {
-                    state.currentIndex = nil
+//            case let .seek(toPercent: percent):
+//                assert(state.viewMode == .seeking)
+//                state.viewMode = .seeking
+//                let total = state.pastStates.count + 1
+//                let newIndex = Int(floor(percent * Float(total)))
+//                if newIndex >= state.pastStates.count {
+//                    state.currentIndex = nil
+//                } else {
+//                    state.currentIndex = newIndex
+//                }
+            case let .selectSegment(segment):
+                if case .action = state.selectedSegment {
+                    state.selectedSegment = .swift //todo remember last selected swift/json
                 } else {
-                    state.currentIndex = newIndex
+                    state.selectedSegment = segment
                 }
-            default: break
+            case .seekBack:
+                if let index = state.currentIndex {
+                    state.currentIndex = index - 1
+                } else {
+                    state.currentIndex = state.allStates.count - 1
+                }
+//                state.currentIndex = state.currentIndex.map { max(0, $0 - 1) } ?? state.allStates.count - 1
+            case .seekForward:
+                state.currentIndex = state.currentIndex.map { min(state.allStates.count - 1, $0 + 1) }
+//            case .scrollToBottom:
+//                break
             }
         }
     }
@@ -170,7 +209,7 @@ extension TimeTravel {
 extension TimeTravel.State {
     //this is where I find out that the generic TimeTravel enum was a really bad idea. Todo refactor to have every part have its own generics instead of creating a generic namespace
     func map<NewState, DontCare>(transform: (S) -> NewState) -> TimeTravel<NewState, DontCare>.State {
-        return .init(liveState: transform(liveState), pastStates: pastStates.map(transform), viewMode: viewMode, currentIndex: currentIndex)
+        return .init(liveState: transform(liveState), history: history.map { TimeTravel<NewState, DontCare>.DispatchInfo(state:transform($0.state), action: $0.action, date: $0.date) }, viewMode: viewMode, selectedSegment: .swift, currentIndex: currentIndex)
     }
 }
 

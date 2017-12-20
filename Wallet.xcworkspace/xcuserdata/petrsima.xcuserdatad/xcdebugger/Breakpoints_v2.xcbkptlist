@@ -131,29 +131,140 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/TimeTravel/TimeTravelViewController.swift"
-            timestampString = "535024119.861512"
+            timestampString = "535283631.83422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "scrollViewDidScroll(_:)"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/TimeTravel/TimeTravelViewController.swift"
-            timestampString = "535024119.863785"
+            timestampString = "535283631.834326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "scrollViewDidScroll(_:)"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wallet/TimeTravel/TimeTravelViewController.swift"
+            timestampString = "535283631.834399"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wallet/Extensions/SingleSegmentControl.swift"
+            timestampString = "535039835.842829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "selectedSegmentIndex"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wallet/TimeTravel/TimeTravelViewController.swift"
+            timestampString = "535283631.834485"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wallet/TimeTravel/TimeTravel.swift"
+            timestampString = "535311572.731637"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "timeTravelReducer"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Wallet.TimeTravel&lt;A, B&gt;.State, Wallet.TimeTravel&lt;A, B&gt;.Action) -&gt; () in static Wallet.TimeTravel.timeTravelReducer.getter : Wallet.Reducer&lt;Wallet.TimeTravel&lt;A, B&gt;.State, Wallet.TimeTravel&lt;A, B&gt;.Action&gt;"
+                  moduleName = "Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/petrsima/workspace/Wallet/Wallet/TimeTravel/TimeTravel.swift"
+                  timestampString = "535283632.13846"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "1061">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; Swift.Int in closure #1 (inout Wallet.TimeTravel&lt;A, B&gt;.State, Wallet.TimeTravel&lt;A, B&gt;.Action) -&gt; () in static Wallet.TimeTravel.timeTravelReducer.getter : Wallet.Reducer&lt;Wallet.TimeTravel&lt;A, B&gt;.State, Wallet.TimeTravel&lt;A, B&gt;.Action&gt;"
+                  moduleName = "Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/petrsima/workspace/Wallet/Wallet/TimeTravel/TimeTravel.swift"
+                  timestampString = "535283632.15293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Int in closure #1 (inout Wallet.TimeTravel&lt;A, B&gt;.State, Wallet.TimeTravel&lt;A, B&gt;.Action) -&gt; () in static Wallet.TimeTravel.timeTravelReducer.getter : Wallet.Reducer&lt;Wallet.TimeTravel&lt;A, B&gt;.State, Wallet.TimeTravel&lt;A, B&gt;.Action&gt;"
+                  moduleName = "Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/petrsima/workspace/Wallet/Wallet/TimeTravel/TimeTravel.swift"
+                  timestampString = "535283632.160859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "103">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

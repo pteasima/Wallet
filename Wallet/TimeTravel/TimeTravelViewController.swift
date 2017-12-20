@@ -18,7 +18,7 @@ protocol TimeTravelContext {
 }
 
 struct DefaultTimeTravelContext: TimeTravelContext {
-    var state: I<TimeTravelContext.State> { return I(constant: TimeTravel<AnyAppState,Any>.State(liveState: AnyAppState(DummyAppState()), pastStates: [], viewMode: .live, currentIndex: nil)) }
+    var state: I<TimeTravelContext.State> { return I(constant: TimeTravel<AnyAppState,Any>.State(liveState: AnyAppState(DummyAppState()), history: [], viewMode: .live, selectedSegment: .swift,  currentIndex: nil)) }
     var dispatch: (TimeTravelAction) -> () { return { print($0) } }
     var instantiateApp: () -> UIViewController { return { UIViewController() } }
     //    private let driver: Driver<TimeTravelContext.State, TimeTravelContext.Action> = Driver(state: .sample, reduce: { print("yet another reducer");print($0, $1) })
@@ -61,7 +61,14 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
         appVC.didMove(toParentViewController: appContainerViewController)
 
         utilsViewController.scrollView.delegate = self
-
+        utilsViewController.onTap = { [weak self] rec in
+            guard let v = rec.view else { return }
+            if rec.location(in: v).x < v.bounds.width/2 {
+                self?.dispatch(.seekBack)
+            }else {
+                self?.dispatch(.seekForward)
+            }
+        }
 
         let longPressRec = UILongPressGestureRecognizer { [weak self] in
             if case .began = $0.state {
@@ -85,25 +92,54 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
         bind(isTimeTravelClosed.map { !$0 }, to: \.utilsViewController.scrollView.isScrollEnabled)
 
 
-        bind(state[\.displayedState].map { "\($0.state)" }, to: \.utilsViewController.stateLabel.text)
+        bind(state.map { "\($0.displayedFrame.state.state)" }, to: \.utilsViewController.stateLabel.text)
 
 
         let actionSegmentedControl = UISegmentedControl(items: ["Action"])
+        actionSegmentedControl.isMomentary = true
         let leftItem = UIBarButtonItem(customView:  actionSegmentedControl)
         utilsViewController.navigationItem.leftBarButtonItem = leftItem
         actionSegmentedControl.addTarget(self, action: #selector(onActionSegmentSelected), for: .valueChanged)
+
+        utilsViewController.rightSegmentedControl.addTarget(self, action: #selector(rightSegmentedControlChanged(_:)), for: .valueChanged)
 
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 3
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.text = "ontrol.superview?.layer.borderWidth = 1. Solve the problem by expanding view so the"
-        navigationItem.titleView = titleLabel
+        utilsViewController.navigationItem.titleView = titleLabel
+        actionTitleLabel_ = titleLabel
+        bind(state.map { $0.displayedFrame.action }, to: \.actionTitleLabel.text)
+
+        bind(state.map {
+            switch $0.selectedSegment {
+            case .action:
+                return UIImageView(image: #imageLiteral(resourceName: "iphonex"))
+            default:
+                return titleLabel
+            }
+            }, to: \.utilsViewController.navigationItem.titleView)
+
+        observe(state.map { $0.selectedSegment }) { [weak actionSegmentedControl, utilsViewController] in
+            switch $0 {
+            case .action:
+                actionSegmentedControl?.selectedSegmentIndex = 0
+                utilsViewController?.rightSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+            case .swift:
+                actionSegmentedControl?.selectedSegmentIndex = UISegmentedControlNoSegment
+                utilsViewController?.rightSegmentedControl.selectedSegmentIndex = 0
+            case .json:
+                actionSegmentedControl?.selectedSegmentIndex = UISegmentedControlNoSegment
+                utilsViewController?.rightSegmentedControl.selectedSegmentIndex = 1
+            }
+        }
         //scrollViewDelegate is setup through storyboard, im trying to embace the life of a storyboarder.
-        
-        utilsViewController.stateLabelBottom.constant = UIScreen.main.bounds.height + 200
+utilsViewController.stateLabelBottom.constant = UIScreen.main.bounds.height + 200
 
 
     }
+    weak var actionTitleLabel_: UILabel!
+    var actionTitleLabel: UILabel { return actionTitleLabel_ }
 
     weak var appContainerViewController: AppContainerViewController!
     weak var utilsViewController: UtilsViewController!
@@ -164,7 +200,10 @@ final class TimeTravelViewController: UIViewController, IncrementalObject, HasIn
     }
 
     @objc func onActionSegmentSelected(){
-
+        dispatch(.selectSegment(.action))
+    }
+    @objc func rightSegmentedControlChanged(_ sender: UISegmentedControl) {
+        dispatch(.selectSegment(sender.selectedSegmentIndex == 0 ? .swift : .json))
     }
 
 }
