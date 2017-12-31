@@ -9,7 +9,7 @@
 import UIKit
 import Corridor
 
-final class HomeCheckInNavigationController: UINavigationController, IncrementalObject, HomeContextAware {
+final class HomeNavigationController: UINavigationController, IncrementalObject, HomeContextAware {
     typealias Context = HomeContext
     var resolve = `default`
     

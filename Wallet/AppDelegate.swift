@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             var instantiateApp: () -> UIViewController {
-            return { let appVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeCheckInNavigationController
+            return { let appVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeNavigationController
                 return withContext(appVC, AppContext(state: self.driver.state[\.displayedFrame.state], dispatch: { self.driver.dispatch(.app($0)) }))
                 }
             }

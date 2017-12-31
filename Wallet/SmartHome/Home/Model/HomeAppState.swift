@@ -15,6 +15,6 @@ struct HomeAppState: Equatable, Codable {
         return lhs.isCheckInCompleted == rhs.isCheckInCompleted
     }
     static var sample: HomeAppState {
-        return HomeAppState(isCheckInCompleted: true)
+        return HomeAppState(isCheckInCompleted: false)
     }
 }

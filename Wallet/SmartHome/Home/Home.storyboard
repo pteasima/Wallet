@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home Check In View Controller-->
         <scene sceneID="FXv-TG-JTB">
             <objects>
-                <viewController id="k5x-Ux-DrO" sceneMemberID="viewController">
+                <viewController id="k5x-Ux-DrO" customClass="HomeCheckInViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Do3-o6-gzv">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="1305" y="-83"/>
         </scene>
-        <!--Home Check In Navigation Controller-->
+        <!--Home Navigation Controller-->
         <scene sceneID="Usk-Vr-cbZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fQL-fA-vMx" customClass="HomeCheckInNavigationController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fQL-fA-vMx" customClass="HomeNavigationController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wsi-6d-zgT">
                         <rect key="frame" x="0.0" y="20" width="768" height="44"/>

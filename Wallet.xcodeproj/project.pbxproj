@@ -18,7 +18,7 @@
 		7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7928CFC51FCD7315007C3AAE /* Corridor.framework */; };
 		792F57F21FC5DD4700FE8310 /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792F57F11FC5DD4700FE8310 /* Todos.storyboard */; };
 		7931659F1FEB03A700D21865 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7931659E1FEB03A700D21865 /* Home.storyboard */; };
-		793165A41FEB065500D21865 /* HomeCheckInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793165A31FEB065500D21865 /* HomeCheckInNavigationController.swift */; };
+		793165A41FEB065500D21865 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793165A31FEB065500D21865 /* HomeNavigationController.swift */; };
 		793165A71FEB068600D21865 /* HomeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793165A61FEB068600D21865 /* HomeContext.swift */; };
 		794DD8501FA3C4BC00594479 /* Incremental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83C1FA3C47400594479 /* Incremental.swift */; };
 		794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */; };
@@ -36,6 +36,7 @@
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
 		797C8B171FF9264B00645973 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C8B161FF9264B00645973 /* MainViewController.swift */; };
+		797C8B191FF93FA500645973 /* HomeCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C8B181FF93FA500645973 /* HomeCheckInViewController.swift */; };
 		798E84F91FEB090400272C4B /* HomeAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E84F81FEB090400272C4B /* HomeAppState.swift */; };
 		798E84FB1FEB093A00272C4B /* HomeUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E84FA1FEB093A00272C4B /* HomeUpdate.swift */; };
 		79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C25D411FB4F006009DACF4 /* Assets.xcassets */; };
@@ -59,7 +60,7 @@
 		7928CFC51FCD7315007C3AAE /* Corridor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Corridor.framework; path = Carthage/Build/iOS/Corridor.framework; sourceTree = "<group>"; };
 		792F57F11FC5DD4700FE8310 /* Todos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Todos.storyboard; sourceTree = "<group>"; };
 		7931659E1FEB03A700D21865 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		793165A31FEB065500D21865 /* HomeCheckInNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCheckInNavigationController.swift; sourceTree = "<group>"; };
+		793165A31FEB065500D21865 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		793165A61FEB068600D21865 /* HomeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContext.swift; sourceTree = "<group>"; };
 		794DD83C1FA3C47400594479 /* Incremental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incremental.swift; sourceTree = "<group>"; };
 		794DD83D1FA3C47400594479 /* Incremental+NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Incremental+NSObject.swift"; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		796C710C1FA3BC20005CC404 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		797C8B161FF9264B00645973 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		797C8B181FF93FA500645973 /* HomeCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCheckInViewController.swift; sourceTree = "<group>"; };
 		798E84F81FEB090400272C4B /* HomeAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppState.swift; sourceTree = "<group>"; };
 		798E84FA1FEB093A00272C4B /* HomeUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUpdate.swift; sourceTree = "<group>"; };
 		79C25D411FB4F006009DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -192,8 +194,9 @@
 		793165A21FEB064100D21865 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				793165A31FEB065500D21865 /* HomeCheckInNavigationController.swift */,
+				793165A31FEB065500D21865 /* HomeNavigationController.swift */,
 				797C8B161FF9264B00645973 /* MainViewController.swift */,
+				797C8B181FF93FA500645973 /* HomeCheckInViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -480,9 +483,10 @@
 				795BAB481FD6B84400D6C51A /* TodosAppState.swift in Sources */,
 				79CB6BC21FDBEBB7003BB4A9 /* AppContainerViewController.swift in Sources */,
 				7906D2D61FD5508A008BBDB2 /* SignUp.swift in Sources */,
-				793165A41FEB065500D21865 /* HomeCheckInNavigationController.swift in Sources */,
+				793165A41FEB065500D21865 /* HomeNavigationController.swift in Sources */,
 				794DD8511FA3C4BC00594479 /* Incremental+NSObject.swift in Sources */,
 				798E84F91FEB090400272C4B /* HomeAppState.swift in Sources */,
+				797C8B191FF93FA500645973 /* HomeCheckInViewController.swift in Sources */,
 				796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */,
 				791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */,
 				796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */,
