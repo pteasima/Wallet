@@ -44,6 +44,36 @@
             </objects>
             <point key="canvasLocation" x="565.625" y="-71.484375"/>
         </scene>
+        <!--Main View Controller-->
+        <scene sceneID="avk-en-ozk">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" id="UPp-es-WHy" customClass="MainViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1tD-rp-Lt7">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycY-S9-HSX" customClass="CollectionView" customModule="CollectionKit">
+                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ycY-S9-HSX" secondAttribute="trailing" id="0C8-wD-UDZ"/>
+                            <constraint firstAttribute="bottom" secondItem="ycY-S9-HSX" secondAttribute="bottom" id="DSF-Kx-fpE"/>
+                            <constraint firstItem="ycY-S9-HSX" firstAttribute="leading" secondItem="1tD-rp-Lt7" secondAttribute="leading" id="H5D-tn-yH5"/>
+                            <constraint firstItem="ycY-S9-HSX" firstAttribute="top" secondItem="1tD-rp-Lt7" secondAttribute="top" constant="20" id="eMd-Se-h9g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eiJ-8u-QeL"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ycY-S9-HSX" id="vVM-1t-s3s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ahy-r6-mcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="-83"/>
+        </scene>
         <!--Home Check In Navigation Controller-->
         <scene sceneID="Usk-Vr-cbZ">
             <objects>

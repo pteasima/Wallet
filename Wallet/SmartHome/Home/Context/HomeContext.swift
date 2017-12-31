@@ -20,7 +20,7 @@ struct DefaultHomeContext: HomeContext {
 ////        return Resolver(context: DefaultHomeContext())
 ////    }
 //}
-private extension HasInstanceContext where Self.Context == HomeContext {
+extension HasInstanceContext where Self.Context == HomeContext {
     var state: I<HomeContext.State> { return resolve[\.state] }
     var dispatch: (HomeContext.Action) -> () { return resolve[\.dispatch] }
 }

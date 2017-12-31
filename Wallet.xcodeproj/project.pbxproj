@@ -13,6 +13,7 @@
 		79095E2D1FE3FDCE0047125A /* SingleSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79095E2C1FE3FDCE0047125A /* SingleSegmentControl.swift */; };
 		790CB8B71FD809C7007F2BEB /* TimeTravel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790CB8B61FD809C7007F2BEB /* TimeTravel.storyboard */; };
 		790CB8BA1FD80A13007F2BEB /* TimeTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790CB8B91FD80A13007F2BEB /* TimeTravel.swift */; };
+		790F11781FF917D400648480 /* CollectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 790F11771FF917D300648480 /* CollectionKit.framework */; };
 		791BB1201FAC6BAC00231794 /* ScaledContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */; };
 		7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7928CFC51FCD7315007C3AAE /* Corridor.framework */; };
 		792F57F21FC5DD4700FE8310 /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792F57F11FC5DD4700FE8310 /* Todos.storyboard */; };
@@ -34,6 +35,7 @@
 		796C71051FA3BBFE005CC404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796C71031FA3BBFE005CC404 /* LaunchScreen.storyboard */; };
 		796C710D1FA3BC20005CC404 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710C1FA3BC20005CC404 /* Monoid.swift */; };
 		796C710F1FA3BC83005CC404 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796C710E1FA3BC83005CC404 /* Reducer.swift */; };
+		797C8B171FF9264B00645973 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C8B161FF9264B00645973 /* MainViewController.swift */; };
 		798E84F91FEB090400272C4B /* HomeAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E84F81FEB090400272C4B /* HomeAppState.swift */; };
 		798E84FB1FEB093A00272C4B /* HomeUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E84FA1FEB093A00272C4B /* HomeUpdate.swift */; };
 		79C25D421FB4F007009DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C25D411FB4F006009DACF4 /* Assets.xcassets */; };
@@ -52,6 +54,7 @@
 		79095E2C1FE3FDCE0047125A /* SingleSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSegmentControl.swift; sourceTree = "<group>"; };
 		790CB8B61FD809C7007F2BEB /* TimeTravel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeTravel.storyboard; sourceTree = "<group>"; };
 		790CB8B91FD80A13007F2BEB /* TimeTravel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravel.swift; sourceTree = "<group>"; };
+		790F11771FF917D300648480 /* CollectionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CollectionKit.framework; path = Carthage/Build/iOS/CollectionKit.framework; sourceTree = "<group>"; };
 		791BB11F1FAC6BAC00231794 /* ScaledContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledContainerViewController.swift; sourceTree = "<group>"; };
 		7928CFC51FCD7315007C3AAE /* Corridor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Corridor.framework; path = Carthage/Build/iOS/Corridor.framework; sourceTree = "<group>"; };
 		792F57F11FC5DD4700FE8310 /* Todos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Todos.storyboard; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		796C71061FA3BBFE005CC404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796C710C1FA3BC20005CC404 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		796C710E1FA3BC83005CC404 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		797C8B161FF9264B00645973 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		798E84F81FEB090400272C4B /* HomeAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppState.swift; sourceTree = "<group>"; };
 		798E84FA1FEB093A00272C4B /* HomeUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUpdate.swift; sourceTree = "<group>"; };
 		79C25D411FB4F006009DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5101F8D2BC7F6A58557CD335 /* Pods_Wallet.framework in Frameworks */,
+				790F11781FF917D400648480 /* CollectionKit.framework in Frameworks */,
 				7928CFC61FCD7315007C3AAE /* Corridor.framework in Frameworks */,
 				7906D2DA1FD58EFD008BBDB2 /* Closures.framework in Frameworks */,
 			);
@@ -106,6 +111,7 @@
 		2E578A4DC49D05EF7AB9E0DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				790F11771FF917D300648480 /* CollectionKit.framework */,
 				7906D2D91FD58EFD008BBDB2 /* Closures.framework */,
 				7906D2D71FD58EEF008BBDB2 /* Closures.framework.dSYM */,
 				7928CFC51FCD7315007C3AAE /* Corridor.framework */,
@@ -187,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				793165A31FEB065500D21865 /* HomeCheckInNavigationController.swift */,
+				797C8B161FF9264B00645973 /* MainViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -430,11 +437,13 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Corridor.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Closures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CollectionKit.framework",
 			);
 			name = "carthage-copy-frameworks";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Corridor.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Closures.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CollectionKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -484,6 +493,7 @@
 				798E84FB1FEB093A00272C4B /* HomeUpdate.swift in Sources */,
 				795BAB501FD6D27000D6C51A /* TodoViewController.swift in Sources */,
 				79CB6BC41FDBF67B003BB4A9 /* UtilsViewController.swift in Sources */,
+				797C8B171FF9264B00645973 /* MainViewController.swift in Sources */,
 				79E715E21FA3E6050025C182 /* NavigationController.swift in Sources */,
 				790CB8BA1FD80A13007F2BEB /* TimeTravel.swift in Sources */,
 				794DD85F1FA3C4BC00594479 /* IncrementalStdLib.swift in Sources */,

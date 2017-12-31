@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.2.1",
+  "iOS" : [
+    {
+      "hash" : "51d5972c7598996e3855b378fb9cffa099b45937104818c3807e7a2cc6a0bf0b",
+      "name" : "CollectionKit"
+    }
+  ]
+}

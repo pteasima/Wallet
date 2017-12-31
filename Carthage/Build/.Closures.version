@@ -1,18 +1,9 @@
 {
+  "commitish" : "v0.3",
   "iOS" : [
     {
-      "hash" : "f9a90ddf2b5d84e8cebe0dbc7fe7fdef8fe12aefb64de34c9ee5333eb1bf8426",
+      "hash" : "e60345101f2271a818231566a3ed88b9b04d90f7ac62349db4da8443d3d0edcc",
       "name" : "Closures"
     }
-  ],
-  "commitish" : "v0.3",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-
   ]
 }

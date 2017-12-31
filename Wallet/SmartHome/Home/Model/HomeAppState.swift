@@ -9,10 +9,12 @@
 import Foundation
 
 struct HomeAppState: Equatable, Codable {
+    var isCheckInCompleted: Bool
+    
     static func ==(lhs: HomeAppState, rhs: HomeAppState) -> Bool {
-        return true
+        return lhs.isCheckInCompleted == rhs.isCheckInCompleted
     }
     static var sample: HomeAppState {
-        return HomeAppState()
+        return HomeAppState(isCheckInCompleted: true)
     }
 }
